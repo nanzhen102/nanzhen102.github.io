@@ -1,7 +1,7 @@
 ---
 title: day 1 - 16S amplicon sequencing
 layout: default
-nav_order:2
+nav_order: 2
 ---
 ## Sara/Sarah Assignment - Nanzhen explores
 **Basic info.**
