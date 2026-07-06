@@ -5,9 +5,11 @@ nav_order: 2
 ---
 # Sara/Sarah Assignment - Nanzhen explores
 ## Basic info.
+
 - Shared folder: `/global/project/hpcg1554/`
 - My person folder: `/global/teaching-home/sa3240009`
 ## Step 1. Check what you have
+
 - In R interactive
 
 ```R
@@ -20,6 +22,7 @@ installed <- rownames(installed.packages())
 c(phyloseq = "phyloseq" %in% installed, microbiome = "microbiome" %in% installed)
 ```
 ## Step 2. Install datasets
+
 - in R interactive
 
 ```R
