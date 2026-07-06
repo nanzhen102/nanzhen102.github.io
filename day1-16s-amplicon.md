@@ -9,6 +9,7 @@ nav_order: 2
 - My person folder: `/global/teaching-home/sa3240009`
 ## Step 1. Check what you have
 - In R interactive
+
 ```R
 # Check which R, which library paths
 R.version.string
@@ -20,6 +21,7 @@ c(phyloseq = "phyloseq" %in% installed, microbiome = "microbiome" %in% installed
 ```
 ## Step 2. Install datasets
 - in R interactive
+
 ```R
 # Install packages.
 install.packages("igraph")
@@ -29,6 +31,7 @@ BiocManager::install(c("phyloseq", "microbiome))
 # Confirm they are installed.
 
 ```
+
 Step 1. Load dataset
 
 - `dietswap`
