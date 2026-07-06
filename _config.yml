@@ -1,2 +1,10 @@
-title: BMIF803 2026 Metagenomics
-description: Metagenomics module tutorials
+title: BMIF803 2026 Day1 Assignment - 16S amplicon sequencing
+description: For BMIF803 2026 Metagenomics module
+remote_theme: just-the-docs/just-the-docs
+plugins:
+  - jekyll-remote-theme
+color_scheme: light
+search_enabled: true
+aux_links:
+  "GitHub":
+    - "https://github.com/nanzhen102"
