@@ -8,3 +8,11 @@ up where you left off.
       the CV link in `content/about.md`
 - [ ] Decide: face icon vs. bee icon (both saved in
       `quartz/static/icon-options/`) — bee is currently live
+- [ ] Issues on Github Repo.
+- [ ] remove the preview function of the bee icon at the botton at the about page
+- [ ] the about tab, when my mice is on top of it, it shows "About" and the   
+      web link. update it, so when my mice is on top of the web tab, it shows "About me - Nanzhen" and the web link.
+
+
+
+
