@@ -7,7 +7,7 @@ configuration:
   analytics:
     provider: null
   locale: en-US
-  baseUrl: nanzhen102.github.io/personal-website
+  baseUrl: nanzhen102.github.io
   ignorePatterns:
     - private
     - templates
