@@ -2,7 +2,7 @@
 title: About
 ---
 
-![Nanzhen Qiao](profile.jpg)
+<span id="top"></span>![Nanzhen Qiao](profile.jpg)
 
 I'm Nanzhen (Aspen) Qiao, Ph.D., a bioinformatician and computational biologist in the Computational Genomics Lab at Queen's University, working across microbiome science, epigenetics, and machine learning.
 
@@ -25,4 +25,6 @@ I build machine learning pipelines and explainable AI models for genomic and mic
 - LinkedIn: [linkedin.com/in/nanzhen](https://www.linkedin.com/in/nanzhen/)
 - Google Scholar: [Google Scholar](https://scholar.google.com/citations?user=tfBrfk0AAAAJ&hl=en)
 <!-- CV: [Download CV (PDF)](/cv.pdf)  -- source it from ai-job-search-nanzhen/cv/ once filled in -->
+
+[🐝](#top)
 
