@@ -1,22 +1,25 @@
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
+import { FullSlug, resolveRelative } from "../util/path"
 
-const Header: QuartzComponent = ({ children }: QuartzComponentProps) => {
-  return children.length > 0 ? <header>{children}</header> : null
-}
+const navLinks: { title: string; slug: FullSlug }[] = [
+  { title: "About", slug: "about" as FullSlug },
+  { title: "Posts", slug: "posts/index" as FullSlug },
+]
 
-Header.css = `
-header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 2rem 0;
-  gap: 1.5rem;
+const Header: QuartzComponent = ({ children, fileData }: QuartzComponentProps) => {
+  if (children.length === 0) return null
+  const [titleEl, ...rest] = children
+  return (
+    <header>
+      {titleEl}
+      <nav class="site-nav">
+        {navLinks.map(({ title, slug }) => (
+          <a href={resolveRelative(fileData.slug!, slug)}>{title}</a>
+        ))}
+      </nav>
+      {rest}
+    </header>
+  )
 }
-
-header h1 {
-  margin: 0;
-  flex: auto;
-}
-`
 
 export default (() => Header) satisfies QuartzComponentConstructor

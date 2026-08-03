@@ -2,22 +2,30 @@
 title: About
 ---
 
-I'm Nanzhen (Aspen) Qiao, Ph.D., working at the intersection of epigenetics, the microbiome, and machine learning.
+![Nanzhen Qiao](profile.jpg)
 
-## What I work on
+I'm Nanzhen (Aspen) Qiao, Ph.D. — a bioinformatician and computational biologist in the Computational Genomics Lab at Queen's University, working across microbiome science, epigenetics, and machine learning.
 
-My postdoc research (Computational genomics lab, Queen's University) integrates infant gut microbiome and DNA methylation data from the CHILD Cohort Study, looking at how early microbiome development relates to childhood asthma and atopic disease. I also teach the metagenomics module of BMIF803.
+I build machine learning pipelines and explainable-AI models for genomic and microbiome data — from SNP-level drug-resistance prediction to multi-omics integration — and turn them into reproducible, production-style workflows (Nextflow, Snakemake) instead of one-off notebooks.
 
-Separately, I co-authored [FORUM-TB](https://github.com/TheMicrobialist/SHAP-mTB-AMR) — an open, ML-ready whole-genome dataset for predicting drug resistance in *M. tuberculosis*, benchmarked with explainable ML (SHAP) that recovers known clinical resistance mutations without being told what to look for.
+## Selected projects
 
-<!-- Personal note: this paragraph is intentionally short — add whatever else you want people to know here (background, what got you into this field, interests outside work). Didn't want to invent anything. -->
+- **FORUM-TB** — co-authored with Noah Legall — an open, ML-ready whole-genome dataset for predicting drug resistance in *M. tuberculosis*, benchmarked with explainable ML (SHAP) that recovers known clinical resistance mutations without being told what to look for.
+- **Multi-omics microbiome–epigenome integration** — combining infant gut microbiome and DNA methylation data from the CHILD Cohort Study to trace how early microbiome development shapes childhood asthma and atopic disease.
+- **LABhabitatPred** — a Snakemake pipeline predicting the environmental habitat preference of *Lactobacillaceae* from 16S rRNA sequences — food-relevant microbiology built as a reproducible, scalable pipeline.
+- **LmonoVirulenceML** — a machine-learning virulence-prediction model for *Listeria monocytogenes*, a leading food-safety pathogen.
+- **core-genome-phylogeny** — a Nextflow pipeline automating genome download, annotation, and phylogenetic tree inference for bacterial genera.
 
-## What I'm doing now
-
-Pivoting toward AI/ML-focused roles in industry — bioinformatics and computational biology data science, with a particular interest in applying modern ML (foundation models, explainable AI) to genomic and multi-omics problems.
+<!-- Personal note: add whatever else you want people to know here (background, what got you into this field, interests outside work). Didn't want to invent anything. -->
 
 ## Elsewhere
 
 - Email: nanzhen.qiao@gmail.com
 - GitHub: [nanzhen102](https://github.com/nanzhen102)
-<!-- Add LinkedIn / other links here if you want them public -->
+<!--
+Fill these in and uncomment when ready — format matches rexxxx1234.github.io:
+- LinkedIn: [linkedin.com/in/your-handle](https://linkedin.com/in/your-handle)
+- Google Scholar: [Google Scholar](https://scholar.google.com/citations?user=YOUR_ID)
+- CV: [Download CV (PDF)](/cv.pdf)  -- source it from ai-job-search-nanzhen/cv/ once filled in
+-->
+

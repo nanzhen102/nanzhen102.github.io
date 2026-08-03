@@ -1,3 +1,143 @@
 @use "./variables.scss" as *;
 
 // put your custom CSS here!
+
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+// Single-column layout: no sidebars, just a centered content column
+.page > #quartz-body {
+  grid-template-columns: 1fr !important;
+  grid-template-rows: auto auto auto !important;
+  grid-template-areas:
+    "grid-header"
+    "grid-center"
+    "grid-footer" !important;
+
+  & .sidebar.left,
+  & .sidebar.right {
+    display: none !important;
+  }
+
+  & .page-header,
+  & .center {
+    max-width: 42rem !important;
+    min-width: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  & .page-header {
+    margin-top: 3rem !important;
+  }
+
+  @media all and ($mobile) {
+    & .page-header,
+    & .center {
+      max-width: 100% !important;
+    }
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+// Prose links: underlined, normal weight, same color as text
+article a,
+.center a {
+  font-weight: 400;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  color: var(--dark);
+
+  &:hover {
+    color: var(--tertiary);
+  }
+}
+
+a.internal {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+
+// Top nav (name + About/Posts + dark mode toggle)
+// !important: the structural <header> wrapper isn't part of the component
+// registry, so plugin-provided CSS bundles can load after this stylesheet
+// and win on source order alone without these.
+header {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  margin: 3rem 0 4rem !important;
+  gap: 1.5rem !important;
+}
+
+.page-title {
+  flex: auto !important;
+  margin: 0 !important;
+  font-size: 1.15rem !important;
+}
+
+.page-title a {
+  color: var(--dark) !important;
+  text-decoration: none !important;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.site-nav a {
+  color: var(--gray);
+  font-size: 0.95rem;
+  text-decoration: none !important;
+}
+
+.site-nav a:hover {
+  color: var(--tertiary);
+}
+
+// No footer content is configured; drop the divider that would otherwise
+// separate the article from an empty footer div.
+.center > hr {
+  display: none;
+}
+
+// Profile photo: first image in an article renders as a floated circular
+// avatar that body text wraps around.
+article p:first-of-type img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  float: left;
+  shape-outside: circle(50%);
+  margin: 0.25rem 1.5rem 1rem 0;
+
+  @media all and ($mobile) {
+    width: 88px;
+    height: 88px;
+    margin: 0.25rem 1rem 1rem 0;
+  }
+}
+
+// The intro paragraph wraps around the photo; everything after starts fresh.
+article p:first-of-type + p + p {
+  clear: both;
+}
+
+h2 {
+  clear: both;
+}
