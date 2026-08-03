@@ -16,7 +16,7 @@ I build machine learning pipelines and explainable AI models for genomic and mic
 - **[LmonoVirulenceML](https://github.com/nanzhen102/LmonoVirulenceML_lab250Database)**: a machine learning model predicting virulence in *Listeria monocytogenes*.
 - **[core-genome-phylogeny](https://github.com/nanzhen102/core-genome-phylogeny)**: a Nextflow pipeline automating genome download, annotation, and phylogenetic tree inference for bacterial genera.
 
-*Fun fact: I started out in food science, 100% sure I'd end up fermenting the best yogurt and baking the best sourdough bread. Some of that early work is still cited today.*
+*Fun fact: I started out in food science and was a registered nutritionist, 100% sure I'd end up fermenting the best yogurt and baking the best sourdough bread. Some of that early work is still cited today.*
 
 ## Elsewhere
 
