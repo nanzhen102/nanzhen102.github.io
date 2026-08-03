@@ -22,10 +22,7 @@ I build machine learning pipelines and explainable-AI models for genomic and mic
 
 - Email: nanzhen.qiao@gmail.com
 - GitHub: [nanzhen102](https://github.com/nanzhen102)
-<!--
-Fill these in and uncomment when ready — format matches rexxxx1234.github.io:
-- LinkedIn: [linkedin.com/in/your-handle](https://linkedin.com/in/your-handle)
-- Google Scholar: [Google Scholar](https://scholar.google.com/citations?user=YOUR_ID)
-- CV: [Download CV (PDF)](/cv.pdf)  -- source it from ai-job-search-nanzhen/cv/ once filled in
--->
+- LinkedIn: [linkedin.com/in/nanzhen](https://www.linkedin.com/in/nanzhen/)
+- Google Scholar: [Google Scholar](https://scholar.google.com/citations?user=tfBrfk0AAAAJ&hl=en)
+<!-- CV: [Download CV (PDF)](/cv.pdf)  -- source it from ai-job-search-nanzhen/cv/ once filled in -->
 
