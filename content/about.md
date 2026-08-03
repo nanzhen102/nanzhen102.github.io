@@ -2,11 +2,11 @@
 title: About
 ---
 
-I'm Nanzhen (Aspen) Qiao, Ph.D. — a computational genomics postdoc working at the intersection of epigenetics, the microbiome, and machine learning.
+I'm Nanzhen (Aspen) Qiao, Ph.D., working at the intersection of epigenetics, the microbiome, and machine learning.
 
 ## What I work on
 
-My postdoc research (Duan Lab, Queen's University) integrates infant gut microbiome and DNA methylation data from the CHILD Cohort Study, looking at how early microbiome development relates to childhood asthma and atopic disease. I also teach the metagenomics module of BMIF803.
+My postdoc research (Computational genomics lab, Queen's University) integrates infant gut microbiome and DNA methylation data from the CHILD Cohort Study, looking at how early microbiome development relates to childhood asthma and atopic disease. I also teach the metagenomics module of BMIF803.
 
 Separately, I co-authored [FORUM-TB](https://github.com/TheMicrobialist/SHAP-mTB-AMR) — an open, ML-ready whole-genome dataset for predicting drug resistance in *M. tuberculosis*, benchmarked with explainable ML (SHAP) that recovers known clinical resistance mutations without being told what to look for.
 
