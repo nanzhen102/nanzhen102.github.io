@@ -115,6 +115,28 @@ header {
   display: none;
 }
 
+// Elsewhere links: small icon + text per row. Color/underline/hover are
+// inherited from the general `.center a` rule above — this just handles
+// the icon + label layout. Icons use stroke="currentColor" so they follow
+// the link's own color (and dark mode) automatically.
+.elsewhere-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.elsewhere-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.elsewhere-links svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
 // Home page: the article-title plugin's H1 duplicates the nav brand
 // directly above the photo, so it's hidden here only. The photo itself
 // sits in its own grid column beside the first two paragraphs — a grid
