@@ -115,10 +115,11 @@ header {
   display: none;
 }
 
-// Elsewhere links: small icon + text per row. Color/underline/hover are
-// inherited from the general `.center a` rule above — this just handles
-// the icon + label layout. Icons use stroke="currentColor" so they follow
-// the link's own color (and dark mode) automatically.
+// Elsewhere links: small icon + text per row. Color/hover are inherited
+// from the general `.center a` rule above; underline is turned off here
+// (unlike regular prose links) since the icon already marks these as
+// links. Icons use stroke="currentColor" so they follow the link's own
+// color (and dark mode) automatically.
 .elsewhere-links {
   display: flex;
   flex-direction: column;
@@ -132,6 +133,7 @@ header {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  text-decoration: none;
 }
 
 .elsewhere-links svg {
