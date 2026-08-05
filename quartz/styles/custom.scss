@@ -123,6 +123,9 @@ header {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
+  // Matches the browser-default <ul> indent used by "Selected projects"
+  // above, so the icons line up with that list's bullets.
+  padding-left: 40px;
 }
 
 .elsewhere-links a {
@@ -135,6 +138,14 @@ header {
   width: 15px;
   height: 15px;
   flex-shrink: 0;
+}
+
+// crawl-links appends an arrow icon to every external/mailto link by
+// default; rexxxx1234.github.io's equivalent links don't have one, just
+// the icon + label with a color change on hover (already the site's
+// default <a> transition) — drop the arrow here to match.
+.elsewhere-links .external-icon {
+  display: none;
 }
 
 // Home page: the article-title plugin's H1 duplicates the nav brand
