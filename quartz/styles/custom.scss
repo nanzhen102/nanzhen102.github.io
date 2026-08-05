@@ -115,58 +115,82 @@ header {
   display: none;
 }
 
-// Home page: photo sits in its own grid column beside the first two
-// paragraphs. A grid (rather than a float) means the photo's height can
-// never leave a stray gap before the next paragraph — everything after the
-// second paragraph just resumes full width on the next row.
-body[data-slug="index"] .markdown-preview-view {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  column-gap: 2rem;
-  row-gap: 0.75rem;
-  align-items: center;
-
-  > p:first-child {
-    grid-column: 1;
-    grid-row: 1 / span 2;
-    margin: 0;
+// Home page: identity lives in the photo + caption, so the name headings
+// that the nav and article-title plugin render by default are redundant
+// here and hidden. The photo sits in its own grid column beside the first
+// two paragraphs — a grid (rather than a float) means the photo's height
+// can never leave a stray gap before the next paragraph, and everything
+// after the second paragraph just resumes full width on the next row.
+body[data-slug="index"] {
+  .page-title {
+    display: none;
   }
 
-  > p:first-child img {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-    display: block;
+  header {
+    justify-content: flex-end;
   }
 
-  > p:nth-child(2),
-  > p:nth-child(3) {
-    grid-column: 2;
-    margin: 0;
+  h1.article-title {
+    display: none;
   }
 
-  > :nth-child(n + 4) {
-    grid-column: 1 / -1;
-  }
-
-  @media all and ($mobile) {
-    grid-template-columns: 1fr;
+  .markdown-preview-view {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 2rem;
+    row-gap: 0.75rem;
+    align-items: center;
 
     > p:first-child {
       grid-column: 1;
-      grid-row: auto;
-      margin: 0 0 1rem;
+      grid-row: 1 / span 2;
+      margin: 0;
+      text-align: center;
     }
 
     > p:first-child img {
-      width: 120px;
-      height: 120px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-caption {
+      display: block;
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--gray);
     }
 
     > p:nth-child(2),
     > p:nth-child(3) {
-      grid-column: 1;
+      grid-column: 2;
+      margin: 0;
+    }
+
+    > :nth-child(n + 4) {
+      grid-column: 1 / -1;
+    }
+
+    @media all and ($mobile) {
+      grid-template-columns: 1fr;
+
+      > p:first-child {
+        grid-column: 1;
+        grid-row: auto;
+        margin: 0 0 1rem;
+      }
+
+      > p:first-child img {
+        width: 160px;
+        height: 160px;
+      }
+
+      > p:nth-child(2),
+      > p:nth-child(3) {
+        grid-column: 1;
+      }
     }
   }
 }
