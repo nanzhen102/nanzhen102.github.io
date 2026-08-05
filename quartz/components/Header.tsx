@@ -2,7 +2,6 @@ import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } fro
 import { FullSlug, resolveRelative } from "../util/path"
 
 const navLinks: { title: string; slug: FullSlug }[] = [
-  { title: "About", slug: "about" as FullSlug },
   { title: "Posts", slug: "posts/index" as FullSlug },
 ]
 
