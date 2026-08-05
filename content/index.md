@@ -1,8 +1,8 @@
 ---
-title: Nanzhen (Aspen) Qiao
+title: Nanzhen Qiao
 ---
 
-<span id="top"></span>![Nanzhen (Aspen) Qiao](profile.jpg)
+<span id="top"></span>![Nanzhen Qiao](profile.jpg)
 
 I'm Nanzhen (Aspen) Qiao, Ph.D., a bioinformatician and computational biologist in the Computational Genomics Lab at Queen's University, working across microbiome science, epigenetics, and machine learning.
 

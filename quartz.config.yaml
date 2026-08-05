@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=./quartz/plugins/quartz-plugins.schema.json
 configuration:
-  pageTitle: Nanzhen (Aspen) Qiao
+  pageTitle: Nanzhen Qiao
   pageTitleSuffix: ""
   enableSPA: true
   enablePopovers: true
