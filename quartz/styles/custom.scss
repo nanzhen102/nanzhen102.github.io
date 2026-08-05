@@ -115,21 +115,13 @@ header {
   display: none;
 }
 
-// Home page: identity lives in the photo + caption, so the name headings
-// that the nav and article-title plugin render by default are redundant
-// here and hidden. The photo sits in its own grid column beside the first
-// two paragraphs — a grid (rather than a float) means the photo's height
-// can never leave a stray gap before the next paragraph, and everything
-// after the second paragraph just resumes full width on the next row.
+// Home page: the article-title plugin's H1 duplicates the nav brand
+// directly above the photo, so it's hidden here only. The photo itself
+// sits in its own grid column beside the first two paragraphs — a grid
+// (rather than a float) means the photo's height can never leave a stray
+// gap before the next paragraph — everything after the second paragraph
+// just resumes full width on the next row.
 body[data-slug="index"] {
-  .page-title {
-    display: none;
-  }
-
-  header {
-    justify-content: flex-end;
-  }
-
   h1.article-title {
     display: none;
   }
@@ -145,22 +137,14 @@ body[data-slug="index"] {
       grid-column: 1;
       grid-row: 1 / span 2;
       margin: 0;
-      text-align: center;
     }
 
     > p:first-child img {
-      width: 260px;
-      height: 260px;
+      width: 180px;
+      height: 180px;
       border-radius: 50%;
       object-fit: cover;
       display: block;
-    }
-
-    .photo-caption {
-      display: block;
-      margin-top: 0.75rem;
-      font-size: 0.9rem;
-      color: var(--gray);
     }
 
     > p:nth-child(2),
@@ -183,8 +167,8 @@ body[data-slug="index"] {
       }
 
       > p:first-child img {
-        width: 160px;
-        height: 160px;
+        width: 120px;
+        height: 120px;
       }
 
       > p:nth-child(2),
