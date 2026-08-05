@@ -70,7 +70,7 @@ a.internal {
   border-radius: 0;
 }
 
-// Top nav (name + About/Posts + dark mode toggle)
+// Top nav (name + Posts + dark mode toggle)
 // !important: the structural <header> wrapper isn't part of the component
 // registry, so plugin-provided CSS bundles can load after this stylesheet
 // and win on source order alone without these.
@@ -115,11 +115,11 @@ header {
   display: none;
 }
 
-// About page: photo sits in its own grid column beside the first two
+// Home page: photo sits in its own grid column beside the first two
 // paragraphs. A grid (rather than a float) means the photo's height can
 // never leave a stray gap before the next paragraph — everything after the
 // second paragraph just resumes full width on the next row.
-body[data-slug="about"] .markdown-preview-view {
+body[data-slug="index"] .markdown-preview-view {
   display: grid;
   grid-template-columns: auto 1fr;
   column-gap: 2rem;
