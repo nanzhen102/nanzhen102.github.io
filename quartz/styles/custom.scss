@@ -133,15 +133,16 @@ header {
   // padding-left edge, not flush with it — so matching that 40px indent
   // here (as before) lined the icons up with the *text* of "Selected
   // projects" above, not its bullets. 22px is the disc marker's own
-  // measured offset; the icon-to-text gap below is shortened to match so
-  // the label text still lands on the project text's column.
+  // measured offset. The icon-to-text gap below is wide enough that the
+  // label text lands a bit right of the project text's column rather than
+  // flush with it — that trade-off reads better than a cramped icon.
   padding-left: 22px;
 }
 
 .elsewhere-links a {
   display: inline-flex;
   align-items: center;
-  gap: 3px;
+  gap: 0.5rem;
   text-decoration: none;
 }
 
