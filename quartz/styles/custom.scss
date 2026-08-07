@@ -115,6 +115,11 @@ header {
   display: none;
 }
 
+// Match post list titles to the date's font size (both read as one line).
+.section h3 {
+  font-size: 1rem;
+}
+
 // Elsewhere links: small icon + text per row. Color/hover are inherited
 // from the general `.center a` rule above; underline is turned off here
 // (unlike regular prose links) since the icon already marks these as
