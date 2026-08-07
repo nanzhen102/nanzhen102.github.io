@@ -1,7 +1,6 @@
 ---
 title: On-device LLMs, a field guide
 date: 2026-08-06
-draft: true
 ---
 
 On-device LLMs have picked up real momentum in fields where patient or client data legally can't leave the building, favoring locally-run models over the general-purpose cloud APIs most people reach for by default, e.g., Claude, GPT-5.1, Gemini 3.1 Pro, none of which you can download and run yourself.
