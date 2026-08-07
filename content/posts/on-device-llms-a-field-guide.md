@@ -89,4 +89,6 @@ The last tier that still counts as one machine. gpt-oss-120b is the only entry h
 |---|---|---|---|---|
 | gpt-oss-120b | OpenAI | 117B total, 5.1B active (MoE), fits a single 80GB GPU | Aug 5, 2025 | [model card](https://huggingface.co/openai/gpt-oss-120b) |
 
-This should serve as a starting point for benchmarking models, working with private data, or fine-tuning one from scratch. ✨
+This should serve as a starting point for benchmarking models, working with private data, or fine-tuning one from scratch. 
+
+If you want a starting point for your own benchmarking: one paper tested DeepSeek-R1 against ChatGPT-o1 and Llama 3.1-405B on USMLE questions, diagnostic case reasoning, tumor classification, and imaging report summaries. DeepSeek-R1 roughly matched ChatGPT-o1 on most tasks, with better reasoning steps but weaker summaries ([Nature Medicine](https://doi.org/10.1038/s41591-025-03726-3)). More directly relevant here, another paper benchmarked the on-device models above (gpt-oss, Qwen3.5, Gemma 4) against proprietary models on clinical decision-making and found they matched or beat DeepSeek-R1 and GPT-5-mini despite being far smaller. Fine-tuning pushed Qwen3.5-35B to 87.9% accuracy, within two points of GPT-5.1's 89.4% ([arXiv](https://doi.org/10.48550/arXiv.2601.03266)).
