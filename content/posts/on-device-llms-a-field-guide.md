@@ -89,4 +89,4 @@ The last tier that still counts as one machine. gpt-oss-120b is the only entry h
 |---|---|---|---|---|
 | gpt-oss-120b | OpenAI | 117B total, 5.1B active (MoE), fits a single 80GB GPU | Aug 5, 2025 | [model card](https://huggingface.co/openai/gpt-oss-120b) |
 
-Hope this gives a useful overview for benchmarking models, working with private data, or fine-tuning one from scratch. ✨
+This should serve as a starting point for benchmarking models, working with private data, or fine-tuning one from scratch. ✨
