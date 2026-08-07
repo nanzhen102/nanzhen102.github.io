@@ -129,15 +129,19 @@ header {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  // Matches the browser-default <ul> indent used by "Selected projects"
-  // above, so the icons line up with that list's bullets.
-  padding-left: 40px;
+  // A <ul>'s outside-positioned disc marker sits to the left of its own
+  // padding-left edge, not flush with it — so matching that 40px indent
+  // here (as before) lined the icons up with the *text* of "Selected
+  // projects" above, not its bullets. 22px is the disc marker's own
+  // measured offset; the icon-to-text gap below is shortened to match so
+  // the label text still lands on the project text's column.
+  padding-left: 22px;
 }
 
 .elsewhere-links a {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 3px;
   text-decoration: none;
 }
 
