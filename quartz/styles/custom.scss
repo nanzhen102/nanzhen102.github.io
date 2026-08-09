@@ -242,21 +242,10 @@ h1.article-title {
   margin-bottom: 0 !important;
 }
 
-// Posts index: it's a listing page, not an article, so the reading time
-// for its one-line intro is noise. The date stays. The plugin injects the
-// separating comma via ::after on every child but the last, and hiding an
-// element doesn't make its predecessor :last-child, so the comma has to
-// be suppressed here too or it would dangle after the date.
+// Posts index: a listing page, not an article. Its own date and reading
+// time describe the one-line intro rather than any post, so the whole
+// metadata line is dropped here; each post's date is already shown
+// against its title in the list below. Post pages keep their metadata.
 body[data-slug="posts/index"] .content-meta {
-  span {
-    display: none !important;
-  }
-
-  > :not(:last-child)::after {
-    content: none !important;
-  }
-
-  > :not(:last-child) {
-    margin-right: 0 !important;
-  }
+  display: none !important;
 }
