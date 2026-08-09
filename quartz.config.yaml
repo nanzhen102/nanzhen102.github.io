@@ -3,7 +3,7 @@ configuration:
   pageTitle: Nanzhen Qiao
   pageTitleSuffix: ""
   enableSPA: true
-  enablePopovers: true
+  enablePopovers: false
   analytics:
     provider: null
   locale: en-US
