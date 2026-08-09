@@ -241,3 +241,22 @@ body[data-slug="index"] {
 h1.article-title {
   margin-bottom: 0 !important;
 }
+
+// Posts index: it's a listing page, not an article, so the reading time
+// for its one-line intro is noise. The date stays. The plugin injects the
+// separating comma via ::after on every child but the last, and hiding an
+// element doesn't make its predecessor :last-child, so the comma has to
+// be suppressed here too or it would dangle after the date.
+body[data-slug="posts/index"] .content-meta {
+  span {
+    display: none !important;
+  }
+
+  > :not(:last-child)::after {
+    content: none !important;
+  }
+
+  > :not(:last-child) {
+    margin-right: 0 !important;
+  }
+}
