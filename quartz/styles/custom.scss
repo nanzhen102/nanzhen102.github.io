@@ -223,3 +223,21 @@ body[data-slug="index"] {
     }
   }
 }
+
+// Post metadata (date + reading time) sits directly under the article
+// title. Greyed down so it reads as secondary to the title, with the
+// spacing split deliberately: tight to the title it belongs to, and a
+// wider gap below to separate it from the body text.
+// !important: the content-meta plugin ships its own `.content-meta`
+// rule (darkgray, margin-top: 0) in a component bundle that loads after
+// this stylesheet, so at equal specificity it would win on source order.
+.content-meta {
+  color: var(--gray) !important;
+  margin: 0.4rem 0 2rem !important;
+}
+
+// Pull the title down onto its metadata line; the gap below the metadata
+// (above) is what separates the header block from the body text.
+h1.article-title {
+  margin-bottom: 0 !important;
+}

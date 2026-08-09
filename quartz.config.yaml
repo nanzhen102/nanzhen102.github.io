@@ -191,11 +191,7 @@ plugins:
       priority: 35
       group: toolbar
   - source: "@quartz-community/breadcrumbs"
-    enabled: true
-    options:
-      spacerSymbol: "/"
-      rootName: Nanzhen Qiao
-      showCurrentPage: false
+    enabled: false
     layout:
       position: beforeBody
       priority: 5
