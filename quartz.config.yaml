@@ -161,10 +161,14 @@ plugins:
       position: beforeBody
       priority: 10
   - source: "@quartz-community/content-meta"
-    enabled: false
+    enabled: true
+    options:
+      showReadingTime: true
+      showComma: true
     layout:
       position: beforeBody
       priority: 20
+      condition: not-index
   - source: "@quartz-community/tag-list"
     enabled: false
     layout:
@@ -187,7 +191,11 @@ plugins:
       priority: 35
       group: toolbar
   - source: "@quartz-community/breadcrumbs"
-    enabled: false
+    enabled: true
+    options:
+      spacerSymbol: "/"
+      rootName: Nanzhen Qiao
+      showCurrentPage: false
     layout:
       position: beforeBody
       priority: 5
