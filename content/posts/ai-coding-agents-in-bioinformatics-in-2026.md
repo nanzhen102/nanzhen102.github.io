@@ -1,6 +1,6 @@
 ---
 title: AI coding agents in bioinformatics in 2026
-date: 2026-08-21
+date: 2026-08-20
 ---
 
 ## Can AI replace a bioinformatician?
