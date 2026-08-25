@@ -1,5 +1,5 @@
 ---
-title: "AI coding agents in bioinformatics in 2026: harness"
+title: "AI coding agents in bioinformatics in 2026: Harness"
 date: 2026-08-24
 ---
 
@@ -328,4 +328,4 @@ Putting the four cuts side by side, with the model-generation effect included fo
 - Same-company pairing helped OpenAI models consistently and hurt Anthropic models consistently, in both papers. "Use the official harness" is not reliable advice; it's an empirical question per workload.
 
 🔧 **Any score without a named harness is half a result.**
-- "Model X scored Y%" is underspecified in the same way "the assay gave 40%" is underspecified without the protocol. Both 2026 papers report the pairing, and BioSecBench‑Surveillance goes further by treating model and harness as independent axes from the start. I'd like to see that become the default.
+- "Model X scored Y%" is underspecified in the same way "the assay gave 40%" is underspecified without the protocol. Both 2026 papers report the pairing, and BioSecBench‑Surveillance goes further by treating model and harness as independent axes from the start.
