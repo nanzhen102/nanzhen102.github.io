@@ -5,6 +5,7 @@
 body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  font-weight: 500;
 }
 
 // Single-column layout: no sidebars, just a centered content column
@@ -51,10 +52,18 @@ h6 {
   letter-spacing: -0.01em;
 }
 
-// Prose links: underlined, normal weight, same color as text
+// h4-h6 sit close in size to body text, so they lean on weight instead to
+// still read clearly as headings.
+h4,
+h5,
+h6 {
+  font-weight: 600;
+}
+
+// Prose links: underlined, same weight and color as text
 article a,
 .center a {
-  font-weight: 400;
+  font-weight: 500;
   text-decoration: underline;
   text-underline-offset: 2px;
   color: var(--dark);
