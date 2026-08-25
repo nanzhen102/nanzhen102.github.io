@@ -1,5 +1,5 @@
 ---
-title: "AI coding agents in bioinformatics in 2026, model vs. harness"
+title: "AI coding agents in bioinformatics in 2026: harness"
 date: 2026-08-24
 ---
 
