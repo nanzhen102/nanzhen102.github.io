@@ -69,6 +69,16 @@ def rounded_top_rect(x, y, w, h, r):
     )
 
 
+# Genera that were in Leuconostocaceae until Zheng et al. 2020 united it with
+# Lactobacillaceae. A closed historical set: the family no longer exists.
+LEUCONOSTOCACEAE = {
+    "Leuconostoc",
+    "Weissella",
+    "Oenococcus",
+    "Fructobacillus",
+    "Convivina",
+}
+
 WORDS = {
     1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six",
     7: "seven", 8: "eight", 9: "nine", 10: "ten", 11: "eleven", 12: "twelve",
@@ -577,42 +587,45 @@ def main():
 
     unassigned = [r for r in recs if r["ferm"] == "Unassigned"]
 
-    # The opening history sentence, derived so it stays true as the CSV
-    # changes. Both halves are dropped if the data no longer supports them.
+    # History of the family, before and after the 2020 union.
+    #
+    # The CSV lists who is in Lactobacillaceae today, which is not who was in
+    # it historically: the five genera below sat in Leuconostocaceae until
+    # Zheng et al. 2020 merged the two families. Reading current membership
+    # backwards is how an earlier version of this paragraph came to say the
+    # family "held" Leuconostoc from 1878, which it never did.
+    #
+    # The set is closed: Leuconostocaceae no longer exists, so nothing can
+    # join it. Genera described since the union (Periweissella, 2022) belong
+    # to Lactobacillaceae and are correctly absent here.
     history = []
     narrated = 0  # genera the emitted sentences actually account for
-    early = _early_cluster(recs)
-    if early:
-        cluster, cutoff, gap = early
-        named = _join([f"_{r['name']}_ ({r['year']})" for r in cluster])
+    pre = sorted(
+        (r for r in recs if r["year"] and r["year"] < 2020),
+        key=lambda r: r["year"],
+    )
+    lacto = [r for r in pre if r["name"] not in LEUCONOSTOCACEAE]
+    leuco = [r for r in pre if r["name"] in LEUCONOSTOCACEAE]
+    fmt = lambda rs: _join([f"_{r['name']}_ ({r['year']})" for r in rs])
+
+    if lacto and leuco:
         history.append(
-            f"For the {gap} years after {cutoff}, the family held just "
-            f"{_num(len(cluster))} "
-            + ("genus" if len(cluster) == 1 else "genera")
-            + f": {named}."
+            f"Today's family is the union of two. {fmt(lacto)} made up "
+            f"_Lactobacillaceae_; {fmt(leuco)} sat in _Leuconostocaceae_."
         )
-        narrated += len(cluster)
-    # Between the early cluster and the reclassification. Without this the
-    # next sentence's "Then" would jump from 1903 straight to 2020 and skip
-    # the genera named in between.
-    mid = []
-    if early and n2020:
-        cutoff = early[1]
-        mid = sorted(
-            r["year"] for r in recs if r["year"] and cutoff < r["year"] < 2020
+        narrated += len(lacto) + len(leuco)
+    elif pre:
+        history.append(
+            f"Before 2020 the family held {_num(len(pre))} "
+            + ("genus" if len(pre) == 1 else "genera")
+            + f": {fmt(pre)}."
         )
-        if mid:
-            history.append(
-                f"{_num(len(mid)).capitalize()} more "
-                + ("arrived in " if len(mid) == 1 else "arrived between ")
-                + (str(mid[0]) if len(mid) == 1 else f"{mid[0]} and {mid[-1]}")
-                + "."
-            )
-            narrated += len(mid)
+        narrated += len(pre)
+
     if n2020:
         history.append(
-            "Then [Zheng et al. 2020](https://doi.org/10.1099/ijsem.0.004107) "
-            "split the old, sprawling _Lactobacillus_ into "
+            "[Zheng et al. 2020](https://doi.org/10.1099/ijsem.0.004107) "
+            "merged the two and split the old, sprawling _Lactobacillus_ into "
             f"{n2020} genera on whole-genome evidence. To check how a former "
             "species name maps to its current one, use "
             "[lactotax](https://www.lactobacillus.ualberta.ca/)."
@@ -620,16 +633,21 @@ def main():
         narrated += n2020
     history = " ".join(history)
 
-    # The prose walks the record from the first genus to the 2020 cohort. If
-    # those three groups stop covering every genus named up to 2020, the
-    # paragraph has silently skipped some, which is how "Then ... 2020" once
-    # jumped over the five genera named between 1994 and 2015.
-    if early and n2020:
+    # The paragraph names every genus the family had before 2020 and counts
+    # the 2020 cohort. If those stop covering everything named up to 2020,
+    # the prose has silently skipped some, which is how an earlier version
+    # jumped from 1903 to 2020 over the five genera named in between.
+    if history and n2020:
         upto2020 = sum(1 for r in recs if r["year"] and r["year"] <= 2020)
         assert narrated == upto2020, (
             f"history prose accounts for {narrated} genera up to 2020, "
             f"but the CSV has {upto2020}"
         )
+
+    # Every pre-2020 genus is placed in one family or the other, and the
+    # Leuconostocaceae set must not drift away from the CSV's names.
+    missing = LEUCONOSTOCACEAE - {r["name"] for r in recs}
+    assert not missing, f"Leuconostocaceae genera missing from the CSV: {sorted(missing)}"
 
     md = f"""---
 title: Lactobacillaceae
