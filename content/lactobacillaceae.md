@@ -3,22 +3,17 @@ title: Lactobacillaceae
 date: 2026-11-09
 ---
 
-The lactic acid bacteria I keep a type-strain phylogeny for. This page is the
-census behind that tree: every genus currently placed in the family, what it
-ferments, and when it was named.
-
-It is generated from a hand-curated CSV, not scraped live, so the numbers below
-are a snapshot as of **November 9, 2026**. Method and caveats are at the bottom.
+Below are updated on November 9, 2026.
 
 ## The family today
 
 <p class="lacto-hero">38</p>
 <p class="lacto-hero-label">genera currently placed in <em>Lactobacillaceae</em></p>
 
-Split almost exactly in half by how they ferment sugar. Homofermentative genera
-put nearly all their carbon into lactic acid; heterofermentative ones also make
-ethanol or acetate plus CO<sub>2</sub>, which is why the second group matters for
-leavening, souring, and spoilage.
+For detailed homofermentative and heterofermentative fermentation in
+_Lactobacillaceae_, check
+[10.1016/j.cofs.2015.03.001](https://doi.org/10.1016/j.cofs.2015.03.001) and
+[10.1016/j.fm.2025.104945](https://doi.org/10.1016/j.fm.2025.104945).
 
 <div class="lacto-split" role="img" aria-label="Fermentation type across 38 genera: Homofermentative 18, Heterofermentative 18, Unassigned 2.">
 <div class="lacto-split-part lacto-homo" style="flex: 18 1 0" title="Homofermentative: 18 genera, 47%"><span class="lacto-split-value">18</span></div>
@@ -244,20 +239,10 @@ Three genera carried the family for most of a century: _Leuconostoc_
 sprawling _Lactobacillus_ into 22 genera on whole-genome evidence, and the
 family went from 8 genera to 30 in a single paper.
 
-That one reclassification accounts for 58% of the names in
-use today, which is why so much older literature no longer matches current
-taxonomy: a paper about _Lactobacillus plantarum_ is about
-_Lactiplantibacillus plantarum_, and a pipeline keyed on the old names silently
-misses it.
-
-The 8 genera described since 2020 come from narrower niches, mostly insect
-guts and flowers: _Xylocopilactobacillus_ from carpenter bees,
-_Apilactobacillus_ and _Bombilactobacillus_ from honeybees, _Nicoliella_ and
-_Philodulcilactobacillus_ from flowers and fermented plant material.
-
 ## All 38 genera
 
-Sorted by the year the name was proposed.
+In phylogenetic order, the order they sit in on the tree. The two genera not
+yet placed on it are listed last.
 
 <div class="lacto-table-wrap">
 <table class="lacto-table">
@@ -265,43 +250,43 @@ Sorted by the year the name was proposed.
 <th>Genus</th><th>Type species</th><th>Fermentation</th><th>Proposed</th>
 </tr></thead>
 <tbody>
-<tr><td class="lacto-genus"><em>Leuconostoc</em></td><td><em>L. mesenteroides</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">van Tieghem 1878</td></tr>
 <tr><td class="lacto-genus"><em>Lactobacillus</em></td><td><em>L. delbrueckii</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Beijerinck 1901<span class="lacto-auth-note">(Approved Lists 1980)</span></td></tr>
-<tr><td class="lacto-genus"><em>Pediococcus</em></td><td><em>P. damnosus</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Claussen 1903</td></tr>
-<tr><td class="lacto-genus"><em>Weissella</em></td><td><em>W. viridescens</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Collins et al. 1994</td></tr>
-<tr><td class="lacto-genus"><em>Oenococcus</em></td><td><em>O. oeni</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Dicks et al. 1995</td></tr>
-<tr><td class="lacto-genus"><em>Paralactobacillus</em></td><td><em>P. selangorensis</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Leisner et al. 2000</td></tr>
-<tr><td class="lacto-genus"><em>Fructobacillus</em></td><td><em>F. fructosus</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Endo and Okada 2008</td></tr>
-<tr><td class="lacto-genus"><em>Convivina</em></td><td><em>C. intestini</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Praet et al. 2015</td></tr>
-<tr><td class="lacto-genus"><em>Acetilactobacillus</em></td><td><em>A. jinshanensis</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
-<tr><td class="lacto-genus"><em>Agrilactobacillus</em></td><td><em>A. composti</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
 <tr><td class="lacto-genus"><em>Amylolactobacillus</em></td><td><em>A. amylophilus</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
-<tr><td class="lacto-genus"><em>Apilactobacillus</em></td><td><em>A. kunkeei</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
+<tr><td class="lacto-genus"><em>Holzapfeliella</em></td><td><em>H. floricola</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Deshmukh and Oren 2023</td></tr>
+<tr><td class="lacto-genus"><em>Xylocopilactobacillus</em></td><td><em>X. apis</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Kawasaki et al. 2024</td></tr>
 <tr><td class="lacto-genus"><em>Bombilactobacillus</em></td><td><em>B. mellifer</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
 <tr><td class="lacto-genus"><em>Companilactobacillus</em></td><td><em>C. alimentarius</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
-<tr><td class="lacto-genus"><em>Dellaglioa</em></td><td><em>D. algida</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
-<tr><td class="lacto-genus"><em>Fructilactobacillus</em></td><td><em>F. fructivorans</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
-<tr><td class="lacto-genus"><em>Furfurilactobacillus</em></td><td><em>F. rossiae</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
-<tr><td class="lacto-genus"><em>Lacticaseibacillus</em></td><td><em>L. casei</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
-<tr><td class="lacto-genus"><em>Lactiplantibacillus</em></td><td><em>L. plantarum</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
 <tr><td class="lacto-genus"><em>Lapidilactobacillus</em></td><td><em>L. concavus</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
-<tr><td class="lacto-genus"><em>Latilactobacillus</em></td><td><em>L. sakei</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
-<tr><td class="lacto-genus"><em>Lentilactobacillus</em></td><td><em>L. buchneri</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
-<tr><td class="lacto-genus"><em>Levilactobacillus</em></td><td><em>L. brevis</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
-<tr><td class="lacto-genus"><em>Ligilactobacillus</em></td><td><em>L. salivarius</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
-<tr><td class="lacto-genus"><em>Limosilactobacillus</em></td><td><em>L. fermentum</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
-<tr><td class="lacto-genus"><em>Liquorilactobacillus</em></td><td><em>L. mali</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
-<tr><td class="lacto-genus"><em>Loigolactobacillus</em></td><td><em>L. coryniformis</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
-<tr><td class="lacto-genus"><em>Paucilactobacillus</em></td><td><em>P. vaccinostercus</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
+<tr><td class="lacto-genus"><em>Agrilactobacillus</em></td><td><em>A. composti</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
 <tr><td class="lacto-genus"><em>Schleiferilactobacillus</em></td><td><em>S. perolens</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
-<tr><td class="lacto-genus"><em>Secundilactobacillus</em></td><td><em>S. malefermentans</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
-<tr><td class="lacto-genus"><em>Candidatus Gallilactobacillus</em></td><td><em>Ca. G. intestinavium</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-unassigned"></span>—</td><td class="lacto-auth">Gilroy et al. 2021</td></tr>
-<tr><td class="lacto-genus"><em>Periweissella</em></td><td><em>P. ghanensis</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Bello et al. 2022</td></tr>
-<tr><td class="lacto-genus"><em>Holzapfeliella</em></td><td><em>H. floricola</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Deshmukh and Oren 2023</td></tr>
-<tr><td class="lacto-genus"><em>Nicoliella</em></td><td><em>N. spurrieriana</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Deshmukh and Oren 2023</td></tr>
+<tr><td class="lacto-genus"><em>Lacticaseibacillus</em></td><td><em>L. casei</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
+<tr><td class="lacto-genus"><em>Paralactobacillus</em></td><td><em>P. selangorensis</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Leisner et al. 2000</td></tr>
+<tr><td class="lacto-genus"><em>Latilactobacillus</em></td><td><em>L. sakei</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
+<tr><td class="lacto-genus"><em>Loigolactobacillus</em></td><td><em>L. coryniformis</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
+<tr><td class="lacto-genus"><em>Dellaglioa</em></td><td><em>D. algida</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
+<tr><td class="lacto-genus"><em>Liquorilactobacillus</em></td><td><em>L. mali</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
+<tr><td class="lacto-genus"><em>Ligilactobacillus</em></td><td><em>L. salivarius</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
+<tr><td class="lacto-genus"><em>Pediococcus</em></td><td><em>P. damnosus</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Claussen 1903</td></tr>
+<tr><td class="lacto-genus"><em>Lactiplantibacillus</em></td><td><em>L. plantarum</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
+<tr><td class="lacto-genus"><em>Fructilactobacillus</em></td><td><em>F. fructivorans</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
+<tr><td class="lacto-genus"><em>Acetilactobacillus</em></td><td><em>A. jinshanensis</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
 <tr><td class="lacto-genus"><em>Philodulcilactobacillus</em></td><td><em>P. myokonensis</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Kouya et al. 2023</td></tr>
+<tr><td class="lacto-genus"><em>Nicoliella</em></td><td><em>N. spurrieriana</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Deshmukh and Oren 2023</td></tr>
+<tr><td class="lacto-genus"><em>Apilactobacillus</em></td><td><em>A. kunkeei</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
+<tr><td class="lacto-genus"><em>Lentilactobacillus</em></td><td><em>L. buchneri</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
+<tr><td class="lacto-genus"><em>Secundilactobacillus</em></td><td><em>S. malefermentans</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
+<tr><td class="lacto-genus"><em>Levilactobacillus</em></td><td><em>L. brevis</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
+<tr><td class="lacto-genus"><em>Paucilactobacillus</em></td><td><em>P. vaccinostercus</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
+<tr><td class="lacto-genus"><em>Limosilactobacillus</em></td><td><em>L. fermentum</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
+<tr><td class="lacto-genus"><em>Furfurilactobacillus</em></td><td><em>F. rossiae</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Zheng et al. 2020</td></tr>
+<tr><td class="lacto-genus"><em>Periweissella</em></td><td><em>P. ghanensis</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Bello et al. 2022</td></tr>
+<tr><td class="lacto-genus"><em>Weissella</em></td><td><em>W. viridescens</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Collins et al. 1994</td></tr>
+<tr><td class="lacto-genus"><em>Oenococcus</em></td><td><em>O. oeni</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Dicks et al. 1995</td></tr>
 <tr><td class="lacto-genus"><em>Eupransor</em></td><td><em>E. demetentiae</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Botero et al. 2024</td></tr>
-<tr><td class="lacto-genus"><em>Xylocopilactobacillus</em></td><td><em>X. apis</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</td><td class="lacto-auth">Kawasaki et al. 2024</td></tr>
+<tr><td class="lacto-genus"><em>Convivina</em></td><td><em>C. intestini</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Praet et al. 2015</td></tr>
+<tr><td class="lacto-genus"><em>Fructobacillus</em></td><td><em>F. fructosus</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">Endo and Okada 2008</td></tr>
+<tr><td class="lacto-genus"><em>Leuconostoc</em></td><td><em>L. mesenteroides</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</td><td class="lacto-auth">van Tieghem 1878</td></tr>
+<tr><td class="lacto-genus"><em>Candidatus Gallilactobacillus</em></td><td><em>Ca. G. intestinavium</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-unassigned"></span>—</td><td class="lacto-auth">Gilroy et al. 2021</td></tr>
 <tr><td class="lacto-genus"><em>Daquilactobacillus</em></td><td><em>D. linshuiensis</em></td><td class="lacto-ferm"><span class="lacto-dot lacto-unassigned"></span>—</td><td class="lacto-auth">Huang et al. 2026</td></tr>
 </tbody>
 </table>
@@ -326,6 +311,6 @@ reclassification, with four deliberate departures:
   facultatively heterofermentative, which this binary flattens.
 
 Source file:
-[`genus_20261109.csv`](https://github.com/nanzhen102/personal-website/blob/v5/assets/lactobacillaceae/genus_20261109.csv).
+[`genus_20261109.csv`](https://github.com/nanzhen102/nanzhen102.github.io/blob/v5/assets/lactobacillaceae/genus_20261109.csv).
 The tree itself is built with
 [core-genome-phylogeny](https://github.com/nanzhen102/core-genome-phylogeny).

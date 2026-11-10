@@ -50,6 +50,7 @@ def load(path):
                 "formal": (r["Scientific name is formal"] or "").strip().upper() == "TRUE",
                 "source": (r["Source"] or "").strip(),
                 "note": (r["Note"] or "").strip(),
+                "y_order": int(r["Y_order"]) if (r.get("Y_order") or "").strip() else None,
             }
         )
     return out
@@ -324,7 +325,9 @@ def table(recs):
         "</tr></thead>",
         "<tbody>",
     ]
-    for r in sorted(recs, key=lambda r: (r["year"] or 0, r["name"])):
+    # Phylogenetic order (Y_order), which is the order the genera sit in on the
+    # tree. The few with no Y_order yet fall to the end.
+    for r in sorted(recs, key=lambda r: (r["y_order"] is None, r["y_order"] or 0, r["name"])):
         # Abbreviate the genus in the type species: it is already in column 1.
         # "Candidatus Gallilactobacillus intestinavium" takes the standard
         # nomenclatural short form, "Ca. G. intestinavium".
@@ -358,7 +361,6 @@ def main():
     ferm = Counter(r["ferm"] for r in recs)
     years = sorted({r["year"] for r in recs if r["year"]})
     n2020 = sum(1 for r in recs if r["year"] == 2020)
-    since = sum(1 for r in recs if r["year"] and r["year"] > 2020)
     before = sum(1 for r in recs if r["year"] and r["year"] < 2020)
     stamp = re.search(r"genus_(\d{4})(\d{2})(\d{2})", os.path.basename(path))
     months = [
@@ -378,22 +380,17 @@ title: Lactobacillaceae
 date: 2026-11-09
 ---
 
-The lactic acid bacteria I keep a type-strain phylogeny for. This page is the
-census behind that tree: every genus currently placed in the family, what it
-ferments, and when it was named.
-
-It is generated from a hand-curated CSV, not scraped live, so the numbers below
-are a snapshot as of **{asof}**. Method and caveats are at the bottom.
+Below are updated on {asof}.
 
 ## The family today
 
 <p class="lacto-hero">{total}</p>
 <p class="lacto-hero-label">genera currently placed in <em>Lactobacillaceae</em></p>
 
-Split almost exactly in half by how they ferment sugar. Homofermentative genera
-put nearly all their carbon into lactic acid; heterofermentative ones also make
-ethanol or acetate plus CO<sub>2</sub>, which is why the second group matters for
-leavening, souring, and spoilage.
+For detailed homofermentative and heterofermentative fermentation in
+_Lactobacillaceae_, check
+[10.1016/j.cofs.2015.03.001](https://doi.org/10.1016/j.cofs.2015.03.001) and
+[10.1016/j.fm.2025.104945](https://doi.org/10.1016/j.fm.2025.104945).
 
 {segmented_bar(ferm, total)}
 
@@ -410,20 +407,10 @@ Three genera carried the family for most of a century: _Leuconostoc_
 sprawling _Lactobacillus_ into {n2020} genera on whole-genome evidence, and the
 family went from {before} genera to {before + n2020} in a single paper.
 
-That one reclassification accounts for {100 * n2020 / total:.0f}% of the names in
-use today, which is why so much older literature no longer matches current
-taxonomy: a paper about _Lactobacillus plantarum_ is about
-_Lactiplantibacillus plantarum_, and a pipeline keyed on the old names silently
-misses it.
-
-The {since} genera described since 2020 come from narrower niches, mostly insect
-guts and flowers: _Xylocopilactobacillus_ from carpenter bees,
-_Apilactobacillus_ and _Bombilactobacillus_ from honeybees, _Nicoliella_ and
-_Philodulcilactobacillus_ from flowers and fermented plant material.
-
 ## All {total} genera
 
-Sorted by the year the name was proposed.
+In phylogenetic order, the order they sit in on the tree. The two genera not
+yet placed on it are listed last.
 
 {table(recs)}
 
@@ -446,7 +433,7 @@ reclassification, with four deliberate departures:
   facultatively heterofermentative, which this binary flattens.
 
 Source file:
-[`genus_{stamp.group(1) + stamp.group(2) + stamp.group(3) if stamp else ""}.csv`](https://github.com/nanzhen102/personal-website/blob/v5/assets/lactobacillaceae/{os.path.basename(path)}).
+[`genus_{stamp.group(1) + stamp.group(2) + stamp.group(3) if stamp else ""}.csv`](https://github.com/nanzhen102/nanzhen102.github.io/blob/v5/assets/lactobacillaceae/{os.path.basename(path)}).
 The tree itself is built with
 [core-genome-phylogeny](https://github.com/nanzhen102/core-genome-phylogeny).
 """

@@ -267,18 +267,31 @@ body[data-slug="posts/index"] .content-meta {
 // both the white and the #100F0F surface. The neutral is deliberately gray: it
 // means "not assigned", not a third category of thing.
 :root {
-  --lacto-homo: #205ea6; // Flexoki blue-600
-  --lacto-hetero: #bc5215; // Flexoki orange-600
+  --lacto-homo: #a02f6f; // Flexoki magenta-600
+  --lacto-hetero: #205ea6; // Flexoki blue-600
   --lacto-unassigned: #878580; // Flexoki base-500, mode-invariant
   --lacto-muted: #878580;
 }
 
 :root[saved-theme="dark"] {
-  --lacto-homo: #4385be; // Flexoki blue-400
-  --lacto-hetero: #da702c; // Flexoki orange-400
+  // A shade off Flexoki magenta-400 (#ce5d97): the lighter step does not keep
+  // enough protanopia separation from the blue on the dark surface.
+  --lacto-homo: #d55181;
+  --lacto-hetero: #4385be; // Flexoki blue-400
 }
 
 body[data-slug="lactobacillaceae"] {
+  // A family name takes italics, in the title as in running text.
+  h1.article-title {
+    font-style: italic;
+  }
+
+  // A census page, not an article: its date is stated in the first line and
+  // a reading time says nothing useful about a table.
+  .content-meta {
+    display: none !important;
+  }
+
   // Hero figure: the one number the page leads with.
   .lacto-hero {
     font-size: 3.5rem;

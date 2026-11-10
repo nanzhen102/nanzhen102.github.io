@@ -1,9 +1,11 @@
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { FullSlug, resolveRelative } from "../util/path"
 
-const navLinks: { title: string; slug: FullSlug }[] = [
+// `italic` is for taxon names, which take italics in running text and should
+// keep them in the nav.
+const navLinks: { title: string; slug: FullSlug; italic?: boolean }[] = [
   { title: "Posts", slug: "posts/index" as FullSlug },
-  { title: "Lactobacillaceae", slug: "lactobacillaceae" as FullSlug },
+  { title: "Lactobacillaceae", slug: "lactobacillaceae" as FullSlug, italic: true },
 ]
 
 const Header: QuartzComponent = ({ children, fileData }: QuartzComponentProps) => {
@@ -13,8 +15,8 @@ const Header: QuartzComponent = ({ children, fileData }: QuartzComponentProps) =
     <header>
       {titleEl}
       <nav class="site-nav">
-        {navLinks.map(({ title, slug }) => (
-          <a href={resolveRelative(fileData.slug!, slug)}>{title}</a>
+        {navLinks.map(({ title, slug, italic }) => (
+          <a href={resolveRelative(fileData.slug!, slug)}>{italic ? <em>{title}</em> : title}</a>
         ))}
       </nav>
       {rest}
