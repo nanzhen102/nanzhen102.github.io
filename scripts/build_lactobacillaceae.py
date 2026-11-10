@@ -594,7 +594,9 @@ def main():
         history.append(
             "Then [Zheng et al. 2020](https://doi.org/10.1099/ijsem.0.004107) "
             "split the old, sprawling _Lactobacillus_ into "
-            f"{n2020} genera on whole-genome evidence."
+            f"{n2020} genera on whole-genome evidence. To check how a former "
+            "species name maps to its current one, use "
+            "[lactotax](https://www.lactobacillus.ualberta.ca/)."
         )
     history = " ".join(history)
 

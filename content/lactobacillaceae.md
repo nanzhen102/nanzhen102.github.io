@@ -198,7 +198,7 @@ For detailed homofermentative and heterofermentative fermentation, check
 <p class="lacto-caption">Only years in which at least one current genus was named
 appear on the axis, so the spacing between them is not to scale.</p>
 
-For the 91 years after 1903, the family held just three genera: _Leuconostoc_ (1878), _Lactobacillus_ (1901), and _Pediococcus_ (1903). Then [Zheng et al. 2020](https://doi.org/10.1099/ijsem.0.004107) split the old, sprawling _Lactobacillus_ into 22 genera on whole-genome evidence.
+For the 91 years after 1903, the family held just three genera: _Leuconostoc_ (1878), _Lactobacillus_ (1901), and _Pediococcus_ (1903). Then [Zheng et al. 2020](https://doi.org/10.1099/ijsem.0.004107) split the old, sprawling _Lactobacillus_ into 22 genera on whole-genome evidence. To check how a former species name maps to its current one, use [lactotax](https://www.lactobacillus.ualberta.ca/).
 
 ## All 38 genera
 
