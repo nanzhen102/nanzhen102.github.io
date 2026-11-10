@@ -298,14 +298,14 @@ body[data-slug="lactobacillaceae"] {
     font-weight: 600;
     line-height: 1;
     letter-spacing: -0.03em;
-    margin: 1.5rem 0 0.1rem;
+    margin: 2rem 0 0.1rem;
     color: var(--dark);
   }
 
+  // Reads as ordinary body text, like the paragraph below it; only the
+  // spacing is special, so it sits tight under the figure.
   .lacto-hero-label {
     margin: 0 0 1.5rem;
-    color: var(--lacto-muted);
-    font-size: 0.9rem;
   }
 
   // Sits under a chart, explaining the axis rather than the data.
@@ -339,12 +339,76 @@ body[data-slug="lactobacillaceae"] {
   }
 
   .lacto-split-part {
+    position: relative;
     height: 28px;
     border-radius: 4px;
     display: flex;
     align-items: center;
     min-width: 0;
-    overflow: hidden;
+    cursor: default;
+
+    &:hover,
+    &:focus-visible {
+      // The hovered part keeps its colour and the others step back, so the
+      // readout is clearly about this segment.
+      outline: none;
+      z-index: 2;
+    }
+  }
+
+  // Dim the siblings of whichever part is hovered or focused.
+  .lacto-split:has(.lacto-split-part:hover, .lacto-split-part:focus)
+    .lacto-split-part:not(:hover):not(:focus) {
+    opacity: 0.45;
+  }
+
+  .lacto-split-part {
+    transition: opacity 0.15s ease;
+  }
+
+  // Hover readout. Anchored to the bar's own ends at the edges so it can
+  // never push the page wider.
+  .lacto-tip {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+    background: var(--darkgray);
+    color: var(--light);
+    font-size: 0.75rem;
+    line-height: 1.35;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.12s ease;
+    z-index: 3;
+
+    strong {
+      font-weight: 600;
+    }
+  }
+
+  .lacto-split-part:first-child .lacto-tip {
+    left: 0;
+    transform: none;
+  }
+
+  .lacto-split-part:last-child .lacto-tip {
+    left: auto;
+    right: 0;
+    transform: none;
+  }
+
+  // :focus as well as :focus-visible, so a tap shows the readout on a
+  // touch screen, where :hover is unreliable.
+  .lacto-split-part:hover .lacto-tip,
+  .lacto-split-part:focus .lacto-tip {
+    opacity: 1;
   }
 
   .lacto-split-value {
@@ -366,6 +430,43 @@ body[data-slug="lactobacillaceae"] {
   .lacto-unassigned {
     fill: var(--lacto-unassigned);
     background: var(--lacto-unassigned);
+  }
+
+  // SVG hover readouts. The hit areas are emitted after every bar, so a
+  // single rule drives them all and the readout always paints on top.
+  .lacto-hitarea {
+    fill: transparent;
+  }
+
+  .lacto-hitring {
+    fill: none;
+    stroke: var(--dark);
+    stroke-width: 1.5;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .lacto-svgtip {
+    opacity: 0;
+    pointer-events: none;
+
+    rect {
+      fill: var(--darkgray);
+    }
+  }
+
+  .lacto-tiptext {
+    fill: var(--light);
+    font-size: 11px;
+  }
+
+  .lacto-tiptext-head {
+    font-weight: 600;
+  }
+
+  .lacto-hit:hover .lacto-svgtip,
+  .lacto-hit:hover .lacto-hitring {
+    opacity: 1;
   }
 
   // Chart chrome: hairline, solid, recessive.
@@ -556,6 +657,27 @@ body[data-slug="lactobacillaceae"] {
     .lacto-auth-note {
       display: block;
       font-size: 0.92em;
+    }
+  }
+
+  // Closing source note. The mail link mirrors the homepage's Elsewhere
+  // links: inline icon, no underline, colour from the link itself.
+  .lacto-source {
+    a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      text-decoration: none;
+    }
+
+    a svg {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+    }
+
+    .external-icon {
+      display: none;
     }
   }
 

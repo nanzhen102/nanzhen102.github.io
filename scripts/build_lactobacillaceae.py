@@ -105,6 +105,49 @@ def _early_cluster(recs):
     return early, cutoff, gap
 
 
+def _hit(x, y, w, h, tip):
+    """A transparent hover target over one segment, carrying its own readout.
+
+    These are emitted after every bar, so they sit on top for both hit-testing
+    and painting, and one CSS rule drives them all: no per-segment ids.
+    """
+    pad = 3  # a thin segment is still easy to hit
+    return (
+        '<g class="lacto-hit">'
+        f'<rect class="lacto-hitarea" x="{x:.1f}" y="{y - pad:.1f}" '
+        f'width="{w:.1f}" height="{h + pad * 2:.1f}"/>'
+        f'<rect class="lacto-hitring" x="{x:.1f}" y="{y:.1f}" '
+        f'width="{w:.1f}" height="{h:.1f}" rx="3"/>'
+        f"{tip}</g>"
+    )
+
+
+def _svg_tip(cx, top, lines, bounds, below=False):
+    """A hover readout drawn inside the SVG.
+
+    Emitted after every bar and referenced by id, so it always paints on top
+    and is never clipped by a later column. Width is estimated from the text,
+    then clamped to the plot so the tip cannot overflow the chart.
+    """
+    pad = 7
+    lh = 13
+    w = max(len(t) for t in lines) * 6.0 + pad * 2
+    h = lh * len(lines) + pad * 2 - 3
+    x = cx - w / 2
+    x = max(bounds[0], min(x, bounds[1] - w))
+    y = top + 8 if below else top - h - 8
+    rows = "".join(
+        f'<text class="lacto-tiptext{" lacto-tiptext-head" if i == 0 else ""}" '
+        f'x="{x + pad:.1f}" y="{y + pad + lh * i + 9:.1f}">{t}</text>'
+        for i, t in enumerate(lines)
+    )
+    return (
+        '<g class="lacto-svgtip">'
+        f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{h:.1f}" rx="5"/>'
+        f"{rows}</g>"
+    )
+
+
 SERIES = [
     ("Homo", "homo", "Homofermentative"),
     ("Hetero", "hetero", "Heterofermentative"),
@@ -165,19 +208,23 @@ def segmented_bar(counts, total):
     parts = [(cls, lab, counts.get(k, 0)) for k, cls, lab in order if counts.get(k, 0)]
 
     out = [
-        '<div class="lacto-split" role="img" aria-label="Fermentation type across '
+        '<div class="lacto-split" role="list" aria-label="Fermentation type across '
         f"{total} genera: " + ", ".join(f"{lab} {n}" for _, lab, n in parts) + '.">'
     ]
     for cls, lab, n in parts:
         share = 100 * n / total
-        # A block narrower than its label prints none; the value stays in the
-        # legend's tooltip and in the table. 8% is the share that still fits a
-        # padded digit at the narrowest layout (343px).
-        tight = " lacto-split-value--tight" if share < 8 else ""
+        # A block narrower than its own label prints none; the value stays in
+        # the hover readout and in the table. Measured against the narrowest
+        # layout (343px) and the digits this particular number needs.
+        needed = 14 + 7.5 * len(str(n))
+        tight = " lacto-split-value--tight" if 343 * n / total < needed else ""
         out.append(
             f'<div class="lacto-split-part lacto-{cls}" style="flex: {n} 1 0"'
-            f' title="{esc(lab)}: {n} genera, {share:.0f}%">'
-            f'<span class="lacto-split-value{tight}">{n}</span></div>'
+            f' tabindex="0" role="listitem"'
+            f' aria-label="{esc(lab)}: {n} genera, {share:.0f} percent">'
+            f'<span class="lacto-split-value{tight}">{n}</span>'
+            f'<span class="lacto-tip"><strong>{esc(lab)}</strong>'
+            f"<span>{n} genera &middot; {share:.0f}%</span></span></div>"
         )
     out.append("</div>")
 
@@ -225,6 +272,7 @@ def _year_columns(years, per, recs):
     def ypx(v):
         return pad_t + plot_h - plot_h * v / y_max
 
+    tips = []
     svg = [
         f'<svg class="lacto-chart" viewBox="0 0 {W} {h:.0f}" width="{W}" height="{h:.0f}" '
         f'role="img" aria-label="Genera proposed per year from {years[0]} to {years[-1]}, '
@@ -251,11 +299,21 @@ def _year_columns(years, per, recs):
             y0, y1 = ypx(cursor + n), ypx(cursor)
             seg_h = y1 - y0 - (gap if j > 0 else 0)
             svg.append(f'<g class="lacto-seg lacto-{cls}">')
-            svg.append(f"<title>{y} &middot; {esc(lab)}: {n}</title>")
             svg.append(
                 rounded_end_rect(x, y0, bar_w, max(seg_h, 1.0), 4 if j == len(stack) - 1 else 0, "top")
             )
             svg.append("</g>")
+            tips.append(
+                _hit(
+                    x, y0, bar_w, max(seg_h, 1.0),
+                    _svg_tip(
+                        cx, y0,
+                        [f"{y} \u00b7 {lab}", f"{n} " + ("genus" if n == 1 else "genera")],
+                        (2, W - 2),
+                        below=y0 < 46,
+                    ),
+                )
+            )
             cursor += n
         if total == tallest:
             svg.append(
@@ -268,6 +326,8 @@ def _year_columns(years, per, recs):
         f'<line class="lacto-axis" x1="{pad_l}" x2="{W - pad_r}" '
         f'y1="{ypx(0):.1f}" y2="{ypx(0):.1f}"/>'
     )
+    # Tips last so they paint over every bar.
+    svg.append('<g class="lacto-tips">' + "".join(tips) + "</g>")
     svg.append("</svg>")
     return "\n".join(svg)
 
@@ -288,6 +348,7 @@ def _year_bars(years, per, recs):
     def xpx(v):
         return pad_l + plot_w * v / x_max
 
+    tips = []
     svg = [
         f'<svg class="lacto-chart lacto-chart-narrow" viewBox="0 0 {NW} {h:.0f}" '
         f'width="{NW}" height="{h:.0f}" role="img" aria-label="Genera proposed per year '
@@ -314,7 +375,6 @@ def _year_bars(years, per, recs):
             x0, x1 = xpx(cursor), xpx(cursor + n)
             seg_w = x1 - x0 - (gap if j > 0 else 0)
             svg.append(f'<g class="lacto-seg lacto-{cls}">')
-            svg.append(f"<title>{y} &middot; {esc(lab)}: {n}</title>")
             svg.append(
                 rounded_end_rect(
                     x0 + (gap if j > 0 else 0), yb, max(seg_w, 1.0), bar_h,
@@ -322,6 +382,17 @@ def _year_bars(years, per, recs):
                 )
             )
             svg.append("</g>")
+            tips.append(
+                _hit(
+                    x0 + (gap if j > 0 else 0), yb, max(seg_w, 1.0), bar_h,
+                    _svg_tip(
+                        (x0 + x1) / 2, yb,
+                        [f"{y} \u00b7 {lab}", f"{n} " + ("genus" if n == 1 else "genera")],
+                        (2, NW - 2),
+                        below=yb < 40,
+                    ),
+                )
+            )
             cursor += n
         if total == longest:
             svg.append(
@@ -335,6 +406,7 @@ def _year_bars(years, per, recs):
         f'<line class="lacto-axis" y1="{pad_t}" y2="{pad_t + plot_h}" '
         f'x1="{pad_l}" x2="{pad_l}"/>'
     )
+    svg.append('<g class="lacto-tips">' + "".join(tips) + "</g>")
     svg.append("</svg>")
     return "\n".join(svg)
 
@@ -480,7 +552,6 @@ def main():
     ferm = Counter(r["ferm"] for r in recs)
     years = sorted({r["year"] for r in recs if r["year"]})
     n2020 = sum(1 for r in recs if r["year"] == 2020)
-    before = sum(1 for r in recs if r["year"] and r["year"] < 2020)
     stamp = re.search(r"genus_(\d{4})(\d{2})(\d{2})", os.path.basename(path))
     months = [
         "January", "February", "March", "April", "May", "June",
@@ -516,8 +587,8 @@ def main():
         history.append(
             "Then [Zheng et al. 2020](https://doi.org/10.1099/ijsem.0.004107) "
             "split the old, sprawling _Lactobacillus_ into "
-            f"{n2020} genera on whole-genome evidence, and the family went from "
-            f"{before} genera to {before + n2020} in a single paper."
+            f"{n2020} genera on whole-genome evidence, {100 * n2020 / total:.0f}% "
+            "of the family as it stands today."
         )
     history = " ".join(history)
 
@@ -527,8 +598,6 @@ date: {iso_date}
 ---
 
 Updated {asof}.
-
-## The family today
 
 <p class="lacto-hero">{total}</p>
 <p class="lacto-hero-label">genera currently placed in <em>Lactobacillaceae</em></p>
@@ -553,10 +622,10 @@ appear on the axis, so the spacing between them is not to scale.</p>
 
 {table(recs)}
 
-Source file:
-[`{os.path.basename(path)}`](https://github.com/nanzhen102/nanzhen102.github.io/blob/v5/assets/lactobacillaceae/{os.path.basename(path)}).
+<p class="lacto-source">Source file: <code>{os.path.basename(path)}</code>, request from
+<a href="mailto:nanzhen.qiao@gmail.com"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /><rect x="2" y="4" width="20" height="16" rx="2" /></svg>nanzhen.qiao@gmail.com</a>.
 The tree itself is built with
-[core-genome-phylogeny](https://github.com/nanzhen102/core-genome-phylogeny).
+<a href="https://github.com/nanzhen102/core-genome-phylogeny">core-genome-phylogeny</a>.</p>
 """
     _check(md, recs, ferm)
 
