@@ -258,3 +258,242 @@ h1.article-title {
 body[data-slug="posts/index"] .content-meta {
   display: none !important;
 }
+
+// ---------------------------------------------------------------------------
+// Lactobacillaceae census page
+// ---------------------------------------------------------------------------
+// Two series colours plus a neutral. Flexoki steps, so they sit with the rest
+// of the site palette; validated for CVD separation and >=3:1 contrast against
+// both the white and the #100F0F surface. The neutral is deliberately gray: it
+// means "not assigned", not a third category of thing.
+:root {
+  --lacto-homo: #205ea6; // Flexoki blue-600
+  --lacto-hetero: #bc5215; // Flexoki orange-600
+  --lacto-unassigned: #878580; // Flexoki base-500, mode-invariant
+  --lacto-muted: #878580;
+}
+
+:root[saved-theme="dark"] {
+  --lacto-homo: #4385be; // Flexoki blue-400
+  --lacto-hetero: #da702c; // Flexoki orange-400
+}
+
+body[data-slug="lactobacillaceae"] {
+  // Hero figure: the one number the page leads with.
+  .lacto-hero {
+    font-size: 3.5rem;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin: 1.5rem 0 0.1rem;
+    color: var(--dark);
+  }
+
+  .lacto-hero-label {
+    margin: 0 0 1.5rem;
+    color: var(--lacto-muted);
+    font-size: 0.9rem;
+  }
+
+  // Sits under a chart, explaining the axis rather than the data.
+  .lacto-caption {
+    margin: -0.5rem 0 1.5rem;
+    color: var(--lacto-muted);
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
+  .lacto-chart {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 1.25rem 0 0.75rem;
+  }
+
+  // One tally, two layouts. The wide one is columns across a 672px axis; the
+  // narrow one turns the bars sideways so the year labels stay full size on a
+  // phone instead of being scaled to about 5px.
+  .lacto-narrow {
+    display: none;
+  }
+
+  // One whole split into parts. Flex keeps the blocks proportional at any
+  // width while the labels stay at their CSS size.
+  .lacto-split {
+    display: flex;
+    gap: 2px;
+    margin: 1.25rem 0 0.75rem;
+  }
+
+  .lacto-split-part {
+    height: 28px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .lacto-split-value {
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    padding-left: 10px;
+  }
+
+  // Series fills. Set on the group so <rect> and <path> both pick them up.
+  .lacto-homo {
+    fill: var(--lacto-homo);
+    background: var(--lacto-homo);
+  }
+  .lacto-hetero {
+    fill: var(--lacto-hetero);
+    background: var(--lacto-hetero);
+  }
+  .lacto-unassigned {
+    fill: var(--lacto-unassigned);
+    background: var(--lacto-unassigned);
+  }
+
+  // Chart chrome: hairline, solid, recessive.
+  .lacto-grid {
+    stroke: var(--lightgray);
+    stroke-width: 1;
+  }
+  .lacto-axis {
+    stroke: var(--gray);
+    stroke-width: 1;
+  }
+
+  // Text wears text tokens, never the series colour.
+  .lacto-tick {
+    fill: var(--lacto-muted);
+    font-size: 11px;
+    font-variant-numeric: tabular-nums;
+  }
+  .lacto-tick-y {
+    text-anchor: end;
+  }
+  .lacto-tick-x {
+    text-anchor: middle;
+  }
+  .lacto-value {
+    fill: var(--dark);
+    font-size: 12px;
+    font-weight: 600;
+    text-anchor: middle;
+  }
+  .lacto-value-end {
+    text-anchor: start;
+  }
+  // The one label set inside a fill: near-white on both blue and orange.
+  .lacto-seg-label {
+    fill: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .lacto-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.25rem;
+    margin: 0 0 1.5rem;
+    font-size: 0.85rem;
+    color: var(--darkgray);
+  }
+
+  .lacto-key {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .lacto-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: inline-block;
+  }
+
+  // Table view: the accessibility fallback for both charts, and the place
+  // every value lives whether or not it fitted on a mark.
+  // Spacing only. Quartz wraps every table in its own .table-container,
+  // which is already the horizontal scroll container on narrow screens.
+  .lacto-table-wrap {
+    margin: 1.25rem 0 2rem;
+  }
+
+  .lacto-table {
+    // max-content + the wrapper's overflow-x keeps every row on one line and
+    // scrolls instead of clipping. One row (Lactobacillus, with its Approved
+    // Lists note) is wider than the column; on mobile the whole table scrolls.
+    width: max-content;
+    min-width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    line-height: 1.45;
+
+    th,
+    td {
+      text-align: left;
+      padding: 0.3rem 0.75rem 0.3rem 0;
+      border-bottom: 1px solid var(--lightgray);
+      white-space: nowrap;
+      vertical-align: top;
+    }
+
+    th {
+      font-weight: 600;
+      color: var(--darkgray);
+      border-bottom-color: var(--gray);
+    }
+
+    .lacto-ferm {
+      white-space: nowrap;
+    }
+
+    .lacto-ferm .lacto-dot {
+      margin-right: 0.35rem;
+      vertical-align: -1px;
+    }
+
+    .lacto-auth {
+      color: var(--lacto-muted);
+      padding-right: 0;
+    }
+
+    // Approved Lists and similar notes: own line, so a single long row does
+    // not widen the column for the other 37.
+    .lacto-auth-note {
+      display: block;
+      font-size: 0.92em;
+    }
+  }
+
+  @media all and ($mobile) {
+    .lacto-hero {
+      font-size: 2.75rem;
+    }
+
+    .lacto-wide {
+      display: none;
+    }
+
+    // Too narrow to hold its digit at this width; the legend and the table
+    // still carry the value.
+    .lacto-split-value--tight {
+      display: none;
+    }
+
+    .lacto-narrow {
+      display: block;
+    }
+
+    // The narrow chart's x ticks run along the bottom; its year labels run
+    // down the left, so the two anchors swap round.
+    .lacto-narrow .lacto-tick-x {
+      text-anchor: middle;
+    }
+  }
+}

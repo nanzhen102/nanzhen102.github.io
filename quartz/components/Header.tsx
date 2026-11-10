@@ -3,6 +3,7 @@ import { FullSlug, resolveRelative } from "../util/path"
 
 const navLinks: { title: string; slug: FullSlug }[] = [
   { title: "Posts", slug: "posts/index" as FullSlug },
+  { title: "Lactobacillaceae", slug: "lactobacillaceae" as FullSlug },
 ]
 
 const Header: QuartzComponent = ({ children, fileData }: QuartzComponentProps) => {
