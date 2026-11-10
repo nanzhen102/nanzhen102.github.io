@@ -105,7 +105,7 @@ ABBREV = {
     "Fructobacillus": "Fr.",
     "Leuconostoc": "Lu.",
     # Inferred: in the figure, but only as a type species
-    "Amylolactobacillus": "A.",
+    "Amylolactobacillus": "Am.",
     "Holzapfeliella": "H.",
     "Paralactobacillus": "P.",
     "Dellaglioa": "D.",
