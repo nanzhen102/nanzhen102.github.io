@@ -12,6 +12,7 @@ dark mode are handled there, not here.
 """
 
 import csv
+import datetime
 import glob
 import os
 import re
@@ -66,6 +67,42 @@ def rounded_top_rect(x, y, w, h, r):
         f"Q{x:.1f} {y:.1f} {x + r:.1f} {y:.1f} L{x + w - r:.1f} {y:.1f} "
         f'Q{x + w:.1f} {y:.1f} {x + w:.1f} {y + r:.1f} L{x + w:.1f} {y + h:.1f} Z"/>'
     )
+
+
+WORDS = {
+    1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six",
+    7: "seven", 8: "eight", 9: "nine", 10: "ten", 11: "eleven", 12: "twelve",
+}
+
+
+def _num(n):
+    return WORDS.get(n, str(n))
+
+
+def _join(items):
+    """a, b, and c"""
+    if len(items) == 1:
+        return items[0]
+    if len(items) == 2:
+        return f"{items[0]} and {items[1]}"
+    return ", ".join(items[:-1]) + f", and {items[-1]}"
+
+
+def _early_cluster(recs):
+    """The oldest genera, cut at the longest quiet stretch in the record.
+
+    Derived rather than named, so the opening sentence stays true when the
+    CSV gains or loses an early genus.
+    """
+    years = sorted({r["year"] for r in recs if r["year"]})
+    if len(years) < 3:
+        return None
+    gap, i = max((years[i + 1] - years[i], i) for i in range(len(years) - 1))
+    cutoff = years[i]
+    early = sorted(
+        (r for r in recs if r["year"] and r["year"] <= cutoff), key=lambda r: r["year"]
+    )
+    return early, cutoff, gap
 
 
 SERIES = [
@@ -362,6 +399,17 @@ def table(recs):
     tree = _rows(recs, lambda r: (r["y_order"] is None, r["y_order"] or 0, r["name"]))
     alpha = _rows(recs, lambda r: r["name"].replace("Candidatus ", "").lower())
 
+    n_unplaced = sum(1 for r in recs if r["y_order"] is None)
+    unplaced_note = (
+        f" The {_num(n_unplaced)} "
+        + ("genus" if n_unplaced == 1 else "genera")
+        + " not yet placed on it "
+        + ("is" if n_unplaced == 1 else "are")
+        + " listed last."
+        if n_unplaced
+        else ""
+    )
+
     return "\n".join(
         [
             '<div class="lacto-order">',
@@ -377,13 +425,49 @@ def table(recs):
             '<label for="lacto-order-az">A\u2013Z</label>',
             "</div>",
             '<p class="lacto-caption lacto-view-tree">The order they sit in on the'
-            " tree. The two genera not yet placed on it are listed last.</p>",
+            f" tree.{unplaced_note}</p>",
             '<p class="lacto-caption lacto-view-az">Alphabetical by genus name.</p>',
             f'<div class="lacto-table-wrap lacto-view-tree">{_table(tree)}</div>',
             f'<div class="lacto-table-wrap lacto-view-az">{_table(alpha)}</div>',
             "</div>",
         ]
     )
+
+
+def _check(md, recs, ferm):
+    """Fail loudly if the page could contradict its own source.
+
+    Everything on the page comes from the CSV, so the headline figure, the
+    chart totals and both orderings of the table have to agree. These are the
+    numbers a reader would compare.
+    """
+    total = len(recs)
+
+    # Headline figure.
+    hero = re.search(r'<p class="lacto-hero">(\d+)</p>', md)
+    assert hero and int(hero.group(1)) == total, "hero figure does not match the CSV"
+
+    # Both tables carry every genus, exactly once.
+    for cls, label in (("lacto-view-tree", "phylogenetic"), ("lacto-view-az", "alphabetical")):
+        block = md.split(f'lacto-table-wrap {cls}"')[1].split("</table>")[0]
+        rows = re.findall(r'<td class="lacto-genus"><em>([^<]+)</em>', block)
+        assert len(rows) == total, f"{label} table has {len(rows)} rows, expected {total}"
+        assert sorted(rows) == sorted(
+            r["name"] for r in recs
+        ), f"{label} table does not hold the same genera as the CSV"
+
+    # Section heading and fermentation split.
+    assert f"## All {total} genera" in md, "section heading does not match the CSV"
+    assert sum(ferm.values()) == total, "fermentation counts do not sum to the total"
+
+    # Every genus appears in exactly one segment of the split bar.
+    segments = re.findall(r'class="lacto-split-part [^"]*" style="flex: (\d+) ', md)
+    assert segments, "no split bar segments found"
+    assert sum(int(n) for n in segments) == total, (
+        "split bar segments do not sum to the total"
+    )
+
+    print(f"  checked: hero, both tables, heading and split bar all agree on {total}")
 
 
 def main():
@@ -402,17 +486,44 @@ def main():
         "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December",
     ]
-    asof = (
-        f"{months[int(stamp.group(2)) - 1]} {int(stamp.group(3))}, {stamp.group(1)}"
-        if stamp
-        else "the current snapshot"
-    )
+    if stamp:
+        y, m, d = stamp.group(1), int(stamp.group(2)), int(stamp.group(3))
+        asof = f"{months[m - 1]} {d}, {y}"
+        iso_date = f"{y}-{m:02d}-{d:02d}"
+    else:
+        # No datestamp in the filename: fall back to the file's mtime so the
+        # page never carries a date that contradicts its source.
+        t = datetime.date.fromtimestamp(os.path.getmtime(path))
+        asof = f"{months[t.month - 1]} {t.day}, {t.year}"
+        iso_date = t.isoformat()
 
     unassigned = [r for r in recs if r["ferm"] == "Unassigned"]
 
+    # The opening history sentence, derived so it stays true as the CSV
+    # changes. Both halves are dropped if the data no longer supports them.
+    history = []
+    early = _early_cluster(recs)
+    if early:
+        cluster, cutoff, gap = early
+        named = _join([f"_{r['name']}_ ({r['year']})" for r in cluster])
+        history.append(
+            f"For the {gap} years after {cutoff}, the family held just "
+            f"{_num(len(cluster))} "
+            + ("genus" if len(cluster) == 1 else "genera")
+            + f": {named}."
+        )
+    if n2020:
+        history.append(
+            "Then [Zheng et al. 2020](https://doi.org/10.1099/ijsem.0.004107) "
+            "split the old, sprawling _Lactobacillus_ into "
+            f"{n2020} genera on whole-genome evidence, and the family went from "
+            f"{before} genera to {before + n2020} in a single paper."
+        )
+    history = " ".join(history)
+
     md = f"""---
 title: Lactobacillaceae
-date: 2026-11-09
+date: {iso_date}
 ---
 
 Updated {asof}.
@@ -436,21 +547,19 @@ _Lactobacillaceae_, check
 <p class="lacto-caption">Only years in which at least one current genus was named
 appear on the axis, so the spacing between them is not to scale.</p>
 
-Three genera carried the family for most of a century: _Leuconostoc_
-(1878), _Lactobacillus_ (1901), and _Pediococcus_ (1903). Then
-[Zheng et al. 2020](https://doi.org/10.1099/ijsem.0.004107) split the old,
-sprawling _Lactobacillus_ into {n2020} genera on whole-genome evidence, and the
-family went from {before} genera to {before + n2020} in a single paper.
+{history}
 
 ## All {total} genera
 
 {table(recs)}
 
 Source file:
-[`genus_{stamp.group(1) + stamp.group(2) + stamp.group(3) if stamp else ""}.csv`](https://github.com/nanzhen102/nanzhen102.github.io/blob/v5/assets/lactobacillaceae/{os.path.basename(path)}).
+[`{os.path.basename(path)}`](https://github.com/nanzhen102/nanzhen102.github.io/blob/v5/assets/lactobacillaceae/{os.path.basename(path)}).
 The tree itself is built with
 [core-genome-phylogeny](https://github.com/nanzhen102/core-genome-phylogeny).
 """
+    _check(md, recs, ferm)
+
     with open(OUT, "w", encoding="utf-8") as fh:
         fh.write(md)
     print(f"wrote {OUT}")
