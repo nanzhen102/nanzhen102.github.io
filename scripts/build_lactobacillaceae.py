@@ -69,6 +69,58 @@ def rounded_top_rect(x, y, w, h, r):
     )
 
 
+# Genus abbreviations. Twelve of the 38 genera begin with "L", so a single
+# initial is ambiguous. These are read from Fig. 1 of Qiao et al. 2022,
+# "After the storm - Perspectives on the taxonomy of Lactobacillaceae",
+# JDS Communications 3(5), doi:10.3168/jdsc.2021-0183.
+#
+# Marked "inferred": the figure shows the genus but only its type species, so
+# no abbreviated form appears in it. Marked "proposed": the genus was
+# described after that figure, so it has no published abbreviation at all.
+ABBREV = {
+    # Read directly from the figure
+    "Lactobacillus": "L.",
+    "Bombilactobacillus": "Bo.",
+    "Companilactobacillus": "Co.",
+    "Lapidilactobacillus": "Ld.",
+    "Agrilactobacillus": "Ag.",
+    "Schleiferilactobacillus": "S.",
+    "Lacticaseibacillus": "Lc.",
+    "Latilactobacillus": "Lt.",
+    "Loigolactobacillus": "Lo.",
+    "Liquorilactobacillus": "Lq.",
+    "Ligilactobacillus": "Lg.",
+    "Pediococcus": "Pc.",
+    "Lactiplantibacillus": "Lp.",
+    "Fructilactobacillus": "Fl.",
+    "Apilactobacillus": "Ap.",
+    "Lentilactobacillus": "Ln.",
+    "Secundilactobacillus": "Sc.",
+    "Levilactobacillus": "Lv.",
+    "Paucilactobacillus": "Pl.",
+    "Limosilactobacillus": "Lm.",
+    "Furfurilactobacillus": "Fu.",
+    "Weissella": "W.",
+    "Oenococcus": "O.",
+    "Fructobacillus": "Fr.",
+    "Leuconostoc": "Lu.",
+    # Inferred: in the figure, but only as a type species
+    "Amylolactobacillus": "A.",
+    "Holzapfeliella": "H.",
+    "Paralactobacillus": "P.",
+    "Dellaglioa": "D.",
+    "Acetilactobacillus": "Ac.",
+    "Convivina": "C.",
+    # Proposed: described after the figure
+    "Periweissella": "Pw.",
+    "Nicoliella": "N.",
+    "Philodulcilactobacillus": "Ph.",
+    "Xylocopilactobacillus": "X.",
+    "Eupransor": "E.",
+    "Daquilactobacillus": "Da.",
+    "Candidatus Gallilactobacillus": "Ca. G.",
+}
+
 # Genera that were in Leuconostocaceae until Zheng et al. 2020 united it with
 # Lactobacillaceae. A closed historical set: the family no longer exists.
 LEUCONOSTOCACEAE = {
@@ -444,16 +496,11 @@ def _rows(recs, key):
     }
     out = []
     for r in sorted(recs, key=key):
-        # Abbreviate the genus in the type species: it is already in column 1.
-        # "Candidatus Gallilactobacillus intestinavium" takes the standard
-        # nomenclatural short form, "Ca. G. intestinavium".
-        parts = r["type_species"].split(" ")
-        if parts[0] == "Candidatus" and len(parts) >= 3:
-            ts = f"Ca. {parts[1][0]}. {' '.join(parts[2:])}"
-        elif len(parts) >= 2:
-            ts = f"{parts[0][0]}. {' '.join(parts[1:])}"
-        else:
-            ts = r["type_species"]
+        # Abbreviate the genus in the type species: it is already spelled out
+        # in column 1. A bare initial would not separate the twelve genera
+        # that begin with "L", so these use the published abbreviations.
+        epithet = r["type_species"].removeprefix(r["name"]).strip()
+        ts = f"{ABBREV[r['name']]} {epithet}" if epithet else r["type_species"]
         out.append(
             "<tr>"
             f'<td class="lacto-genus"><em>{esc(r["name"])}</em></td>'
@@ -518,6 +565,10 @@ def table(recs):
             '<p class="lacto-caption lacto-view-az">Alphabetical by genus name.</p>',
             f'<div class="lacto-table-wrap lacto-view-tree">{_table(tree)}</div>',
             f'<div class="lacto-table-wrap lacto-view-az">{_table(alpha)}</div>',
+            '<p class="lacto-caption">Type species carry the genus abbreviations'
+            " from <a href=\"https://doi.org/10.3168/jdsc.2021-0183\">Qiao et al."
+            " 2022</a>, which separate the twelve genera whose names begin"
+            " with L.</p>",
             "</div>",
         ]
     )
@@ -648,6 +699,17 @@ def main():
     # Leuconostocaceae set must not drift away from the CSV's names.
     missing = LEUCONOSTOCACEAE - {r["name"] for r in recs}
     assert not missing, f"Leuconostocaceae genera missing from the CSV: {sorted(missing)}"
+
+    # A new genus needs an abbreviation before it can be rendered, and two
+    # genera must never share one: that is the whole point of the table.
+    no_abbrev = sorted({r["name"] for r in recs} - set(ABBREV))
+    assert not no_abbrev, (
+        f"no genus abbreviation for: {no_abbrev}. Add one to ABBREV in this "
+        "script, keeping it distinct from the others."
+    )
+    used = [ABBREV[r["name"]] for r in recs]
+    dupes = sorted({a for a in used if used.count(a) > 1})
+    assert not dupes, f"genus abbreviations are not unique: {dupes}"
 
     md = f"""---
 title: Lactobacillaceae
