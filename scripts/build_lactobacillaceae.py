@@ -580,6 +580,7 @@ def main():
     # The opening history sentence, derived so it stays true as the CSV
     # changes. Both halves are dropped if the data no longer supports them.
     history = []
+    narrated = 0  # genera the emitted sentences actually account for
     early = _early_cluster(recs)
     if early:
         cluster, cutoff, gap = early
@@ -590,6 +591,24 @@ def main():
             + ("genus" if len(cluster) == 1 else "genera")
             + f": {named}."
         )
+        narrated += len(cluster)
+    # Between the early cluster and the reclassification. Without this the
+    # next sentence's "Then" would jump from 1903 straight to 2020 and skip
+    # the genera named in between.
+    mid = []
+    if early and n2020:
+        cutoff = early[1]
+        mid = sorted(
+            r["year"] for r in recs if r["year"] and cutoff < r["year"] < 2020
+        )
+        if mid:
+            history.append(
+                f"{_num(len(mid)).capitalize()} more "
+                + ("arrived in " if len(mid) == 1 else "arrived between ")
+                + (str(mid[0]) if len(mid) == 1 else f"{mid[0]} and {mid[-1]}")
+                + "."
+            )
+            narrated += len(mid)
     if n2020:
         history.append(
             "Then [Zheng et al. 2020](https://doi.org/10.1099/ijsem.0.004107) "
@@ -598,7 +617,19 @@ def main():
             "species name maps to its current one, use "
             "[lactotax](https://www.lactobacillus.ualberta.ca/)."
         )
+        narrated += n2020
     history = " ".join(history)
+
+    # The prose walks the record from the first genus to the 2020 cohort. If
+    # those three groups stop covering every genus named up to 2020, the
+    # paragraph has silently skipped some, which is how "Then ... 2020" once
+    # jumped over the five genera named between 1994 and 2015.
+    if early and n2020:
+        upto2020 = sum(1 for r in recs if r["year"] and r["year"] <= 2020)
+        assert narrated == upto2020, (
+            f"history prose accounts for {narrated} genera up to 2020, "
+            f"but the CSV has {upto2020}"
+        )
 
     md = f"""---
 title: Lactobacillaceae
