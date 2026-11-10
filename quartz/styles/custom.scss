@@ -316,6 +316,18 @@ body[data-slug="lactobacillaceae"] {
     line-height: 1.5;
   }
 
+  // Visible to assistive tech only.
+  .lacto-sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
   .lacto-chart {
     display: block;
     width: 100%;
@@ -663,21 +675,23 @@ body[data-slug="lactobacillaceae"] {
   // Closing source note. The mail link mirrors the homepage's Elsewhere
   // links: inline icon, no underline, colour from the link itself.
   .lacto-source {
-    a {
+    // Only the mail link gets the icon treatment. Other links in this line
+    // stay ordinary prose links, arrow and all, like the rest of the page.
+    a[href^="mailto:"] {
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
       text-decoration: none;
-    }
 
-    a svg {
-      width: 15px;
-      height: 15px;
-      flex-shrink: 0;
-    }
+      svg {
+        width: 15px;
+        height: 15px;
+        flex-shrink: 0;
+      }
 
-    .external-icon {
-      display: none;
+      .external-icon {
+        display: none;
+      }
     }
   }
 

@@ -113,7 +113,7 @@ def _hit(x, y, w, h, tip):
     """
     pad = 3  # a thin segment is still easy to hit
     return (
-        '<g class="lacto-hit">'
+        '<g class="lacto-hit" aria-hidden="true">'
         f'<rect class="lacto-hitarea" x="{x:.1f}" y="{y - pad:.1f}" '
         f'width="{w:.1f}" height="{h + pad * 2:.1f}"/>'
         f'<rect class="lacto-hitring" x="{x:.1f}" y="{y:.1f}" '
@@ -142,7 +142,7 @@ def _svg_tip(cx, top, lines, bounds, below=False):
         for i, t in enumerate(lines)
     )
     return (
-        '<g class="lacto-svgtip">'
+        '<g class="lacto-svgtip" aria-hidden="true">'
         f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{h:.1f}" rx="5"/>'
         f"{rows}</g>"
     )
@@ -223,7 +223,7 @@ def segmented_bar(counts, total):
             f' tabindex="0" role="listitem"'
             f' aria-label="{esc(lab)}: {n} genera, {share:.0f} percent">'
             f'<span class="lacto-split-value{tight}">{n}</span>'
-            f'<span class="lacto-tip"><strong>{esc(lab)}</strong>'
+            f'<span class="lacto-tip" aria-hidden="true"><strong>{esc(lab)}</strong>'
             f"<span>{n} genera &middot; {share:.0f}%</span></span></div>"
         )
     out.append("</div>")
@@ -425,7 +425,13 @@ def _authority(authority):
 
 def _rows(recs, key):
     cls = {"Homo": "homo", "Hetero": "hetero", "Unassigned": "unassigned"}
-    short = {"Homo": "Homo", "Hetero": "Hetero", "Unassigned": "\u2014"}
+    short = {
+        "Homo": "Homo",
+        "Hetero": "Hetero",
+        # The dash carries no meaning read aloud, so pair it with a word that
+        # only assistive tech sees.
+        "Unassigned": '\u2014<span class="lacto-sr">not assigned</span>',
+    }
     out = []
     for r in sorted(recs, key=key):
         # Abbreviate the genus in the type species: it is already in column 1.
@@ -454,7 +460,8 @@ def _table(rows):
     return (
         '<table class="lacto-table">'
         "<thead><tr>"
-        "<th>Genus</th><th>Type species</th><th>Fermentation</th><th>Proposed</th>"
+        '<th scope="col">Genus</th><th scope="col">Type species</th>'
+        '<th scope="col">Fermentation</th><th scope="col">Proposed</th>'
         "</tr></thead><tbody>" + "".join(rows) + "</tbody></table>"
     )
 
@@ -587,8 +594,7 @@ def main():
         history.append(
             "Then [Zheng et al. 2020](https://doi.org/10.1099/ijsem.0.004107) "
             "split the old, sprawling _Lactobacillus_ into "
-            f"{n2020} genera on whole-genome evidence, {100 * n2020 / total:.0f}% "
-            "of the family as it stands today."
+            f"{n2020} genera on whole-genome evidence."
         )
     history = " ".join(history)
 
@@ -600,10 +606,9 @@ date: {iso_date}
 Updated {asof}.
 
 <p class="lacto-hero">{total}</p>
-<p class="lacto-hero-label">genera currently placed in <em>Lactobacillaceae</em></p>
+<p class="lacto-hero-label">genera currently placed in the family.</p>
 
-For detailed homofermentative and heterofermentative fermentation in
-_Lactobacillaceae_, check
+For detailed homofermentative and heterofermentative fermentation, check
 [Gänzle 2015](https://doi.org/10.1016/j.cofs.2015.03.001) and
 [Qiao & Gänzle 2026](https://doi.org/10.1016/j.fm.2025.104945).
 
