@@ -314,20 +314,11 @@ def _authority(authority):
     return esc(authority)
 
 
-def table(recs):
+def _rows(recs, key):
     cls = {"Homo": "homo", "Hetero": "hetero", "Unassigned": "unassigned"}
-    short = {"Homo": "Homo", "Hetero": "Hetero", "Unassigned": "—"}
-    out = [
-        '<div class="lacto-table-wrap">',
-        '<table class="lacto-table">',
-        "<thead><tr>",
-        "<th>Genus</th><th>Type species</th><th>Fermentation</th><th>Proposed</th>",
-        "</tr></thead>",
-        "<tbody>",
-    ]
-    # Phylogenetic order (Y_order), which is the order the genera sit in on the
-    # tree. The few with no Y_order yet fall to the end.
-    for r in sorted(recs, key=lambda r: (r["y_order"] is None, r["y_order"] or 0, r["name"])):
+    short = {"Homo": "Homo", "Hetero": "Hetero", "Unassigned": "\u2014"}
+    out = []
+    for r in sorted(recs, key=key):
         # Abbreviate the genus in the type species: it is already in column 1.
         # "Candidatus Gallilactobacillus intestinavium" takes the standard
         # nomenclatural short form, "Ca. G. intestinavium".
@@ -341,14 +332,58 @@ def table(recs):
         out.append(
             "<tr>"
             f'<td class="lacto-genus"><em>{esc(r["name"])}</em></td>'
-            f'<td><em>{esc(ts)}</em></td>'
+            f"<td><em>{esc(ts)}</em></td>"
             f'<td class="lacto-ferm"><span class="lacto-dot lacto-{cls[r["ferm"]]}"></span>'
             f'{short[r["ferm"]]}</td>'
             f'<td class="lacto-auth">{_authority(r["authority"])}</td>'
             "</tr>"
         )
-    out += ["</tbody>", "</table>", "</div>"]
-    return "\n".join(out)
+    return out
+
+
+def _table(rows):
+    return (
+        '<table class="lacto-table">'
+        "<thead><tr>"
+        "<th>Genus</th><th>Type species</th><th>Fermentation</th><th>Proposed</th>"
+        "</tr></thead><tbody>" + "".join(rows) + "</tbody></table>"
+    )
+
+
+def table(recs):
+    """Two orderings, switched with a radio pair and :checked.
+
+    Pure CSS rather than a script: Quartz navigates as a single-page app, and a
+    script written into the markdown would not re-run after an in-site
+    navigation. Both orderings are rendered and one is hidden.
+    """
+    # Phylogenetic order (Y_order), the order the genera sit in on the tree.
+    # The few with no Y_order yet fall to the end.
+    tree = _rows(recs, lambda r: (r["y_order"] is None, r["y_order"] or 0, r["name"]))
+    alpha = _rows(recs, lambda r: r["name"].replace("Candidatus ", "").lower())
+
+    return "\n".join(
+        [
+            '<div class="lacto-order">',
+            '<div class="lacto-order-controls" role="group" aria-label="Table order">',
+            "<span>Order</span>",
+            # Each radio sits beside its own label: focusing one never scrolls
+            # the page away from the control.
+            '<input class="lacto-order-radio" type="radio" name="lacto-order"'
+            ' id="lacto-order-tree" checked />',
+            '<label for="lacto-order-tree">Phylogenetic</label>',
+            '<input class="lacto-order-radio" type="radio" name="lacto-order"'
+            ' id="lacto-order-az" />',
+            '<label for="lacto-order-az">A\u2013Z</label>',
+            "</div>",
+            '<p class="lacto-caption lacto-view-tree">The order they sit in on the'
+            " tree. The two genera not yet placed on it are listed last.</p>",
+            '<p class="lacto-caption lacto-view-az">Alphabetical by genus name.</p>',
+            f'<div class="lacto-table-wrap lacto-view-tree">{_table(tree)}</div>',
+            f'<div class="lacto-table-wrap lacto-view-az">{_table(alpha)}</div>',
+            "</div>",
+        ]
+    )
 
 
 def main():
@@ -380,7 +415,7 @@ title: Lactobacillaceae
 date: 2026-11-09
 ---
 
-Below are updated on {asof}.
+Updated {asof}.
 
 ## The family today
 
@@ -389,8 +424,8 @@ Below are updated on {asof}.
 
 For detailed homofermentative and heterofermentative fermentation in
 _Lactobacillaceae_, check
-[10.1016/j.cofs.2015.03.001](https://doi.org/10.1016/j.cofs.2015.03.001) and
-[10.1016/j.fm.2025.104945](https://doi.org/10.1016/j.fm.2025.104945).
+[Gänzle 2015](https://doi.org/10.1016/j.cofs.2015.03.001) and
+[Qiao & Gänzle 2026](https://doi.org/10.1016/j.fm.2025.104945).
 
 {segmented_bar(ferm, total)}
 
@@ -409,28 +444,7 @@ family went from {before} genera to {before + n2020} in a single paper.
 
 ## All {total} genera
 
-In phylogenetic order, the order they sit in on the tree. The two genera not
-yet placed on it are listed last.
-
 {table(recs)}
-
-## Method and caveats
-
-The table is curated from NCBI Taxonomy, reconciled against the 2020
-reclassification, with four deliberate departures:
-
-- **Paralactobacillus is kept.** NCBI sank it into _Lactobacillus_
-  (_L. selangorensis_, taxid 81857). Zheng et al. 2020 retain the genus, so this
-  census does too. It is the one row with no NCBI taxid.
-- **Candidatus Gallilactobacillus is included** even though the name is not
-  formally validated, because the genome is in the tree.
-- **{len(unassigned)} genera have no fermentation type yet**:
-  {", ".join("_" + r["name"] + "_" for r in unassigned)}. Both are recent and I
-  have not confirmed the phenotype against a primary description, so they are
-  counted but not classified rather than guessed at.
-- **Fermentation type is the genus-level generalisation**, taken from the type
-  species. Individual species inside a genus can deviate, and a handful are
-  facultatively heterofermentative, which this binary flattens.
 
 Source file:
 [`genus_{stamp.group(1) + stamp.group(2) + stamp.group(3) if stamp else ""}.csv`](https://github.com/nanzhen102/nanzhen102.github.io/blob/v5/assets/lactobacillaceae/{os.path.basename(path)}).

@@ -434,7 +434,82 @@ body[data-slug="lactobacillaceae"] {
   // Spacing only. Quartz wraps every table in its own .table-container,
   // which is already the horizontal scroll container on narrow screens.
   .lacto-table-wrap {
-    margin: 1.25rem 0 2rem;
+    margin: 0.75rem 0 2rem;
+  }
+
+  // Table ordering. The radios drive everything through :checked, so the
+  // switch needs no script and survives Quartz's SPA navigation. They are
+  // taken out of the flow rather than hidden with display:none, which would
+  // drop them from the tab order.
+  .lacto-order-radio {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .lacto-order-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    font-size: 0.82rem;
+
+    > span {
+      color: var(--lacto-muted);
+    }
+
+    label {
+      padding: 0.15rem 0.6rem;
+      border: 1px solid var(--lightgray);
+      border-radius: 999px;
+      color: var(--lacto-muted);
+      cursor: pointer;
+      user-select: none;
+      transition:
+        color 0.15s ease,
+        border-color 0.15s ease;
+    }
+
+    label:hover {
+      color: var(--tertiary);
+      border-color: var(--tertiary);
+    }
+  }
+
+  // Selected ordering: the chosen label and its view. :has() lets the radios
+  // live beside their own labels rather than before the tables, so focusing
+  // one on click never scrolls the page.
+  .lacto-order-controls:has(#lacto-order-tree:checked) label[for="lacto-order-tree"],
+  .lacto-order-controls:has(#lacto-order-az:checked) label[for="lacto-order-az"] {
+    color: var(--dark);
+    border-color: var(--gray);
+  }
+
+  // Keyboard focus: the radio itself is invisible, so its label wears the ring.
+  .lacto-order-controls:has(#lacto-order-tree:focus-visible) label[for="lacto-order-tree"],
+  .lacto-order-controls:has(#lacto-order-az:focus-visible) label[for="lacto-order-az"] {
+    outline: 2px solid var(--tertiary);
+    outline-offset: 2px;
+  }
+
+  .lacto-view-az {
+    display: none;
+  }
+
+  .lacto-order:has(#lacto-order-az:checked) {
+    .lacto-view-tree {
+      display: none;
+    }
+
+    .lacto-view-az {
+      display: block;
+    }
+  }
+
+  .lacto-order .lacto-caption {
+    margin: 0.75rem 0 0;
   }
 
   .lacto-table {
@@ -491,6 +566,11 @@ body[data-slug="lactobacillaceae"] {
 
     .lacto-wide {
       display: none;
+    }
+
+    // Comfortable touch targets for the order switch.
+    .lacto-order-controls label {
+      padding: 0.5rem 0.9rem;
     }
 
     // Too narrow to hold its digit at this width; the legend and the table
