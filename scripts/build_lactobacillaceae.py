@@ -107,10 +107,10 @@ ABBREV = {
     # Inferred: in the figure, but only as a type species
     "Amylolactobacillus": "Am.",
     "Holzapfeliella": "H.",
-    "Paralactobacillus": "P.",
-    "Dellaglioa": "D.",
+    "Paralactobacillus": "Pa.",
+    "Dellaglioa": "De.",
     "Acetilactobacillus": "Ac.",
-    "Convivina": "C.",
+    "Convivina": "Cn.",
     # Proposed: described after the figure
     "Periweissella": "Pw.",
     "Nicoliella": "N.",
