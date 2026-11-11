@@ -731,10 +731,8 @@ date: {iso_date}
 
 <div class="lacto-tree"><picture><source media="(prefers-reduced-motion: reduce)" srcset="{tree_name}.png"><img src="{tree_name}.gif" width="440" height="440" alt="{esc(tree_alt)}" decoding="async"></picture></div>
 
-_Lactobacillaceae_, updated on {asof}.
-
 <p class="lacto-hero">{total}</p>
-<p class="lacto-hero-label">genera currently placed in the family.</p>
+<p class="lacto-hero-label">genera currently placed in <em>Lactobacillaceae</em> family, updated on {asof}.</p>
 
 For detailed homofermentative and heterofermentative fermentation, check
 [Gänzle 2015](https://doi.org/10.1016/j.cofs.2015.03.001) and

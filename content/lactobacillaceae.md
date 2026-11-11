@@ -5,10 +5,8 @@ date: 2026-11-09
 
 <div class="lacto-tree"><picture><source media="(prefers-reduced-motion: reduce)" srcset="lactobacillaceae-tree-20261109.png"><img src="lactobacillaceae-tree-20261109.gif" width="440" height="440" alt="Animation: the 38 genera of Lactobacillaceae appear in the order they were described, each at its place on the family's phylogenetic tree." decoding="async"></picture></div>
 
-_Lactobacillaceae_, updated on November 9, 2026.
-
 <p class="lacto-hero">38</p>
-<p class="lacto-hero-label">genera currently placed in the family.</p>
+<p class="lacto-hero-label">genera currently placed in <em>Lactobacillaceae</em> family, updated on November 9, 2026.</p>
 
 For detailed homofermentative and heterofermentative fermentation, check
 [Gänzle 2015](https://doi.org/10.1016/j.cofs.2015.03.001) and
