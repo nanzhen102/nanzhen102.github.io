@@ -281,9 +281,30 @@ body[data-slug="posts/index"] .content-meta {
 }
 
 body[data-slug="lactobacillaceae"] {
-  // A family name takes italics, in the title as in running text.
-  h1.article-title {
-    font-style: italic;
+  // The first line of the page names the family itself, so Quartz's own title
+  // is taken out of view. It stays in the page for screen readers and search,
+  // which display: none would drop.
+  .page-header h1.article-title {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px !important;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  // The animation above the first line. It is the same dark tile in both
+  // themes: the night page is the same #100f0f, so there it simply floats.
+  .lacto-tree {
+    margin: 2rem 0 1.4rem;
+
+    img {
+      display: block;
+      width: min(100%, 320px);
+      height: auto;
+      border-radius: 14px;
+    }
   }
 
   // A census page, not an article: its date is stated in the first line and

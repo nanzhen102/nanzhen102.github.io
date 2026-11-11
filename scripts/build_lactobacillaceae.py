@@ -711,12 +711,27 @@ def main():
     dupes = sorted({a for a in used if used.count(a) > 1})
     assert not dupes, f"genus abbreviations are not unique: {dupes}"
 
+    # The animation at the top is rendered by scripts/make_life_tree.py and named after the CSV, so a new CSV
+    # cannot ship with the previous release's animation: the build stops until it has been re-rendered.
+    assert stamp, "the animation is named after the CSV's datestamp: rename the CSV to genus_YYYYMMDD.csv"
+    tree_name = f"lactobacillaceae-tree-{stamp.group(1)}{stamp.group(2)}{stamp.group(3)}"
+    for ext in ("gif", "png"):
+        assert os.path.exists(os.path.join(REPO, "content", f"{tree_name}.{ext}")), (
+            f"content/{tree_name}.{ext} is missing: run scripts/make_life_tree.py to render the animation for this CSV"
+        )
+    tree_alt = (
+        f"Animation: the {total} genera of Lactobacillaceae appear in the order they were described, "
+        "each at its place on the family's phylogenetic tree."
+    )
+
     md = f"""---
 title: Lactobacillaceae
 date: {iso_date}
 ---
 
-Updated {asof}.
+<div class="lacto-tree"><picture><source media="(prefers-reduced-motion: reduce)" srcset="{tree_name}.png"><img src="{tree_name}.gif" width="440" height="440" alt="{esc(tree_alt)}" decoding="async"></picture></div>
+
+_Lactobacillaceae_, updated on {asof}.
 
 <p class="lacto-hero">{total}</p>
 <p class="lacto-hero-label">genera currently placed in the family.</p>

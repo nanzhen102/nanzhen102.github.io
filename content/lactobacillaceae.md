@@ -3,7 +3,9 @@ title: Lactobacillaceae
 date: 2026-11-09
 ---
 
-Updated November 9, 2026.
+<div class="lacto-tree"><picture><source media="(prefers-reduced-motion: reduce)" srcset="lactobacillaceae-tree-20261109.png"><img src="lactobacillaceae-tree-20261109.gif" width="440" height="440" alt="Animation: the 38 genera of Lactobacillaceae appear in the order they were described, each at its place on the family's phylogenetic tree." decoding="async"></picture></div>
+
+_Lactobacillaceae_, updated on November 9, 2026.
 
 <p class="lacto-hero">38</p>
 <p class="lacto-hero-label">genera currently placed in the family.</p>
