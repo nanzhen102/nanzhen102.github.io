@@ -476,6 +476,23 @@ def _year_bars(years, per, recs):
 # --- the table ------------------------------------------------------------
 
 
+def _slug(name):
+    """The anchor Quartz gives a heading made of this name."""
+    return re.sub(r"\s+", "-", name.strip().lower())
+
+
+def _species_counts():
+    """Names per genus in the newest species snapshot, or {} if there is none.
+    The species page lists the same genera; this links the two."""
+    snaps = sorted(glob.glob(os.path.join(REPO, "assets", "lactobacillaceae", "species", "species_*.csv")))
+    counts = Counter()
+    if snaps:
+        for r in csv.DictReader(open(snaps[-1], encoding="utf-8-sig")):
+            if r["kind"] in ("species", "subspecies"):  # not the headings, not the names left out
+                counts[r["genus"]] += 1
+    return counts
+
+
 def _authority(authority):
     """A trailing nomenclatural note (Approved Lists 1980) goes on its own
     smaller line, so one long row does not set the column's width."""
@@ -486,6 +503,7 @@ def _authority(authority):
 
 
 def _rows(recs, key):
+    species = _species_counts()
     cls = {"Homo": "homo", "Hetero": "hetero", "Unassigned": "unassigned"}
     short = {
         "Homo": "Homo",
@@ -504,7 +522,12 @@ def _rows(recs, key):
         out.append(
             "<tr>"
             f'<td class="lacto-genus"><em>{esc(r["name"])}</em></td>'
-            f"<td><em>{esc(ts)}</em></td>"
+            + (
+                f'<td class="lacto-count"><a href="lactobacillaceae-species#{_slug(r["name"])}">{species[r["name"]]}</a></td>'
+                if species
+                else ""
+            )
+            + f"<td><em>{esc(ts)}</em></td>"
             f'<td class="lacto-ferm"><span class="lacto-dot lacto-{cls[r["ferm"]]}"></span>'
             f'{short[r["ferm"]]}</td>'
             f'<td class="lacto-auth">{_authority(r["authority"])}</td>'
@@ -517,7 +540,9 @@ def _table(rows):
     return (
         '<table class="lacto-table">'
         "<thead><tr>"
-        '<th scope="col">Genus</th><th scope="col">Type species</th>'
+        '<th scope="col">Genus</th>'
+        + ('<th scope="col">Species</th>' if _species_counts() else "")
+        + '<th scope="col">Type species</th>'
         '<th scope="col">Fermentation</th><th scope="col">Proposed</th>'
         "</tr></thead><tbody>" + "".join(rows) + "</tbody></table>"
     )
@@ -724,6 +749,17 @@ def main():
         "each at its place on the family's phylogenetic tree."
     )
 
+    # The species page lists these same genera. A genus the species release has but this CSV lacks would link
+    # to nothing, so stop instead.
+    species = _species_counts()
+    stray = sorted(set(species) - {r["name"] for r in recs})
+    assert not stray, f"the species snapshot has genera that this CSV does not: {stray}"
+    species_block = (
+        f"\nSpecies, type strains and genomes: [{sum(species.values())} current names](lactobacillaceae-species).\n\n"
+        if species
+        else "\n"
+    )
+
     md = f"""---
 title: Lactobacillaceae
 date: {iso_date}
@@ -737,8 +773,7 @@ date: {iso_date}
 For detailed homofermentative and heterofermentative fermentation, check
 [Gänzle 2015](https://doi.org/10.1016/j.cofs.2015.03.001) and
 [Qiao & Gänzle 2026](https://doi.org/10.1016/j.fm.2025.104945).
-
-{segmented_bar(ferm, total)}
+{species_block}{segmented_bar(ferm, total)}
 
 ## When they were named
 

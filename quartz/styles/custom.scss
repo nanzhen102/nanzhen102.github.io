@@ -280,7 +280,16 @@ body[data-slug="posts/index"] .content-meta {
   --lacto-hetero: #4385be; // Flexoki blue-400
 }
 
-body[data-slug="lactobacillaceae"] {
+// The species tables are wider than the text column: let them use more of the
+// window, centred on the column, and scroll only on a narrow screen.
+body[data-slug="lactobacillaceae-species"] .table-container {
+  width: min(62rem, calc(100vw - 2rem));
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+body[data-slug="lactobacillaceae"],
+body[data-slug="lactobacillaceae-species"] {
   // The line under the hero number names the family and its date, so Quartz's
   // own title is taken out of view. It stays in the page for screen readers and search,
   // which display: none would drop.
@@ -691,6 +700,116 @@ body[data-slug="lactobacillaceae"] {
       display: block;
       font-size: 0.92em;
     }
+  }
+
+  // Species page: one table per genus. Unlike the genus table, the name and
+  // the type strains wrap, because a species carries up to eight collection
+  // numbers; the wide table scrolls inside its wrapper on a phone.
+  .lacto-species {
+    // The base table sizes itself to its unwrapped text (max-content) and
+    // every cell inherits a 32px line height. Here the table fits its
+    // wrapper, the cells wrap, and the rows are as tall as their text.
+    width: 100%;
+    margin: 0; // Quartz's 1rem side margins would spill out of the frame
+
+    th,
+    td {
+      white-space: normal;
+      line-height: 1.4;
+    }
+
+    .lacto-name {
+      min-width: 11rem;
+    }
+
+    .lacto-ts {
+      min-width: 10rem;
+      max-width: 17rem;
+      font-size: 0.92em;
+    }
+
+    .lacto-links {
+      white-space: nowrap;
+    }
+
+    // A species that has subspecies heads them; the subspecies sit indented.
+    .lacto-parent td {
+      background: color-mix(in srgb, var(--lightgray) 45%, transparent);
+    }
+
+    .lacto-subrow .lacto-name {
+      padding-left: 1.1rem;
+    }
+
+    // Not yet assessed: lighter, so it reads as an open gap and not a value.
+    .lacto-na {
+      color: var(--lacto-muted);
+      font-style: italic;
+    }
+
+    // A caveat on the genome, on its own line under the accession.
+    .lacto-note {
+      display: block;
+      font-size: 0.92em;
+      color: var(--lacto-muted);
+      font-style: italic;
+    }
+
+    .lacto-chip {
+      margin-left: 0.3rem;
+    }
+
+    // Quartz marks every external link with an arrow; with three links in
+    // each of ~480 rows they would drown the table.
+    .external-icon {
+      display: none;
+    }
+  }
+
+  .lacto-chip {
+    display: inline-block;
+    padding: 0 0.4rem;
+    border: 1px solid var(--lacto-muted);
+    border-radius: 0.6rem;
+    font-size: 0.72rem;
+    line-height: 1.5;
+    font-style: normal;
+    color: var(--lacto-muted);
+    vertical-align: 1px;
+    white-space: nowrap;
+  }
+
+  // Names that need a second look: not validly published, illegitimate, or a
+  // subspecies division LPSN has abandoned. A dashed outline, same grey: the
+  // wording says what it is, the outline marks it as a caveat.
+  .lacto-chip-warn {
+    border-style: dashed;
+  }
+
+  .lacto-legend {
+    font-size: 0.85rem;
+    color: var(--darkgray);
+
+    .lacto-dot {
+      margin-right: 0.3rem;
+      vertical-align: -1px;
+    }
+  }
+
+  .lacto-gindex {
+    font-size: 0.85rem;
+    line-height: 1.9;
+  }
+
+  // A genus with no listed name says why, in a line, instead of an empty table.
+  .lacto-gnote {
+    font-size: 0.9rem;
+  }
+
+  .lacto-gcap {
+    margin: -0.3rem 0 0.6rem;
+    font-size: 0.85rem;
+    color: var(--lacto-muted);
   }
 
   // Closing source note. The mail link mirrors the homepage's Elsewhere
