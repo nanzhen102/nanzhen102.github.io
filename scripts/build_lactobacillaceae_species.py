@@ -38,7 +38,7 @@ spec.loader.exec_module(genus_page)
 esc, _authority = genus_page.esc, genus_page._authority
 
 LIFESTYLE_DOI = "10.1093/femsre/fux030"  # Duar et al. 2017, the lifestyle categories
-FERMENTATION_DOI = "10.1016/j.fm.2025.104945"  # Qiao & Gänzle 2026, already cited on the genus page
+GANZLE_SCHOLAR = "https://scholar.google.com/citations?user=Zc29kvEAAAAJ&hl=en"  # Michael Gänzle, University of Alberta
 NOT_ASSESSED = '<span class="lacto-na">not yet assessed</span>'
 GENOME_NOTE = {
     "not_type_strain": "genome strain {s} is not a type strain",
@@ -168,8 +168,19 @@ def main():
     asof = f"{MONTHS[m - 1]} {d}, {y}"
     iso = datetime.date(y, m, d).isoformat()
 
-    index = " · ".join(
-        f'<a href="#{genus_page._slug(g)}">{esc(g)}</a>&nbsp;{sum(1 for r in by_genus.get(g, []) if r["kind"] != "parent")}' for g in order
+    # The genus list in three lines: the placed genera in two halves of the tree order, then the genera that are
+    # not placed on the tree yet.
+    def index_item(g):
+        n = sum(1 for r in by_genus.get(g, []) if r["kind"] != "parent")
+        return f'<a href="#{genus_page._slug(g)}">{esc(g)}</a>&nbsp;({n})'
+
+    placed_genera = [g for g in order if genera[g]["y_order"]]
+    unplaced_genera = [g for g in order if not genera[g]["y_order"]]
+    half = (len(placed_genera) + 1) // 2
+    index = "\n".join(
+        f'<p class="lacto-gindex">{"; ".join(index_item(g) for g in group)}</p>'
+        for group in (placed_genera[:half], placed_genera[half:], unplaced_genera)
+        if group
     )
 
     sections = []
@@ -177,10 +188,12 @@ def main():
         rs = by_genus.get(g, [])
         n = sum(1 for r in rs if r["kind"] != "parent")
         ferm = genera[g]["ferm"]
-        pos = (f"tree position {genera[g]['y_order']} of {placed_total}" if genera[g]["y_order"] else "not yet placed on the tree")
+        pos = (f"phylogenetic position based on genus ({genera[g]['y_order']} of {placed_total})" if genera[g]["y_order"]
+               else "phylogenetic position based on genus: not yet placed on the tree")
         dot = f'<span class="lacto-dot lacto-{ferm.lower()}"></span>' if ferm in ("Homo", "Hetero") else ""
         ferm_txt = {"Homo": "homofermentative", "Hetero": "heterofermentative"}.get(ferm, "fermentation type not assigned")
-        cap = f'<p class="lacto-gcap">{n} {"name" if n == 1 else "names"} · {dot}{ferm_txt} · {pos}</p>'
+        what = "species and subspecies" if any(r["kind"] == "subspecies" for r in rs) else "species"
+        cap = f'<p class="lacto-gcap">{n} {what} · {dot}{ferm_txt} · {pos}</p>'
         if not rs:
             items = "; ".join(left_out_item(r) for r in left_out[g])
             reasons = "; ".join(dict.fromkeys(esc(r["note"]) for r in left_out[g]))
@@ -196,16 +209,17 @@ date: {iso}
 unlisted: true
 ---
 
-[← _Lactobacillaceae_](lactobacillaceae)
+{genus_page.tabs("species")}
 
 <p class="lacto-hero">{total}</p>
 <p class="lacto-hero-label">species and subspecies currently placed in <em>Lactobacillaceae</em> family ({n_species} species, {n_sub} subspecies), updated on {asof}.</p>
 
-Current names, type strains and genomes. Names, authorities, type strains and publication DOIs come from [LPSN](https://lpsn.dsmz.de); taxon IDs and genomes from [NCBI](https://www.ncbi.nlm.nih.gov/). Fermentation type and lifestyle are curated by the author and Michael Gänzle ([Qiao & Gänzle 2026](https://doi.org/{FERMENTATION_DOI})); the lifestyle categories follow [Duar et al. 2017](https://doi.org/{LIFESTYLE_DOI}). Looking for an older name? Search this page, or use [LactoTax](https://www.lactobacillus.ualberta.ca/).
+For detailed lifestyle updates, check [Duar et al. 2017](https://doi.org/{LIFESTYLE_DOI}), and stay tuned to the most recent posts and publications of [Michael Gänzle]({GANZLE_SCHOLAR}).
 
-<p class="lacto-legend"><span class="lacto-dot lacto-homo"></span>homofermentative <span class="lacto-dot lacto-hetero"></span>heterofermentative <span class="lacto-chip">new</span> not in the June 2025 list</p>
+<p class="lacto-keyline"><span class="lacto-dot lacto-homo"></span>homofermentative <span class="lacto-dot lacto-hetero"></span>heterofermentative <span class="lacto-chip">new</span> not in the June 2025 list</p>
 
-<p class="lacto-gindex">{index}</p>
+<p class="lacto-gindex-label">Jump to a genus (number of species and subspecies):</p>
+{index}
 
 {chr(10).join(sections)}
 """

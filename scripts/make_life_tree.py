@@ -8,7 +8,7 @@ genus_*.csv the page is built from, so a new CSV gives a new animation.
 
     python3 scripts/make_life_tree.py
 
-writes content/lactobacillaceae-tree-<datestamp>.gif and a still .png (shown to visitors who ask for reduced
+writes content/lactobacillaceae-banner-<datestamp>.gif and a still .png (shown to visitors who ask for reduced
 motion). The loop opens on the finished tree so a visitor never lands on a blank tile, lets it dissolve to the
 empty slots, rebuilds it year by year, and ends on the same finished tree, so it closes without a fade or a rest. build_lactobacillaceae.py refuses to build the page if that GIF is missing for the newest CSV.
 
@@ -39,7 +39,19 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
 ASSETS = os.path.join(REPO, "assets", "lactobacillaceae")
 
-SIZE, SS, FPS = 440, 2, 8  # pixels, supersampling for smooth lines, frames per second
+SIZE, SS, FPS = 440, 2, 8  # the tree's square, supersampling for smooth lines, frames per second
+BW = 960  # banner width: the tree square on the left, a gradient and the title on the right
+END = (37, 65, 89)  # the far end of the gradient: the tree's blue, darkened and greyed so it stays quiet
+TITLE, TITLE_FONT, TITLE_MAX = "Lactobacillaceae", 3, 66  # Bold Italic, as the page sets the family name
+# Two lines under the title, in falling emphasis: what each name carries, who keeps it
+# current. No date, so the GIF never goes stale. (text, size px, share of white)
+LINES = [
+    ("Type strains \u00b7 Fermentation type \u00b7 Lifestyle", 24, 0.86),
+    ("Updated by Nanzhen Qiao and Michael G\u00e4nzle", 20, 0.58),
+]
+LINE_PITCH, TITLE_Y, SUB_TOP = 44, 112, 36  # distance between lines, title top, gap under the title (all px)
+TEXT_X, MARGIN = SIZE + 36, 44  # the text starts clear of the tree and keeps a margin on the right
+WHITE = (246, 244, 238)
 BEAT, GROW, STAG, SETTLE = 0.7, 2.0, 0.12, 1.8  # one year / a branch growing / ripple step / bloom settle (s)
 OPEN, DISSOLVE, HOLD = 0.8, 0.7, 2.4  # finished tree at the start / dissolve to empty / settle at the end (s)
 BG, SLOT, LINE, TEXT = (16, 15, 15), (52, 51, 49), (135, 133, 128), (183, 181, 172)  # #100f0f page
@@ -62,6 +74,33 @@ def load_builder():
     return mod
 
 
+def banner_base():
+    """The static part of every frame: black that turns teal to the right, and the title. The tree square is pasted
+    over x < SIZE, and the gradient stays exactly the page black up to there, so the square has no edge."""
+    x = np.arange(BW)
+    t = np.clip((x - SIZE) / (BW - SIZE), 0, 1)
+    t = t * t * (3 - 2 * t)  # eases in, so there is no visible start to the gradient
+    row = np.array([[BG[k] + (END[k] - BG[k]) * ti for k in range(3)] for ti in t])
+    img = Image.fromarray(np.tile(row, (SIZE, 1, 1)).round().astype(np.uint8))
+    # Text at 2x, then reduced: smoother edges than drawing at 1x.
+    big = img.resize((BW * 2, SIZE * 2), Image.BICUBIC)
+    d = ImageDraw.Draw(big)
+    ttf = "/System/Library/Fonts/HelveticaNeue.ttc"
+    avail = (BW - MARGIN - TEXT_X) * 2
+    px = TITLE_MAX * 2
+    while ImageFont.truetype(ttf, px, index=TITLE_FONT).getlength(TITLE) > avail:
+        px -= 2
+    title = ImageFont.truetype(ttf, px, index=TITLE_FONT)
+    y0 = TITLE_Y * 2  # the title keeps its place
+    d.text((TEXT_X * 2, y0), TITLE, font=title, fill=WHITE, anchor="la")
+    for i, (text, size, share) in enumerate(LINES):
+        f = ImageFont.truetype(ttf, size * 2, index=7)
+        assert f.getlength(text) <= avail, f"'{text}' does not fit beside the tree: shorten it or lower its size"
+        fill = tuple(int(WHITE[k] * share + END[k] * (1 - share)) for k in range(3))
+        d.text((TEXT_X * 2, y0 + px + SUB_TOP * 2 + i * LINE_PITCH * 2), text, font=f, fill=fill, anchor="la")
+    return big.resize((BW, SIZE), Image.LANCZOS)
+
+
 def iter_leaves(n):
     if "genus" in n:
         yield n
@@ -78,7 +117,7 @@ def main():
     stamp = re.search(r"genus_(\d{8})", os.path.basename(csv_path))
     if not stamp:
         sys.exit(f"{os.path.basename(csv_path)} has no datestamp (genus_YYYYMMDD.csv); the animation is named after it")
-    out_gif = os.path.join(REPO, "content", f"lactobacillaceae-tree-{stamp.group(1)}.gif")
+    out_gif = os.path.join(REPO, "content", f"lactobacillaceae-banner-{stamp.group(1)}.gif")
     out_png = out_gif[:-4] + ".png"
 
     recs = load_builder().load(csv_path)
@@ -263,26 +302,49 @@ def main():
             return frame(t_final, 1 - float(smooth((g - OPEN) / DISSOLVE)))  # dissolve it to the empty slots
         return frame(g - OPEN - DISSOLVE)  # rebuild it year by year, ending on the same finished tree
 
-    frames = [render(i / FPS) for i in range(nf)]
+    base = banner_base()
+
+    def compose(tree):
+        img = base.copy()
+        img.paste(tree, (0, 0))
+        return img
+
+    frames = [compose(render(i / FPS)) for i in range(nf)]
     seam = np.abs(np.asarray(frames[0], int) - np.asarray(frames[-1], int)).max()
     assert seam == 0, "the loop does not close: first and last frames differ"
 
+    if not shutil.which("ffmpeg"):
+        sys.exit("ffmpeg is needed to write the small GIF")
+    # One 256-colour palette for the whole animation, built in two parts. ffmpeg's own palettegen would look only at
+    # the pixels that change (the tree) or be swamped by the static gradient, so the gradient and title get their own
+    # colours (quantised from the banner base) and the tree its own (48, tuned across the tree frames as before).
     with tempfile.TemporaryDirectory() as tmp:
         for i, f in enumerate(frames):
             f.save(os.path.join(tmp, f"f{i:04d}.png"))
-        if shutil.which("ffmpeg"):  # palette tuned across frames, only changed pixels stored: ~0.5 MB, not ~2 MB
-            vf = "split[a][b];[a]palettegen=max_colors=48:stats_mode=diff[p];[b][p]paletteuse=dither=none:diff_mode=rectangle"
-            subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(FPS), "-i", os.path.join(tmp, "f%04d.png"),
-                            "-vf", vf, "-loop", "0", out_gif], check=True)
-        else:
-            print("  ffmpeg not found: writing a larger GIF with Pillow")
-            mos = Image.new("RGB", (SIZE * 4, SIZE * 2))
-            for i, k in enumerate(np.linspace(0, nf - 1, 8).astype(int)):
-                mos.paste(frames[k], ((i % 4) * SIZE, (i // 4) * SIZE))
-            pal = mos.quantize(colors=255, method=Image.MEDIANCUT, dither=0)
-            q = [f.quantize(palette=pal, dither=0) for f in frames]
-            q[0].save(out_gif, save_all=True, append_images=q[1:], duration=int(1000 / FPS), loop=0, disposal=1)
-    frames[0].quantize(colors=64, dither=Image.NONE).save(out_png, optimize=True)
+        tree_pal = os.path.join(tmp, "tree_palette.png")
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(FPS), "-i", os.path.join(tmp, "f%04d.png"),
+                        "-vf", f"crop={SIZE}:{SIZE}:0:0,palettegen=max_colors=48:stats_mode=diff", tree_pal], check=True)
+        tree_cols = np.asarray(Image.open(tree_pal).convert("RGB")).reshape(-1, 3)
+        tree_cols = np.unique(tree_cols, axis=0)
+        grad_cols = np.unique(np.asarray(base)[0], axis=0)  # the gradient's exact colours: no banding beyond 8-bit
+        room = 256 - len(tree_cols) - len(grad_cols)
+        assert room >= 24, f"the gradient alone takes {len(grad_cols)} colours"
+        arr = np.asarray(base)
+        ink_mask = (arr != arr[0:1]).any(axis=2)  # the pixels the text touched; the palette is spent on them
+        q = Image.fromarray(arr[ink_mask].reshape(1, -1, 3).astype(np.uint8)).quantize(colors=room, method=Image.MEDIANCUT, dither=Image.NONE)
+        text_cols = np.asarray(q.getpalette(), np.uint8).reshape(-1, 3)[: len(set(q.getdata()))]
+        base_cols = np.concatenate([grad_cols, text_cols])
+        cols = np.concatenate([base_cols, tree_cols])
+        assert len(cols) <= 256, f"palette has {len(cols)} colours"
+        pal_img = Image.new("RGB", (16, 16), tuple(int(v) for v in cols[0]))
+        pal_img.putdata([tuple(int(v) for v in c) for c in cols] + [tuple(int(v) for v in cols[0])] * (256 - len(cols)))
+        pal_path = os.path.join(tmp, "palette.png")
+        pal_img.save(pal_path)
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(FPS), "-i", os.path.join(tmp, "f%04d.png"),
+                        "-i", pal_path, "-lavfi", "paletteuse=dither=none:diff_mode=rectangle", "-loop", "0", out_gif], check=True)
+    pal_p = Image.new("P", (1, 1))
+    pal_p.putpalette([int(v) for c in cols for v in c] + [0] * (768 - 3 * len(cols)))
+    frames[0].quantize(palette=pal_p, dither=Image.NONE).save(out_png, optimize=True)
     print(f"wrote {os.path.relpath(out_gif, REPO)} ({os.path.getsize(out_gif) / 1024:.0f} KB, {nf} frames, {t_end:.1f}s loop)")
     print(f"wrote {os.path.relpath(out_png, REPO)} ({os.path.getsize(out_png) / 1024:.0f} KB)")
 

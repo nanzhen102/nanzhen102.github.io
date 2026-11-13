@@ -4,20 +4,23 @@ date: 2026-11-11
 unlisted: true
 ---
 
-[← _Lactobacillaceae_](lactobacillaceae)
+<nav class="lacto-tabs" aria-label="Lactobacillaceae pages"><a href="lactobacillaceae">Overview</a> <a href="lactobacillaceae-genera">Genera</a> <span aria-current="page">Species</span></nav>
 
-<p class="lacto-hero">477</p>
-<p class="lacto-hero-label">species and subspecies currently placed in <em>Lactobacillaceae</em> family (442 species, 35 subspecies), updated on November 11, 2026.</p>
+<p class="lacto-hero">478</p>
+<p class="lacto-hero-label">species and subspecies currently placed in <em>Lactobacillaceae</em> family (443 species, 35 subspecies), updated on November 11, 2026.</p>
 
-Current names, type strains and genomes. Names, authorities, type strains and publication DOIs come from [LPSN](https://lpsn.dsmz.de); taxon IDs and genomes from [NCBI](https://www.ncbi.nlm.nih.gov/). Fermentation type and lifestyle are curated by the author and Michael Gänzle ([Qiao & Gänzle 2026](https://doi.org/10.1016/j.fm.2025.104945)); the lifestyle categories follow [Duar et al. 2017](https://doi.org/10.1093/femsre/fux030). Looking for an older name? Search this page, or use [LactoTax](https://www.lactobacillus.ualberta.ca/).
+For detailed lifestyle updates, check [Duar et al. 2017](https://doi.org/10.1093/femsre/fux030), and stay tuned to the most recent posts and publications of [Michael Gänzle](https://scholar.google.com/citations?user=Zc29kvEAAAAJ&hl=en).
 
-<p class="lacto-legend"><span class="lacto-dot lacto-homo"></span>homofermentative <span class="lacto-dot lacto-hetero"></span>heterofermentative <span class="lacto-chip">new</span> not in the June 2025 list</p>
+<p class="lacto-keyline"><span class="lacto-dot lacto-homo"></span>homofermentative <span class="lacto-dot lacto-hetero"></span>heterofermentative <span class="lacto-chip">new</span> not in the June 2025 list</p>
 
-<p class="lacto-gindex"><a href="#lactobacillus">Lactobacillus</a>&nbsp;57 · <a href="#amylolactobacillus">Amylolactobacillus</a>&nbsp;2 · <a href="#holzapfeliella">Holzapfeliella</a>&nbsp;2 · <a href="#xylocopilactobacillus">Xylocopilactobacillus</a>&nbsp;2 · <a href="#bombilactobacillus">Bombilactobacillus</a>&nbsp;6 · <a href="#companilactobacillus">Companilactobacillus</a>&nbsp;37 · <a href="#lapidilactobacillus">Lapidilactobacillus</a>&nbsp;9 · <a href="#agrilactobacillus">Agrilactobacillus</a>&nbsp;3 · <a href="#schleiferilactobacillus">Schleiferilactobacillus</a>&nbsp;3 · <a href="#lacticaseibacillus">Lacticaseibacillus</a>&nbsp;39 · <a href="#paralactobacillus">Paralactobacillus</a>&nbsp;1 · <a href="#latilactobacillus">Latilactobacillus</a>&nbsp;8 · <a href="#loigolactobacillus">Loigolactobacillus</a>&nbsp;9 · <a href="#dellaglioa">Dellaglioa</a>&nbsp;3 · <a href="#liquorilactobacillus">Liquorilactobacillus</a>&nbsp;13 · <a href="#ligilactobacillus">Ligilactobacillus</a>&nbsp;20 · <a href="#pediococcus">Pediococcus</a>&nbsp;11 · <a href="#lactiplantibacillus">Lactiplantibacillus</a>&nbsp;22 · <a href="#fructilactobacillus">Fructilactobacillus</a>&nbsp;11 · <a href="#acetilactobacillus">Acetilactobacillus</a>&nbsp;1 · <a href="#philodulcilactobacillus">Philodulcilactobacillus</a>&nbsp;1 · <a href="#nicoliella">Nicoliella</a>&nbsp;2 · <a href="#apilactobacillus">Apilactobacillus</a>&nbsp;14 · <a href="#lentilactobacillus">Lentilactobacillus</a>&nbsp;22 · <a href="#secundilactobacillus">Secundilactobacillus</a>&nbsp;16 · <a href="#levilactobacillus">Levilactobacillus</a>&nbsp;32 · <a href="#paucilactobacillus">Paucilactobacillus</a>&nbsp;8 · <a href="#limosilactobacillus">Limosilactobacillus</a>&nbsp;45 · <a href="#furfurilactobacillus">Furfurilactobacillus</a>&nbsp;7 · <a href="#periweissella">Periweissella</a>&nbsp;5 · <a href="#weissella">Weissella</a>&nbsp;22 · <a href="#oenococcus">Oenococcus</a>&nbsp;4 · <a href="#eupransor">Eupransor</a>&nbsp;1 · <a href="#convivina">Convivina</a>&nbsp;2 · <a href="#fructobacillus">Fructobacillus</a>&nbsp;13 · <a href="#leuconostoc">Leuconostoc</a>&nbsp;23 · <a href="#candidatus-gallilactobacillus">Candidatus Gallilactobacillus</a>&nbsp;0 · <a href="#daquilactobacillus">Daquilactobacillus</a>&nbsp;1</p>
+<p class="lacto-gindex-label">Jump to a genus (number of species and subspecies):</p>
+<p class="lacto-gindex"><a href="#lactobacillus">Lactobacillus</a>&nbsp;(57); <a href="#amylolactobacillus">Amylolactobacillus</a>&nbsp;(2); <a href="#holzapfeliella">Holzapfeliella</a>&nbsp;(2); <a href="#xylocopilactobacillus">Xylocopilactobacillus</a>&nbsp;(2); <a href="#bombilactobacillus">Bombilactobacillus</a>&nbsp;(6); <a href="#companilactobacillus">Companilactobacillus</a>&nbsp;(37); <a href="#lapidilactobacillus">Lapidilactobacillus</a>&nbsp;(9); <a href="#agrilactobacillus">Agrilactobacillus</a>&nbsp;(3); <a href="#schleiferilactobacillus">Schleiferilactobacillus</a>&nbsp;(3); <a href="#lacticaseibacillus">Lacticaseibacillus</a>&nbsp;(39); <a href="#paralactobacillus">Paralactobacillus</a>&nbsp;(1); <a href="#latilactobacillus">Latilactobacillus</a>&nbsp;(8); <a href="#loigolactobacillus">Loigolactobacillus</a>&nbsp;(9); <a href="#dellaglioa">Dellaglioa</a>&nbsp;(3); <a href="#liquorilactobacillus">Liquorilactobacillus</a>&nbsp;(13); <a href="#ligilactobacillus">Ligilactobacillus</a>&nbsp;(20); <a href="#pediococcus">Pediococcus</a>&nbsp;(11); <a href="#lactiplantibacillus">Lactiplantibacillus</a>&nbsp;(22)</p>
+<p class="lacto-gindex"><a href="#fructilactobacillus">Fructilactobacillus</a>&nbsp;(11); <a href="#acetilactobacillus">Acetilactobacillus</a>&nbsp;(1); <a href="#philodulcilactobacillus">Philodulcilactobacillus</a>&nbsp;(1); <a href="#nicoliella">Nicoliella</a>&nbsp;(2); <a href="#apilactobacillus">Apilactobacillus</a>&nbsp;(14); <a href="#lentilactobacillus">Lentilactobacillus</a>&nbsp;(22); <a href="#secundilactobacillus">Secundilactobacillus</a>&nbsp;(16); <a href="#levilactobacillus">Levilactobacillus</a>&nbsp;(32); <a href="#paucilactobacillus">Paucilactobacillus</a>&nbsp;(8); <a href="#limosilactobacillus">Limosilactobacillus</a>&nbsp;(45); <a href="#furfurilactobacillus">Furfurilactobacillus</a>&nbsp;(7); <a href="#periweissella">Periweissella</a>&nbsp;(5); <a href="#weissella">Weissella</a>&nbsp;(22); <a href="#oenococcus">Oenococcus</a>&nbsp;(4); <a href="#eupransor">Eupransor</a>&nbsp;(1); <a href="#convivina">Convivina</a>&nbsp;(2); <a href="#fructobacillus">Fructobacillus</a>&nbsp;(13); <a href="#leuconostoc">Leuconostoc</a>&nbsp;(23)</p>
+<p class="lacto-gindex"><a href="#candidatus-gallilactobacillus">Candidatus Gallilactobacillus</a>&nbsp;(1); <a href="#daquilactobacillus">Daquilactobacillus</a>&nbsp;(1)</p>
 
 ## _Lactobacillus_
 
-<p class="lacto-gcap">57 names · <span class="lacto-dot lacto-homo"></span>homofermentative · tree position 1 of 36</p>
+<p class="lacto-gcap">57 species and subspecies · <span class="lacto-dot lacto-homo"></span>homofermentative · phylogenetic position based on genus (1 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Lactobacillus acetotolerans</em> <span class="lacto-auth-note">Entani et al. 1986</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</span><span class="lacto-auth-note">Vertebrate</span></td><td class="lacto-ts">ATCC 43578; CCUG 32229; CIP 103180; DSM 20749; JCM 3825; LMG 10751; NBI 3014</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_001436775.1/">GCA_001436775.1</a><span class="lacto-auth-note">1.6 Mb · GC 36.3% · Scaffold</span></td><td class="lacto-links"><a href="https://doi.org/10.1099/00207713-36-4-544">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.777242">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/1600/">NCBI</a></td></tr>
@@ -83,7 +86,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Amylolactobacillus_
 
-<p class="lacto-gcap">2 names · <span class="lacto-dot lacto-homo"></span>homofermentative · tree position 2 of 36</p>
+<p class="lacto-gcap">2 species · <span class="lacto-dot lacto-homo"></span>homofermentative · phylogenetic position based on genus (2 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Amylolactobacillus amylophilus</em> <span class="lacto-auth-note">(Nakamura and Crowell 1981) Zheng et al. 2020</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</span><span class="lacto-auth-note">Unknown</span></td><td class="lacto-ts">ATCC 49845; CCUG 30137; CIP 102988; DSM 20533; IFO 15881; JCM 1125; LMG 6900; NBRC 15881; NCAIM B.01457; NRRL B-4437; NRRL B-4476</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_001436185.1/">GCA_001436185.1</a><span class="lacto-auth-note">1.6 Mb · GC 43.6% · Scaffold</span></td><td class="lacto-links"><a href="https://doi.org/10.1099/ijsem.0.004107">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.10727">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/1603/">NCBI</a></td></tr>
@@ -92,7 +95,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Holzapfeliella_
 
-<p class="lacto-gcap">2 names · <span class="lacto-dot lacto-homo"></span>homofermentative · tree position 3 of 36</p>
+<p class="lacto-gcap">2 species · <span class="lacto-dot lacto-homo"></span>homofermentative · phylogenetic position based on genus (3 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Holzapfeliella floricola</em> <span class="lacto-auth-note">(Kawasaki et al. 2011) Deshmukh and Oren 2023</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</span><span class="lacto-auth-note">Unknown</span></td><td class="lacto-ts">DSM 23037; JCM 16512; LMG 29183; NRIC 774; Ryu1-2</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_001436605.1/">GCA_001436605.1</a><span class="lacto-auth-note">1.3 Mb · GC 34.5% · Scaffold</span></td><td class="lacto-links"><a href="https://doi.org/10.1099/ijsem.0.005688">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.36028">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/679249/">NCBI</a></td></tr>
@@ -101,7 +104,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Xylocopilactobacillus_
 
-<p class="lacto-gcap">2 names · <span class="lacto-dot lacto-homo"></span>homofermentative · tree position 4 of 36</p>
+<p class="lacto-gcap">2 species · <span class="lacto-dot lacto-homo"></span>homofermentative · phylogenetic position based on genus (4 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Xylocopilactobacillus apicola</em> <span class="lacto-auth-note">Kawasaki et al. 2024</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</span><span class="lacto-auth-note">Insect</span></td><td class="lacto-ts">DSM 114411; JCM 35348; XA3</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_033095985.1/">GCA_033095985.1</a><span class="lacto-auth-note">2.3 Mb · GC 37.7% · Complete Genome</span></td><td class="lacto-links"><a href="https://doi.org/10.1128/spectrum.00782-23">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.43775">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/2932184/">NCBI</a></td></tr>
@@ -110,7 +113,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Bombilactobacillus_
 
-<p class="lacto-gcap">6 names · <span class="lacto-dot lacto-homo"></span>homofermentative · tree position 5 of 36</p>
+<p class="lacto-gcap">6 species · <span class="lacto-dot lacto-homo"></span>homofermentative · phylogenetic position based on genus (5 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Bombilactobacillus apium</em> <span class="lacto-auth-note">Kang et al. 2021</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</span><span class="lacto-auth-note">Insect</span></td><td class="lacto-ts">DCY 120; JCM 34006; KCTC 43194</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_013385145.1/">GCA_013385145.1</a><span class="lacto-auth-note">1.7 Mb · GC 40.0% · Scaffold</span></td><td class="lacto-links"><a href="https://doi.org/10.1007/s00203-021-02249-y">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.18282">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/2675299/">NCBI</a></td></tr>
@@ -123,7 +126,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Companilactobacillus_
 
-<p class="lacto-gcap">37 names · <span class="lacto-dot lacto-homo"></span>homofermentative · tree position 6 of 36</p>
+<p class="lacto-gcap">37 species and subspecies · <span class="lacto-dot lacto-homo"></span>homofermentative · phylogenetic position based on genus (6 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Companilactobacillus alimentarius</em> <span class="lacto-auth-note">(Reuter 1983 ex Reuter 1970) Zheng et al. 2020</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</span><span class="lacto-auth-note">Unknown</span></td><td class="lacto-ts">ATCC 29643; CCUG 30672; CIP 102986; DSM 20249; JCM 1095; LMG 9187; NBIMCC 3315</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_001434745.1/">GCA_001434745.1</a><span class="lacto-auth-note">2.3 Mb · GC 35.4% · Scaffold</span></td><td class="lacto-links"><a href="https://doi.org/10.1099/ijsem.0.004107">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.10726">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/1602/">NCBI</a></td></tr>
@@ -167,7 +170,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Lapidilactobacillus_
 
-<p class="lacto-gcap">9 names · <span class="lacto-dot lacto-homo"></span>homofermentative · tree position 7 of 36</p>
+<p class="lacto-gcap">9 species · <span class="lacto-dot lacto-homo"></span>homofermentative · phylogenetic position based on genus (7 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Lapidilactobacillus achengensis</em> <span class="lacto-auth-note">(Long et al. 2020) Zheng et al. 2020</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</span><span class="lacto-auth-note">Unknown</span></td><td class="lacto-ts">247-4; CCM 8897; CCTCC AB 2018410; LMG 31059; NCIMB 15155</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_003946655.1/">GCA_003946655.1</a><span class="lacto-auth-note">2.6 Mb · GC 49.0% · Contig</span></td><td class="lacto-links"><a href="https://doi.org/10.1099/ijsem.0.004107">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.10678">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/2486000/">NCBI</a></td></tr>
@@ -183,7 +186,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Agrilactobacillus_
 
-<p class="lacto-gcap">3 names · <span class="lacto-dot lacto-homo"></span>homofermentative · tree position 8 of 36</p>
+<p class="lacto-gcap">3 species · <span class="lacto-dot lacto-homo"></span>homofermentative · phylogenetic position based on genus (8 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Agrilactobacillus composti</em> <span class="lacto-auth-note">(Endo and Okada 2007) Zheng et al. 2020</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</span><span class="lacto-auth-note">Free living</span></td><td class="lacto-ts">DSM 18527; JCM 14202; NRIC 689</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_001436375.1/">GCA_001436375.1</a><span class="lacto-auth-note">3.5 Mb · GC 44.0% · Scaffold</span></td><td class="lacto-links"><a href="https://doi.org/10.1099/ijsem.0.004107">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.10873">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/398555/">NCBI</a></td></tr>
@@ -193,7 +196,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Schleiferilactobacillus_
 
-<p class="lacto-gcap">3 names · <span class="lacto-dot lacto-homo"></span>homofermentative · tree position 9 of 36</p>
+<p class="lacto-gcap">3 species · <span class="lacto-dot lacto-homo"></span>homofermentative · phylogenetic position based on genus (9 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Schleiferilactobacillus harbinensis</em> <span class="lacto-auth-note">(Miyamoto et al. 2006) Zheng et al. 2020</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</span><span class="lacto-auth-note">Free living</span></td><td class="lacto-ts">AHU 1762; DSM 16991; JCM 16178; NBRC 100982; SBT 10908</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_001436325.1/">GCA_001436325.1</a><span class="lacto-auth-note">3.1 Mb · GC 53.1% · Scaffold</span></td><td class="lacto-links"><a href="https://doi.org/10.1099/ijsem.0.004107">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.10765">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/304207/">NCBI</a></td></tr>
@@ -203,7 +206,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Lacticaseibacillus_
 
-<p class="lacto-gcap">39 names · <span class="lacto-dot lacto-homo"></span>homofermentative · tree position 10 of 36</p>
+<p class="lacto-gcap">39 species and subspecies · <span class="lacto-dot lacto-homo"></span>homofermentative · phylogenetic position based on genus (10 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Lacticaseibacillus absianus</em> <span class="lacto-auth-note">Bai et al. 2021</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</span><span class="lacto-auth-note">Unknown</span></td><td class="lacto-ts">JCM 33998; KCTC 25006; YH-lac23</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_013407595.1/">GCA_013407595.1</a><span class="lacto-auth-note">2.8 Mb · GC 59.9% · Scaffold</span></td><td class="lacto-links"><a href="https://doi.org/10.1099/ijsem.0.004752">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.18880">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/2729623/">NCBI</a></td></tr>
@@ -250,7 +253,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Paralactobacillus_
 
-<p class="lacto-gcap">1 name · <span class="lacto-dot lacto-homo"></span>homofermentative · tree position 11 of 36</p>
+<p class="lacto-gcap">1 species · <span class="lacto-dot lacto-homo"></span>homofermentative · phylogenetic position based on genus (11 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Paralactobacillus selangorensis</em> <span class="lacto-auth-note">Leisner et al. 2000</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</span><span class="lacto-auth-note">Unknown</span></td><td class="lacto-ts">ATCC BAA-66; CCUG 43347; CIP 106482; DSM 13344; LMG 17710</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_001437205.1/">GCA_001437205.1</a><span class="lacto-auth-note">2.1 Mb · GC 46.5% · Contig</span></td><td class="lacto-links"><a href="https://doi.org/10.1099/00207713-50-1-19">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.779168">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/81857/">NCBI</a></td></tr>
@@ -258,7 +261,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Latilactobacillus_
 
-<p class="lacto-gcap">8 names · <span class="lacto-dot lacto-homo"></span>homofermentative · tree position 12 of 36</p>
+<p class="lacto-gcap">8 species and subspecies · <span class="lacto-dot lacto-homo"></span>homofermentative · phylogenetic position based on genus (12 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Latilactobacillus curvatus</em> <span class="lacto-auth-note">(Troili-Petersson 1903) Zheng et al. 2020</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</span><span class="lacto-auth-note">Free living</span></td><td class="lacto-ts">ATCC 25601; CCUG 30669; CIP 102992; DSM 20019; IFO 15884; JCM 1096; LMG 13553; LMG 9198; NBIMCC 3452; NBRC 15884; NRRL B-4562</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_001435495.1/">GCA_001435495.1</a><span class="lacto-auth-note">1.8 Mb · GC 42.0% · Scaffold</span></td><td class="lacto-links"><a href="https://doi.org/10.1099/ijsem.0.004107">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.10748">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/28038/">NCBI</a></td></tr>
@@ -274,7 +277,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Loigolactobacillus_
 
-<p class="lacto-gcap">9 names · <span class="lacto-dot lacto-homo"></span>homofermentative · tree position 13 of 36</p>
+<p class="lacto-gcap">9 species and subspecies · <span class="lacto-dot lacto-homo"></span>homofermentative · phylogenetic position based on genus (13 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Loigolactobacillus backii</em> <span class="lacto-auth-note">(Tohno et al. 2013) Zheng et al. 2020</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</span><span class="lacto-auth-note">Unknown</span></td><td class="lacto-ts">DSM 18080; JCM 18665; L1062; LMG 23555</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_003946275.1/">GCA_003946275.1</a><span class="lacto-auth-note">2.6 Mb · GC 40.6% · Contig</span></td><td class="lacto-links"><a href="https://doi.org/10.1099/ijsem.0.004107">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.10835">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/375175/">NCBI</a></td></tr>
@@ -291,7 +294,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Dellaglioa_
 
-<p class="lacto-gcap">3 names · <span class="lacto-dot lacto-homo"></span>homofermentative · tree position 14 of 36</p>
+<p class="lacto-gcap">3 species · <span class="lacto-dot lacto-homo"></span>homofermentative · phylogenetic position based on genus (14 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Dellaglioa algida</em> <span class="lacto-auth-note">(Kato et al. 2000) Zheng et al. 2020</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</span><span class="lacto-auth-note">Unknown</span></td><td class="lacto-ts">CIP 106688; DSM 15638; IP 106688; JCM 10491; LMG 19872; M6A9</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_001434695.1/">GCA_001434695.1</a><span class="lacto-auth-note">1.6 Mb · GC 36.0% · Contig</span></td><td class="lacto-links"><a href="https://doi.org/10.1099/ijsem.0.004107">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.10874">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/105612/">NCBI</a></td></tr>
@@ -301,7 +304,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Liquorilactobacillus_
 
-<p class="lacto-gcap">13 names · <span class="lacto-dot lacto-homo"></span>homofermentative · tree position 15 of 36</p>
+<p class="lacto-gcap">13 species · <span class="lacto-dot lacto-homo"></span>homofermentative · phylogenetic position based on genus (15 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Liquorilactobacillus aquaticus</em> <span class="lacto-auth-note">(Mañes-Lázaro et al. 2009) Zheng et al. 2020</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</span><span class="lacto-auth-note">Free living</span></td><td class="lacto-ts">CECT 7355; DSM 21051; IMCC 1736; JCM 16869</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_001436755.1/">GCA_001436755.1</a><span class="lacto-auth-note">2.4 Mb · GC 37.4% · Scaffold</span></td><td class="lacto-links"><a href="https://doi.org/10.1099/ijsem.0.004107">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.10732">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/392566/">NCBI</a></td></tr>
@@ -321,7 +324,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Ligilactobacillus_
 
-<p class="lacto-gcap">20 names · <span class="lacto-dot lacto-homo"></span>homofermentative · tree position 16 of 36</p>
+<p class="lacto-gcap">20 species · <span class="lacto-dot lacto-homo"></span>homofermentative · phylogenetic position based on genus (16 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Ligilactobacillus acidipiscis</em> <span class="lacto-auth-note">(Tanasupawat et al. 2000) Zheng et al. 2020</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</span><span class="lacto-auth-note">Unknown</span></td><td class="lacto-ts">CCUG 46556; CIP 106750; FS60-1; HSCC 1411; JCM 10692; NBRC 102163; NRIC 300; PCU 207; TISTR 1386</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_002117995.1/">GCA_002117995.1</a><span class="lacto-auth-note">2.6 Mb · GC 39.3% · Scaffold</span></td><td class="lacto-links"><a href="https://doi.org/10.1099/ijsem.0.004107">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.10724">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/89059/">NCBI</a></td></tr>
@@ -348,7 +351,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Pediococcus_
 
-<p class="lacto-gcap">11 names · <span class="lacto-dot lacto-homo"></span>homofermentative · tree position 17 of 36</p>
+<p class="lacto-gcap">11 species · <span class="lacto-dot lacto-homo"></span>homofermentative · phylogenetic position based on genus (17 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Pediococcus acidilactici</em> <span class="lacto-auth-note">Lindner 1887<span class="lacto-auth-note">(Approved Lists 1980)</span></span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</span><span class="lacto-auth-note"><span class="lacto-na">not yet assessed</span></span></td><td class="lacto-ts">B213c; Back S213C; CCUG 32235; CIP 103408; DSM 20284; LMG 11384; NCFB 2767; NCIMB 12174</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_016726765.1/">GCA_016726765.1</a><span class="lacto-auth-note">2.0 Mb · GC 42.2% · Complete Genome</span></td><td class="lacto-links"><a href="https://doi.org/10.1099/00207713-30-1-225">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.779204">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/1254/">NCBI</a></td></tr>
@@ -366,7 +369,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Lactiplantibacillus_
 
-<p class="lacto-gcap">22 names · <span class="lacto-dot lacto-homo"></span>homofermentative · tree position 18 of 36</p>
+<p class="lacto-gcap">22 species and subspecies · <span class="lacto-dot lacto-homo"></span>homofermentative · phylogenetic position based on genus (18 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Lactiplantibacillus argentoratensis</em> <span class="lacto-auth-note">(Bringel et al. 2005) Liu and Gu 2020</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-homo"></span>Homo</span><span class="lacto-auth-note">Nomadic</span></td><td class="lacto-ts">CCUG 50787; CIP 108320; DK0 22; DKO 22; DSM 16365; JCM 16169</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_001435215.1/">GCA_001435215.1</a><span class="lacto-auth-note">3.2 Mb · GC 45.0% · Scaffold</span></td><td class="lacto-links"><a href="https://doi.org/10.1099/ijsem.0.004548">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.14604">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/271881/">NCBI</a></td></tr>
@@ -396,7 +399,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Fructilactobacillus_
 
-<p class="lacto-gcap">11 names · <span class="lacto-dot lacto-hetero"></span>heterofermentative · tree position 19 of 36</p>
+<p class="lacto-gcap">11 species · <span class="lacto-dot lacto-hetero"></span>heterofermentative · phylogenetic position based on genus (19 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Fructilactobacillus carniphilus</em> <span class="lacto-auth-note">Oliphant et al. 2023</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</span><span class="lacto-auth-note">Insect</span></td><td class="lacto-ts">KI4_A6; LMG 32127; NBRC 114985</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_024029675.1/">GCA_024029675.1</a><span class="lacto-auth-note">1.5 Mb · GC 44.5% · Complete Genome</span></td><td class="lacto-links"><a href="https://doi.org/10.1099/ijsem.0.005730">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.36891">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/2940297/">NCBI</a></td></tr>
@@ -414,7 +417,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Acetilactobacillus_
 
-<p class="lacto-gcap">1 name · <span class="lacto-dot lacto-hetero"></span>heterofermentative · tree position 20 of 36</p>
+<p class="lacto-gcap">1 species · <span class="lacto-dot lacto-hetero"></span>heterofermentative · phylogenetic position based on genus (20 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Acetilactobacillus jinshanensis</em> <span class="lacto-auth-note">Zheng et al. 2020</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</span><span class="lacto-auth-note">Unknown</span></td><td class="lacto-ts">CICC 6269; HSLZ-75; JCM 33270</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_004359375.1/">GCA_004359375.1</a><span class="lacto-auth-note">1.6 Mb · GC 39.7% · Complete Genome</span></td><td class="lacto-links"><a href="https://doi.org/10.1099/ijsem.0.004107">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.5493">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/1720083/">NCBI</a></td></tr>
@@ -422,7 +425,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Philodulcilactobacillus_
 
-<p class="lacto-gcap">1 name · <span class="lacto-dot lacto-hetero"></span>heterofermentative · tree position 21 of 36</p>
+<p class="lacto-gcap">1 species · <span class="lacto-dot lacto-hetero"></span>heterofermentative · phylogenetic position based on genus (21 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Philodulcilactobacillus myokonensis</em> <span class="lacto-auth-note">Kouya et al. 2023</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</span><span class="lacto-auth-note">Insect</span></td><td class="lacto-ts">DSM 112857; NBRC 115064; WR16-4</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_027923585.1/">GCA_027923585.1</a><span class="lacto-auth-note">1.7 Mb · GC 33.8% · Contig</span></td><td class="lacto-links"><a href="https://doi.org/10.1371/journal.pone.0286677">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.9809">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/2929573/">NCBI</a></td></tr>
@@ -430,7 +433,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Nicoliella_
 
-<p class="lacto-gcap">2 names · <span class="lacto-dot lacto-hetero"></span>heterofermentative · tree position 22 of 36</p>
+<p class="lacto-gcap">2 species · <span class="lacto-dot lacto-hetero"></span>heterofermentative · phylogenetic position based on genus (22 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Nicoliella lavandulae</em> <span class="lacto-auth-note">Alcántara et al. 2024</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</span><span class="lacto-auth-note">Insect</span></td><td class="lacto-ts">CCM 9394; CECT 30999; DSM 117325; Es01</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_037546185.1/">GCA_037546185.1</a><span class="lacto-auth-note">1.9 Mb · GC 38.6% · Contig</span></td><td class="lacto-links"><a href="https://doi.org/10.1099/ijsem.0.006497">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.52554">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/3082954/">NCBI</a></td></tr>
@@ -439,7 +442,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Apilactobacillus_
 
-<p class="lacto-gcap">14 names · <span class="lacto-dot lacto-hetero"></span>heterofermentative · tree position 23 of 36</p>
+<p class="lacto-gcap">14 species · <span class="lacto-dot lacto-hetero"></span>heterofermentative · phylogenetic position based on genus (23 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Apilactobacillus apinorum</em> <span class="lacto-auth-note">(Olofsson et al. 2014) Zheng et al. 2020</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</span><span class="lacto-auth-note">Insect</span></td><td class="lacto-ts">CCUG 63287; DSM 26257; Fhon13; Fhon13N</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_001281175.1/">GCA_001281175.1</a><span class="lacto-auth-note">1.5 Mb · GC 34.6% · Scaffold</span></td><td class="lacto-links"><a href="https://doi.org/10.1099/ijsem.0.004107">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.10852">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/1218495/">NCBI</a></td></tr>
@@ -460,7 +463,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Lentilactobacillus_
 
-<p class="lacto-gcap">22 names · <span class="lacto-dot lacto-hetero"></span>heterofermentative · tree position 24 of 36</p>
+<p class="lacto-gcap">22 species and subspecies · <span class="lacto-dot lacto-hetero"></span>heterofermentative · phylogenetic position based on genus (24 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-parent"><td class="lacto-name"><em>Lentilactobacillus buchneri</em> <span class="lacto-auth-note">(Henneberg 1903) Zheng et al. 2020</span></td><td colspan="3" class="lacto-na">subspecies below</td><td class="lacto-links"><a href="https://doi.org/10.1099/ijsem.0.004107">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.10715">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/1581/">NCBI</a></td></tr>
@@ -490,7 +493,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Secundilactobacillus_
 
-<p class="lacto-gcap">16 names · <span class="lacto-dot lacto-hetero"></span>heterofermentative · tree position 25 of 36</p>
+<p class="lacto-gcap">16 species · <span class="lacto-dot lacto-hetero"></span>heterofermentative · phylogenetic position based on genus (25 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Secundilactobacillus angelensis</em> <span class="lacto-auth-note">Zhang et al. 2022</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</span><span class="lacto-auth-note">Free living</span></td><td class="lacto-ts">GDMCC 1.3021; HBUAS51383; JCM 35209</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_012641075.1/">GCA_012641075.1</a><span class="lacto-auth-note">2.6 Mb · GC 43.3% · Contig</span></td><td class="lacto-links"><a href="https://doi.org/10.1016/j.syapm.2022.126344">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.29411">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/2722706/">NCBI</a></td></tr>
@@ -513,7 +516,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Levilactobacillus_
 
-<p class="lacto-gcap">32 names · <span class="lacto-dot lacto-hetero"></span>heterofermentative · tree position 26 of 36</p>
+<p class="lacto-gcap">32 species · <span class="lacto-dot lacto-hetero"></span>heterofermentative · phylogenetic position based on genus (26 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Levilactobacillus acidifarinae</em> <span class="lacto-auth-note">(Vancanneyt et al. 2005) Zheng et al. 2020</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</span><span class="lacto-auth-note">Free living</span></td><td class="lacto-ts">CCM 7240; CCUG 50162; DSM 19394; JCM 15949; LMG 22200; R-19065</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_001434835.1/">GCA_001434835.1</a><span class="lacto-auth-note">2.9 Mb · GC 51.6% · Scaffold</span></td><td class="lacto-links"><a href="https://doi.org/10.1099/ijsem.0.004107">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.10723">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/267364/">NCBI</a></td></tr>
@@ -552,7 +555,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Paucilactobacillus_
 
-<p class="lacto-gcap">8 names · <span class="lacto-dot lacto-hetero"></span>heterofermentative · tree position 27 of 36</p>
+<p class="lacto-gcap">8 species · <span class="lacto-dot lacto-hetero"></span>heterofermentative · phylogenetic position based on genus (27 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Paucilactobacillus hokkaidonensis</em> <span class="lacto-auth-note">(Tohno et al. 2013) Zheng et al. 2020</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</span><span class="lacto-auth-note">Free living</span></td><td class="lacto-ts">DSM 26202; JCM 18461; LOOC260</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_001437505.1/">GCA_001437505.1</a><span class="lacto-auth-note">2.3 Mb · GC 38.1% · Scaffold</span></td><td class="lacto-links"><a href="https://doi.org/10.1099/ijsem.0.004107">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.10838">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/1193095/">NCBI</a></td></tr>
@@ -567,7 +570,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Limosilactobacillus_
 
-<p class="lacto-gcap">45 names · <span class="lacto-dot lacto-hetero"></span>heterofermentative · tree position 28 of 36</p>
+<p class="lacto-gcap">45 species and subspecies · <span class="lacto-dot lacto-hetero"></span>heterofermentative · phylogenetic position based on genus (28 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Limosilactobacillus agrestimuris</em> <span class="lacto-auth-note">Afrizal et al. 2023</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</span><span class="lacto-auth-note"><span class="lacto-na">not yet assessed</span></span></td><td class="lacto-ts">DSM 106037; JCM 36039; WCA-sto-4</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_943193105.1/">GCA_943193105.1</a><span class="lacto-auth-note">1.9 Mb · GC 39.7% · Contig</span></td><td class="lacto-links"><a href="https://doi.org/10.1016/j.chom.2022.09.011">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.40615">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/2941331/">NCBI</a></td></tr>
@@ -619,7 +622,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Furfurilactobacillus_
 
-<p class="lacto-gcap">7 names · <span class="lacto-dot lacto-hetero"></span>heterofermentative · tree position 29 of 36</p>
+<p class="lacto-gcap">7 species · <span class="lacto-dot lacto-hetero"></span>heterofermentative · phylogenetic position based on genus (29 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Furfurilactobacillus cerealis</em> <span class="lacto-chip">new</span><span class="lacto-auth-note">Zipori et al. 2025</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-na">not yet assessed</span></span><span class="lacto-auth-note"><span class="lacto-na">not yet assessed</span></span></td><td class="lacto-ts">C5; DSM 120515; LMG 34152</td><td class="lacto-genome"><span class="lacto-note">no genome available</span></td><td class="lacto-links"><a href="https://doi.org/10.1099/ijsem.0.007009">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.69572">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/3480033/">NCBI</a></td></tr>
@@ -633,7 +636,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Periweissella_
 
-<p class="lacto-gcap">5 names · <span class="lacto-dot lacto-hetero"></span>heterofermentative · tree position 30 of 36</p>
+<p class="lacto-gcap">5 species · <span class="lacto-dot lacto-hetero"></span>heterofermentative · phylogenetic position based on genus (30 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Periweissella beninensis</em> <span class="lacto-auth-note">(Padonou et al. 2010) Bello et al. 2022</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</span><span class="lacto-auth-note"><span class="lacto-na">not yet assessed</span></span></td><td class="lacto-ts">2L24P13; DSM 22752; JCM 18047; LMG 25373</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_016908275.1/">GCA_016908275.1</a><span class="lacto-auth-note">1.8 Mb · GC 35.4% · Contig</span></td><td class="lacto-links"><a href="https://doi.org/10.1099/ijsem.0.005284">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.28166">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/504936/">NCBI</a></td></tr>
@@ -645,7 +648,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Weissella_
 
-<p class="lacto-gcap">22 names · <span class="lacto-dot lacto-hetero"></span>heterofermentative · tree position 31 of 36</p>
+<p class="lacto-gcap">22 species · <span class="lacto-dot lacto-hetero"></span>heterofermentative · phylogenetic position based on genus (31 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Weissella bombi</em> <span class="lacto-auth-note">Praet et al. 2015</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</span><span class="lacto-auth-note"><span class="lacto-na">not yet assessed</span></span></td><td class="lacto-ts">DSM 28794; LMG 28290</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_005405505.1/">GCA_005405505.1</a><span class="lacto-auth-note">1.8 Mb · GC 36.9% · Contig</span></td><td class="lacto-links"><a href="https://doi.org/10.1007/s10482-015-0429-z">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.792973">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/1505725/">NCBI</a></td></tr>
@@ -674,7 +677,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Oenococcus_
 
-<p class="lacto-gcap">4 names · <span class="lacto-dot lacto-hetero"></span>heterofermentative · tree position 32 of 36</p>
+<p class="lacto-gcap">4 species · <span class="lacto-dot lacto-hetero"></span>heterofermentative · phylogenetic position based on genus (32 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Oenococcus alcoholitolerans</em> <span class="lacto-auth-note">Badotti et al. 2015</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</span><span class="lacto-auth-note"><span class="lacto-na">not yet assessed</span></span></td><td class="lacto-ts">CBAS 474; LMG 27599; UFRJ-M7.2.18</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_000769695.1/">GCA_000769695.1</a><span class="lacto-auth-note">1.2 Mb · GC 39.5% · Contig</span></td><td class="lacto-links"><a href="https://doi.org/10.1007/s10482-014-0296-z">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.792760">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/931074/">NCBI</a></td></tr>
@@ -685,7 +688,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Eupransor_
 
-<p class="lacto-gcap">1 name · <span class="lacto-dot lacto-hetero"></span>heterofermentative · tree position 33 of 36</p>
+<p class="lacto-gcap">1 species · <span class="lacto-dot lacto-hetero"></span>heterofermentative · phylogenetic position based on genus (33 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Eupransor demetentiae</em> <span class="lacto-auth-note">Botero et al. 2024</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</span><span class="lacto-auth-note"><span class="lacto-na">not yet assessed</span></span></td><td class="lacto-ts">CECT 30958; LMG 33000</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_963930865.1/">GCA_963930865.1</a><span class="lacto-auth-note">1.4 Mb · GC 46.1% · Contig</span></td><td class="lacto-links"><a href="https://doi.org/10.1099/ijsem.0.006409">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.49322">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/3109584/">NCBI</a></td></tr>
@@ -693,7 +696,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Convivina_
 
-<p class="lacto-gcap">2 names · <span class="lacto-dot lacto-hetero"></span>heterofermentative · tree position 34 of 36</p>
+<p class="lacto-gcap">2 species · <span class="lacto-dot lacto-hetero"></span>heterofermentative · phylogenetic position based on genus (34 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Convivina intestini</em> <span class="lacto-auth-note">Praet et al. 2015</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</span><span class="lacto-auth-note"><span class="lacto-na">not yet assessed</span></span></td><td class="lacto-ts">DSM 28795; LMG 28291</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_003096575.1/">GCA_003096575.1</a><span class="lacto-auth-note">1.6 Mb · GC 40.9% · Scaffold</span></td><td class="lacto-links"><a href="https://doi.org/10.1007/s10482-015-0429-z">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.792971">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/1505726/">NCBI</a></td></tr>
@@ -702,7 +705,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Fructobacillus_
 
-<p class="lacto-gcap">13 names · <span class="lacto-dot lacto-hetero"></span>heterofermentative · tree position 35 of 36</p>
+<p class="lacto-gcap">13 species · <span class="lacto-dot lacto-hetero"></span>heterofermentative · phylogenetic position based on genus (35 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Fructobacillus americanaquae</em> <span class="lacto-auth-note">Oliphant et al. 2023</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-dot lacto-hetero"></span>Hetero</span><span class="lacto-auth-note"><span class="lacto-na">not yet assessed</span></span></td><td class="lacto-ts">KI3_B9; LMG 32124; NBRC 114983</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_024029775.1/">GCA_024029775.1</a><span class="lacto-auth-note">1.4 Mb · GC 43.6% · Complete Genome</span></td><td class="lacto-links"><a href="https://doi.org/10.1099/ijsem.0.005730">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.36895">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/2940302/">NCBI</a></td></tr>
@@ -722,7 +725,7 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Leuconostoc_
 
-<p class="lacto-gcap">23 names · <span class="lacto-dot lacto-hetero"></span>heterofermentative · tree position 36 of 36</p>
+<p class="lacto-gcap">23 species and subspecies · <span class="lacto-dot lacto-hetero"></span>heterofermentative · phylogenetic position based on genus (36 of 36)</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Leuconostoc aquikimchii</em> <span class="lacto-chip">new</span><span class="lacto-auth-note">Kim et al. 2025</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-na">not yet assessed</span></span><span class="lacto-auth-note"><span class="lacto-na">not yet assessed</span></span></td><td class="lacto-ts">JCM 37028; KACC 23748; MS01</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_040838325.1/">GCA_040838325.1</a><span class="lacto-auth-note">2.0 Mb · GC 37.7% · Contig</span></td><td class="lacto-links"><a href="https://doi.org/10.1007/s12275-024-00188-z">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.66908">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/3236804/">NCBI</a></td></tr>
@@ -754,13 +757,15 @@ Current names, type strains and genomes. Names, authorities, type strains and pu
 
 ## _Candidatus Gallilactobacillus_
 
-<p class="lacto-gcap">0 names · fermentation type not assigned · not yet placed on the tree</p>
+<p class="lacto-gcap">1 species · fermentation type not assigned · phylogenetic position based on genus: not yet placed on the tree</p>
 
-<p class="lacto-gnote">No species are listed. Left out: <em>Candidatus Gallilactobacillus intestinavium</em> (Gilroy et al. 2021), not validly published (<a href="https://doi.org/10.7717/peerj.10941">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.31189">LPSN</a>). Candidatus species are not kept: their type is a metagenome-assembled genome, not a culture.</p>
+<table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
+<tr class="lacto-sp"><td class="lacto-name"><em>Candidatus Gallilactobacillus intestinavium</em> <span class="lacto-chip">new</span> <span class="lacto-chip lacto-chip-warn">not validly published</span><span class="lacto-auth-note">Gilroy et al. 2021</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-na">not yet assessed</span></span><span class="lacto-auth-note"><span class="lacto-na">not yet assessed</span></span></td><td class="lacto-ts">C6-149</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_017694665.1/">GCA_017694665.1</a><span class="lacto-auth-note">1.3 Mb · GC 30.0% · Contig</span></td><td class="lacto-links"><a href="https://doi.org/10.7717/peerj.10941">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.31189">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/2840838/">NCBI</a></td></tr>
+</tbody></table>
 
 ## _Daquilactobacillus_
 
-<p class="lacto-gcap">1 name · fermentation type not assigned · not yet placed on the tree</p>
+<p class="lacto-gcap">1 species · fermentation type not assigned · phylogenetic position based on genus: not yet placed on the tree</p>
 
 <table class="lacto-table lacto-species"><thead><tr><th scope="col">Name</th><th scope="col">Fermentation, lifestyle</th><th scope="col">Type strains</th><th scope="col">Genome</th><th scope="col">Links</th></tr></thead><tbody>
 <tr class="lacto-sp"><td class="lacto-name"><em>Daquilactobacillus linshuiensis</em> <span class="lacto-chip">new</span><span class="lacto-auth-note">Huang et al. 2026</span></td><td class="lacto-traits"><span class="lacto-ferm"><span class="lacto-na">not yet assessed</span></span><span class="lacto-auth-note"><span class="lacto-na">not yet assessed</span></span></td><td class="lacto-ts">DQM5; GDMCC 1.5776; JCM 38144</td><td class="lacto-genome"><a href="https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_052828685.1/">GCA_052828685.1</a><span class="lacto-auth-note">1.4 Mb · GC 30.8% · Complete Genome</span></td><td class="lacto-links"><a href="https://doi.org/10.1099/ijsem.0.007157">DOI</a>&nbsp;·&nbsp;<a href="https://doi.org/10.83108/rn.71885">LPSN</a>&nbsp;·&nbsp;<a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/3463359/">NCBI</a></td></tr>

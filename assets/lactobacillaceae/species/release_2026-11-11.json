@@ -1,8 +1,8 @@
 {
  "release": "2026-11-11",
- "built": "2026-11-12T19:38:33",
- "audit": "audit of release 2026-11-11: 477 final rows, 61 decisions\nper-row checks failing: none\nrelease checks failing: none",
- "manifest_sha256_16": "f4ac311fc4e6a750",
+ "built": "2026-11-12T21:47:25",
+ "audit": "audit of release 2026-11-11: 478 final rows, 61 decisions\nper-row checks failing: none\nrelease checks failing: none",
+ "manifest_sha256_16": "937d8ce87fcc229a",
  "sources": {
   "genus_release": "releases/2026-11-10",
   "lpsn_api": "lpsn/2026-11-11",
@@ -11,10 +11,9 @@
  },
  "counts": {
   "rows": 487,
-  "species": 442,
+  "species": 443,
   "subspecies": 35,
   "parent": 9,
-  "left_out": 1,
   "genera": 38
  },
  "status": {

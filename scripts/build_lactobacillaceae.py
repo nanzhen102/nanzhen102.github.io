@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Generate content/lactobacillaceae.md from the curated genus CSV.
+"""Generate content/lactobacillaceae-genera.md (the genera page) from the curated genus CSV.
+
+The overview at /lactobacillaceae and the species page are built by build_lactobacillaceae_hub.py and
+build_lactobacillaceae_species.py; build_lactobacillaceae_all.py runs the three in order.
 
 The CSV is the source of truth. When a genus is added or a fermentation type
 filled in, update assets/lactobacillaceae/genus_*.csv and re-run:
@@ -20,10 +23,21 @@ import sys
 from collections import Counter
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUT = os.path.join(REPO, "content", "lactobacillaceae.md")
+OUT = os.path.join(REPO, "content", "lactobacillaceae-genera.md")
 
 # Chart geometry. 672px is the 42rem content column at a 16px root.
 W = 672
+
+
+def tabs(current):
+    """The row that ties the three pages together: Overview, Genera, Species. The page you are on is not a link."""
+    pages = [("overview", "Overview", "lactobacillaceae"), ("genera", "Genera", "lactobacillaceae-genera"),
+             ("species", "Species", "lactobacillaceae-species")]
+    items = [
+        f'<span aria-current="page">{label}</span>' if key == current else f'<a href="{href}">{label}</a>'
+        for key, label, href in pages
+    ]
+    return '<nav class="lacto-tabs" aria-label="Lactobacillaceae pages">' + " ".join(items) + "</nav>"
 
 
 def esc(s):
@@ -256,7 +270,7 @@ def rounded_end_rect(x, y, w, h, r, side):
 # --- chart 1: the fermentation split, as one whole ------------------------
 
 
-def segmented_bar(counts, total):
+def segmented_bar(counts, total, noun="genera", unassigned="Unassigned", across=None):
     """One whole split into parts, as HTML rather than SVG.
 
     A flex row keeps the blocks proportional at any width while the labels
@@ -265,13 +279,13 @@ def segmented_bar(counts, total):
     order = [
         ("Homo", "homo", "Homofermentative"),
         ("Hetero", "hetero", "Heterofermentative"),
-        ("Unassigned", "unassigned", "Unassigned"),
+        ("Unassigned", "unassigned", unassigned),
     ]
     parts = [(cls, lab, counts.get(k, 0)) for k, cls, lab in order if counts.get(k, 0)]
 
     out = [
         '<div class="lacto-split" role="list" aria-label="Fermentation type across '
-        f"{total} genera: " + ", ".join(f"{lab} {n}" for _, lab, n in parts) + '.">'
+        f"{total} {across or noun}: " + ", ".join(f"{lab} {n}" for _, lab, n in parts) + '.">'
     ]
     for cls, lab, n in parts:
         share = 100 * n / total
@@ -283,10 +297,10 @@ def segmented_bar(counts, total):
         out.append(
             f'<div class="lacto-split-part lacto-{cls}" style="flex: {n} 1 0"'
             f' tabindex="0" role="listitem"'
-            f' aria-label="{esc(lab)}: {n} genera, {share:.0f} percent">'
+            f' aria-label="{esc(lab)}: {n} {noun}, {share:.0f} percent">'
             f'<span class="lacto-split-value{tight}">{n}</span>'
             f'<span class="lacto-tip" aria-hidden="true"><strong>{esc(lab)}</strong>'
-            f"<span>{n} genera &middot; {share:.0f}%</span></span></div>"
+            f"<span>{n} {noun} &middot; {share:.0f}%</span></span></div>"
         )
     out.append("</div>")
 
@@ -736,36 +750,18 @@ def main():
     dupes = sorted({a for a in used if used.count(a) > 1})
     assert not dupes, f"genus abbreviations are not unique: {dupes}"
 
-    # The animation at the top is rendered by scripts/make_life_tree.py and named after the CSV, so a new CSV
-    # cannot ship with the previous release's animation: the build stops until it has been re-rendered.
-    assert stamp, "the animation is named after the CSV's datestamp: rename the CSV to genus_YYYYMMDD.csv"
-    tree_name = f"lactobacillaceae-tree-{stamp.group(1)}{stamp.group(2)}{stamp.group(3)}"
-    for ext in ("gif", "png"):
-        assert os.path.exists(os.path.join(REPO, "content", f"{tree_name}.{ext}")), (
-            f"content/{tree_name}.{ext} is missing: run scripts/make_life_tree.py to render the animation for this CSV"
-        )
-    tree_alt = (
-        f"Animation: the {total} genera of Lactobacillaceae appear in the order they were described, "
-        "each at its place on the family's phylogenetic tree."
-    )
-
     # The species page lists these same genera. A genus the species release has but this CSV lacks would link
     # to nothing, so stop instead.
     species = _species_counts()
     stray = sorted(set(species) - {r["name"] for r in recs})
     assert not stray, f"the species snapshot has genera that this CSV does not: {stray}"
-    species_block = (
-        f"\nSpecies, type strains and genomes: [{sum(species.values())} current names](lactobacillaceae-species).\n\n"
-        if species
-        else "\n"
-    )
 
     md = f"""---
-title: Lactobacillaceae
+title: Lactobacillaceae genera
 date: {iso_date}
 ---
 
-<div class="lacto-tree"><picture><source media="(prefers-reduced-motion: reduce)" srcset="{tree_name}.png"><img src="{tree_name}.gif" width="440" height="440" alt="{esc(tree_alt)}" decoding="async"></picture></div>
+{tabs("genera")}
 
 <p class="lacto-hero">{total}</p>
 <p class="lacto-hero-label">genera currently placed in <em>Lactobacillaceae</em> family, updated on {asof}.</p>
@@ -773,14 +769,8 @@ date: {iso_date}
 For detailed homofermentative and heterofermentative fermentation, check
 [Gänzle 2015](https://doi.org/10.1016/j.cofs.2015.03.001) and
 [Qiao & Gänzle 2026](https://doi.org/10.1016/j.fm.2025.104945).
-{species_block}{segmented_bar(ferm, total)}
 
-## When they were named
-
-{year_chart(recs)}
-
-<p class="lacto-caption">Only years in which at least one current genus was named
-appear on the axis, so the spacing between them is not to scale.</p>
+{segmented_bar(ferm, total)}
 
 {history}
 

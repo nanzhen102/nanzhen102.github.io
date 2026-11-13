@@ -198,7 +198,7 @@ def main():
     os.makedirs(OUT, exist_ok=True)
     csv_path = os.path.join(OUT, f"species_{date}.csv")
     with open(csv_path, "w", newline="", encoding="utf-8") as fh:
-        w = csv.DictWriter(fh, fieldnames=COLUMNS)
+        w = csv.DictWriter(fh, fieldnames=COLUMNS, lineterminator="\n")
         w.writeheader()
         w.writerows(rows)
 

@@ -289,6 +289,7 @@ body[data-slug="lactobacillaceae-species"] .table-container {
 }
 
 body[data-slug="lactobacillaceae"],
+body[data-slug="lactobacillaceae-genera"],
 body[data-slug="lactobacillaceae-species"] {
   // The line under the hero number names the family and its date, so Quartz's
   // own title is taken out of view. It stays in the page for screen readers and search,
@@ -310,7 +311,7 @@ body[data-slug="lactobacillaceae-species"] {
 
     img {
       display: block;
-      width: min(100%, 320px);
+      width: 100%;
       height: auto;
       border-radius: 14px;
     }
@@ -786,7 +787,9 @@ body[data-slug="lactobacillaceae-species"] {
     border-style: dashed;
   }
 
-  .lacto-legend {
+  // The species page's key (dots and the "new" chip). Its own class: the chart
+  // legends above are flex rows with gaps, which is not what a line of text wants.
+  .lacto-keyline {
     font-size: 0.85rem;
     color: var(--darkgray);
 
@@ -794,11 +797,161 @@ body[data-slug="lactobacillaceae-species"] {
       margin-right: 0.3rem;
       vertical-align: -1px;
     }
+
+    .lacto-dot ~ .lacto-dot,
+    .lacto-chip {
+      margin-left: 0.6rem;
+    }
   }
 
+  .lacto-gindex-label {
+    margin: 0 0 0.1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  // The genus list, one paragraph per group: tight, so the three read as one list.
   .lacto-gindex {
+    margin: 0 0 0.35rem;
     font-size: 0.85rem;
     line-height: 1.9;
+  }
+
+  // Overview, Genera, Species: the row that ties the three pages together.
+  // The page you are on is bold and underlined, and is not a link.
+  .lacto-tabs {
+    display: flex;
+    gap: 1.4rem;
+    margin: 2rem 0 1rem;
+    font-size: 0.95rem;
+
+    a {
+      color: var(--darkgray);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    [aria-current="page"] {
+      font-weight: 600;
+      border-bottom: 2px solid var(--dark);
+    }
+  }
+
+  // The overview's two doors: the genera and the species, each one card that
+  // leads to its page. The card is a single link (the text link inside is
+  // stretched over it), so the whole block is the target, the pointer included.
+  .lacto-card {
+    // The accent is the site's own teal (the colour links turn on hover): the
+    // pointer's ring, the card's border on hover, the focus ring.
+    --lacto-go: var(--tertiary);
+    position: relative;
+    margin: 1.6rem 0;
+    padding: 1.3rem 1.5rem 1.2rem;
+    border: 1px solid var(--lightgray);
+    border-radius: 16px;
+    transition:
+      border-color 0.15s,
+      box-shadow 0.15s;
+
+    &:hover {
+      border-color: var(--lacto-go);
+      box-shadow: 0 4px 18px rgb(0 0 0 / 10%);
+    }
+
+    &:has(a:focus-visible) {
+      outline: 2px solid var(--lacto-go);
+      outline-offset: 3px;
+    }
+
+    .lacto-hero {
+      margin-top: 0;
+    }
+
+    // The link text on the left, the pointer at the bottom right, in one row.
+    .lacto-card-foot {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 0.9rem;
+    }
+
+    .lacto-more {
+      margin: 0;
+
+      a {
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      a::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 16px;
+      }
+    }
+
+    // The bars sit above the stretched link, so their hover readouts still
+    // work; a click anywhere else on the card opens the page.
+    .lacto-split,
+    .lacto-legend {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  // The pointer. It is decoration: the link text names the page. It ignores the
+  // mouse, so every click on it goes through to the card's link. (On hover it
+  // moves, and a moved element paints above the stretched link and would
+  // otherwise swallow the click.)
+  .lacto-card-go {
+    pointer-events: none;
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.9rem;
+    height: 2.9rem;
+    border: 1.5px solid var(--lacto-go);
+    border-radius: 50%;
+    font-size: 1.5rem;
+    line-height: 1;
+    transition:
+      background-color 0.15s,
+      transform 0.15s;
+  }
+
+  // A soft tint, not a solid fill: a solid colour would swallow the yellow of
+  // the hand (3:1 on light, under 2:1 on dark), a tint leaves it clear on both.
+  .lacto-card:hover .lacto-card-go {
+    background: color-mix(in srgb, var(--lacto-go) 18%, transparent);
+    transform: translateX(3px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lacto-card,
+    .lacto-card-go {
+      transition: none;
+    }
+
+    .lacto-card:hover .lacto-card-go {
+      transform: none;
+    }
+  }
+
+  @media all and ($mobile) {
+    .lacto-card {
+      padding: 1.1rem 1.1rem 1rem;
+    }
+
+    .lacto-card-go {
+      width: 2.5rem;
+      height: 2.5rem;
+      font-size: 1.3rem;
+    }
   }
 
   // A genus with no listed name says why, in a line, instead of an empty table.
