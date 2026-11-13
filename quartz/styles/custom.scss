@@ -656,6 +656,18 @@ body[data-slug="lactobacillaceae-species"] {
     margin: 0.75rem 0 0;
   }
 
+  // Under the "No. of species" header: the numbers below are links. It wraps to two lines so it does not widen the column.
+  .lacto-th-hint {
+    display: block;
+    max-width: 7rem;
+    margin-top: 0.15rem;
+    color: var(--lacto-muted);
+    font-size: 0.74rem;
+    font-weight: 400;
+    line-height: 1.35;
+    white-space: normal;
+  }
+
   .lacto-table {
     // max-content + the wrapper's overflow-x keeps every row on one line and
     // scrolls instead of clipping. One row (Lactobacillus, with its Approved
@@ -693,6 +705,11 @@ body[data-slug="lactobacillaceae-species"] {
     .lacto-auth {
       color: var(--lacto-muted);
       padding-right: 0;
+
+      // Quartz adds an arrow to every external link; 38 of them would clutter the column.
+      .external-icon {
+        display: none;
+      }
     }
 
     // Approved Lists and similar notes: own line, so a single long row does

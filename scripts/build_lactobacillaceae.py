@@ -507,17 +507,39 @@ def _species_counts():
     return counts
 
 
-def _authority(authority):
+def _genus_links():
+    """Authority and publication DOI per genus, copied from the lab's release by scripts/export_genus_links.py.
+    The genus CSV has no link column; the release does."""
+    files = sorted(glob.glob(os.path.join(REPO, "assets", "lactobacillaceae", "links_genus_*.csv")))
+    if not files:
+        sys.exit("no assets/lactobacillaceae/links_genus_<date>.csv: run scripts/export_genus_links.py")
+    return {r["genus"]: r for r in csv.DictReader(open(files[-1], encoding="utf-8-sig"))}
+
+
+def _authority(authority, link=None):
     """A trailing nomenclatural note (Approved Lists 1980) goes on its own
-    smaller line, so one long row does not set the column's width."""
+    smaller line, so one long row does not set the column's width.
+
+    `link` is the genus's row from the links file. A publication DOI links the authority ("Zheng et al. 2020").
+    For the Approved Lists genera it links the note instead: that paper validated the name in 1980, it is not
+    where Beijerinck (1901) proposed it, so the authority itself stays plain."""
+    doi = f"https://doi.org/{link['doi']}" if link else None
+    kind = link["doi_kind"] if link else None
     if " (" in authority and authority.endswith(")"):
         head, note = authority.split(" (", 1)
-        return f'{esc(head)}<span class="lacto-auth-note">({esc(note)}</span>'
-    return esc(authority)
+        note_html = f"({esc(note)}"
+        if kind == "approved_lists":
+            note_html = f'(<a href="{doi}">{esc(note[:-1])}</a>)'
+        elif doi:
+            head_html = f'<a href="{doi}">{esc(head)}</a>'
+            return f'{head_html}<span class="lacto-auth-note">({esc(note)}</span>'
+        return f'{esc(head)}<span class="lacto-auth-note">{note_html}</span>'
+    return f'<a href="{doi}">{esc(authority)}</a>' if doi else esc(authority)
 
 
 def _rows(recs, key):
     species = _species_counts()
+    links = _genus_links()
     cls = {"Homo": "homo", "Hetero": "hetero", "Unassigned": "unassigned"}
     short = {
         "Homo": "Homo",
@@ -544,7 +566,7 @@ def _rows(recs, key):
             + f"<td><em>{esc(ts)}</em></td>"
             f'<td class="lacto-ferm"><span class="lacto-dot lacto-{cls[r["ferm"]]}"></span>'
             f'{short[r["ferm"]]}</td>'
-            f'<td class="lacto-auth">{_authority(r["authority"])}</td>'
+            f'<td class="lacto-auth">{_authority(links[r["name"]]["authority"], links[r["name"]])}</td>'
             "</tr>"
         )
     return out
@@ -555,7 +577,12 @@ def _table(rows):
         '<table class="lacto-table">'
         "<thead><tr>"
         '<th scope="col">Genus</th>'
-        + ('<th scope="col">Species</th>' if _species_counts() else "")
+        + (
+            '<th scope="col">No. of species'
+            '<span class="lacto-th-hint"><span aria-hidden="true">\U0001F447</span> Click to see species info.</span></th>'
+            if _species_counts()
+            else ""
+        )
         + '<th scope="col">Type species</th>'
         '<th scope="col">Fermentation</th><th scope="col">Proposed</th>'
         "</tr></thead><tbody>" + "".join(rows) + "</tbody></table>"
@@ -607,7 +634,9 @@ def table(recs):
             '<p class="lacto-caption">Type species carry the genus abbreviations'
             " from <a href=\"https://doi.org/10.3168/jdsc.2021-0183\">Qiao et al."
             " 2022</a>, which separate the twelve genera whose names begin"
-            " with L.</p>",
+            " with L. The number of species includes subspecies."
+            " Each proposing authority links to its paper; for the three genera validated by the"
+            " Approved Lists of 1980, the link is on that note.</p>",
             "</div>",
         ]
     )
@@ -752,6 +781,14 @@ def main():
 
     # The species page lists these same genera. A genus the species release has but this CSV lacks would link
     # to nothing, so stop instead.
+    # Every genus links to the paper that proposed it, from the lab's release; the authority must be the same one.
+    links = _genus_links()
+    unlinked = sorted({r["name"] for r in recs} - set(links))
+    assert not unlinked, f"no link for: {unlinked}. Run scripts/export_genus_links.py"
+    bare = lambda a: re.sub(r"\s*\(.*\)$", "", a).strip()  # "Beijerinck 1901 (Approved Lists 1980)" -> "Beijerinck 1901"
+    differ = sorted(r["name"] for r in recs if bare(r["authority"]) != bare(links[r["name"]]["authority"]))
+    assert not differ, f"the genus CSV and the release name different authorities for: {differ}"
+
     species = _species_counts()
     stray = sorted(set(species) - {r["name"] for r in recs})
     assert not stray, f"the species snapshot has genera that this CSV does not: {stray}"
