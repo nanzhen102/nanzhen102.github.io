@@ -9,8 +9,11 @@ genus_*.csv the page is built from, so a new CSV gives a new animation.
     python3 scripts/make_life_tree.py
 
 writes content/lactobacillaceae-banner-<datestamp>.gif and a still .png (shown to visitors who ask for reduced
-motion). The loop opens on the finished tree so a visitor never lands on a blank tile, lets it dissolve to the
-empty slots, rebuilds it year by year, and ends on the same finished tree, so it closes without a fade or a rest. build_lactobacillaceae.py refuses to build the page if that GIF is missing for the newest CSV.
+motion: the finished tree). The animation is one closed loop: the finished tree dissolves to the empty slots, the
+genera come back year by year, and the loop ends on the same finished tree it started from, so it closes without a
+fade or a rest. The GIF is that loop started at a chosen moment (START_YEAR, or part-way through the 2020 burst), so a visitor
+sees a nearly built, still moving tree at once (the end of the loop leads into it frame by frame). build_lactobacillaceae.py refuses to build the page if that
+GIF is missing for the newest CSV.
 
 Needs matplotlib, numpy, Pillow and (for the small file) ffmpeg. The colours are the site's night-mode tokens.
 """
@@ -18,6 +21,7 @@ Needs matplotlib, numpy, Pillow and (for the small file) ffmpeg. The colours are
 import glob
 import importlib.util
 import json
+import math
 import os
 import re
 import shutil
@@ -39,7 +43,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
 ASSETS = os.path.join(REPO, "assets", "lactobacillaceae")
 
-SIZE, SS, FPS = 440, 2, 8  # the tree's square, supersampling for smooth lines, frames per second
+SIZE, SS, FPS = 440, 2, 16  # the tree's square, supersampling for smooth lines, frames per second
 BW = 960  # banner width: the tree square on the left, a gradient and the title on the right
 END = (37, 65, 89)  # the far end of the gradient: the tree's blue, darkened and greyed so it stays quiet
 TITLE, TITLE_FONT, TITLE_MAX = "Lactobacillaceae", 3, 66  # Bold Italic, as the page sets the family name
@@ -52,8 +56,14 @@ LINES = [
 LINE_PITCH, TITLE_Y, SUB_TOP = 44, 112, 36  # distance between lines, title top, gap under the title (all px)
 TEXT_X, MARGIN = SIZE + 36, 44  # the text starts clear of the tree and keeps a margin on the right
 WHITE = (246, 244, 238)
-BEAT, GROW, STAG, SETTLE = 0.7, 2.0, 0.12, 1.8  # one year / a branch growing / ripple step / bloom settle (s)
-OPEN, DISSOLVE, HOLD = 0.8, 0.7, 2.4  # finished tree at the start / dissolve to empty / settle at the end (s)
+BEAT, GROW, STAG, SETTLE = 0.25, 2.0, 0.02, 0.08  # one year / a branch growing / ripple step / settle after a burst (s)
+# Every year with a single genus gets the same BEAT, so the year label ticks like a metronome. The 2020 burst takes
+# (22 - 1) * STAG + SETTLE = 0.5 s: its genera ripple in quickly, then keep growing under the next years' labels.
+MATURE = 1.6  # a new branch cools from its fermentation colour to grey over this long, after it has grown (s)
+LABEL = 0.18  # the year label changes within one beat, so it has settled before the next year arrives (s)
+OPEN, DISSOLVE = 0.0, 0.2  # finished tree held at the start / dissolve to the empty slots (s)
+START_YEAR = 1995  # the GIF opens on this year, as its label has just appeared; None opens START_AFTER_BURST seconds into the 2020 burst instead
+START_AFTER_BURST = 1.3  # (used when START_YEAR is None) a tree that is part built and still moving (s)
 BG, SLOT, LINE, TEXT = (16, 15, 15), (52, 51, 49), (135, 133, 128), (183, 181, 172)  # #100f0f page
 COL = {"Homo": (213, 81, 129), "Hetero": (67, 133, 190), "Unassigned": (135, 133, 128)}  # #d55181 / #4385be
 S = SIZE * SS
@@ -165,11 +175,12 @@ def main():
 
     # Timeline: genera arrive in the order they were described.
     years = sorted({r["year"] for r in recs if r["year"]})
-    t_of, events, T = {}, [], 0.0
+    t_of, events, T, burst_t = {}, [], 0.0, None
     for y in years:
         gs = sorted((r for r in recs if r["year"] == y), key=lambda r: (r["y_order"] is None, r["y_order"] or 0))
         events.append((T, y))
         if len(gs) > 5:  # a burst (the 2020 reclassification) ripples round the ring
+            burst_t = T if burst_t is None else burst_t  # the first burst
             for i, r in enumerate(gs):
                 t_of[r["name"]] = T + i * STAG
             T += (len(gs) - 1) * STAG + SETTLE
@@ -177,10 +188,13 @@ def main():
             for r in gs:
                 t_of[r["name"]] = T
             T += BEAT
-    t_build = T + HOLD  # the build ends on the finished tree, which is also where the loop opens
-    t_final = T + 6.0  # a fully settled finished tree
-    t_end = OPEN + DISSOLVE + t_build
-    nf = int(round(t_end * FPS))
+    # The build ends once the last branch has grown (its colour is still cooling, which is fine: the same state is where the
+    # loop opens). The end is put on the frame grid, and one frame is added, so the last frame is exactly the first.
+    t_grown = max(t_of.values()) + GROW + 0.1
+    t_end = math.ceil((OPEN + DISSOLVE + t_grown) * FPS - 1e-9) / FPS
+    t_build = t_end - OPEN - DISSOLVE
+    t_final = t_build  # the finished tree
+    nf = int(round(t_end * FPS)) + 1
     unpl_th = {r["name"]: (-GAP if i % 2 == 0 else GAP) for i, r in enumerate(unplaced)}
     leaf_theta = {n["genus"]: n["theta"] for n in iter_leaves(root)}
 
@@ -220,7 +234,7 @@ def main():
                 leaf = "genus" in k
                 col = LINE
                 if leaf:  # a new branch starts in its fermentation colour and cools to grey
-                    mat = float(smooth((tau - t_of[k["genus"]] - GROW) / 1.6))
+                    mat = float(smooth((tau - t_of[k["genus"]] - GROW) / MATURE))
                     col = mix(COL[by_name[k["genus"]]["ferm"]], LINE, mat)
                 if abs(k["th"] - n["th"]) > 1e-6:
                     ths = np.linspace(n["th"], k["th"], max(2, int(abs(k["th"] - n["th"]) / np.deg2rad(2)) + 2))
@@ -266,7 +280,7 @@ def main():
             # goes dark and the two barely overlap.
             t0, y0 = ev[-1]
             prev = ev[-2][1] if len(ev) > 1 else None
-            e = float(smooth((tau - t0) / 0.6))
+            e = float(smooth((tau - t0) / LABEL))
             leave = float(smooth(e * 1.7))  # the old digit is gone by e = 0.59 ...
             arrive = float(smooth((e - 0.35) / 0.65))  # ... the new one starts at e = 0.35
             d = ImageDraw.Draw(big)
@@ -312,6 +326,18 @@ def main():
     frames = [compose(render(i / FPS)) for i in range(nf)]
     seam = np.abs(np.asarray(frames[0], int) - np.asarray(frames[-1], int)).max()
     assert seam == 0, "the loop does not close: first and last frames differ"
+    assert burst_t is not None, "no year with a burst of genera: there is nowhere to start the loop"
+    # Choose where the GIF opens: the first frame is what a visitor sees at once. The sequence is closed, so rotating
+    # it keeps it seamless; the frame before the new first frame is simply the one before it in time.
+    finished = frames[0]  # the still for reduced motion stays the finished tree
+    if START_YEAR is None:
+        t_start = burst_t + START_AFTER_BURST
+    else:
+        starts = [t for t, y in events if y == START_YEAR]
+        assert starts, f"START_YEAR {START_YEAR} is not a year in the CSV"
+        t_start = starts[0] + LABEL  # the label has just settled
+    k = math.ceil((OPEN + DISSOLVE + t_start) * FPS - 1e-9) % nf
+    frames = frames[k:] + frames[:k]
 
     if not shutil.which("ffmpeg"):
         sys.exit("ffmpeg is needed to write the small GIF")
@@ -344,7 +370,7 @@ def main():
                         "-i", pal_path, "-lavfi", "paletteuse=dither=none:diff_mode=rectangle", "-loop", "0", out_gif], check=True)
     pal_p = Image.new("P", (1, 1))
     pal_p.putpalette([int(v) for c in cols for v in c] + [0] * (768 - 3 * len(cols)))
-    frames[0].quantize(palette=pal_p, dither=Image.NONE).save(out_png, optimize=True)
+    finished.quantize(palette=pal_p, dither=Image.NONE).save(out_png, optimize=True)
     print(f"wrote {os.path.relpath(out_gif, REPO)} ({os.path.getsize(out_gif) / 1024:.0f} KB, {nf} frames, {t_end:.1f}s loop)")
     print(f"wrote {os.path.relpath(out_png, REPO)} ({os.path.getsize(out_png) / 1024:.0f} KB)")
 
