@@ -8,6 +8,11 @@ the genera (from the genus CSV) and the species and subspecies (from the species
 date, a fermentation split, and a link to its page. Everything else lives on /lactobacillaceae-genera and
 /lactobacillaceae-species.
 
+It also writes one short note per release to content/lactobacillaceae-release-<date>.md (flat files: a folder would get an auto-generated index page, dated at every build, that the feed would announce each time). The site's RSS feed carries
+each note as its own item, so a release reaches subscribers (the overview page itself keeps one address and would not
+be announced again). From the second release on, the note lists the genera and names added or removed since the
+previous genus CSV and species snapshot.
+
 Run it after build_lactobacillaceae.py and build_lactobacillaceae_species.py (build_lactobacillaceae_all.py does
 all three in order): it reads their output to check that the numbers it shows are the numbers on those pages.
 """
@@ -44,6 +49,57 @@ def hero_of(path):
     m = re.search(r'<p class="lacto-hero">(\d+)</p>', open(path, encoding="utf-8").read())
     assert m, f"no headline number in {os.path.relpath(path, REPO)}"
     return int(m.group(1))
+
+
+def _list(names, cap=40):
+    """'_A b_, _C d_ and 7 more' (italic, sorted, capped so a big release stays readable)."""
+    names = sorted(names)
+    shown = ", ".join(f"_{esc(n)}_" for n in names[:cap])
+    return shown + (f" and {len(names) - cap} more" if len(names) > cap else "")
+
+
+def write_release_note(iso, genus_asof, species_asof, n_genera, n_species, n_sub, genus_names, species_names, prev):
+    """One note per release, dated like the overview page. `prev` is (previous genus names, previous species names)
+    or None for the first release published on the site."""
+    n_names = n_species + n_sub
+    if prev is None:
+        change = "Later releases list the genera, species and subspecies added or removed."
+        short = "First release on this site."
+    else:
+        pg, ps = prev
+        parts, bits = [], []
+        for label, now, before in (("genera", genus_names, pg), ("species and subspecies", species_names, ps)):
+            add, gone = now - before, before - now
+            if add:
+                parts.append(f"- Added {label} ({len(add)}): {_list(add)}")
+            if gone:
+                parts.append(f"- Removed {label} ({len(gone)}): {_list(gone)}")
+            if add or gone:
+                unit = label if label != "genera" else ("genus" if len(add) == 1 and len(gone) <= 1 else "genera")
+                bits.append(f"{len(add)} {unit} added, {len(gone)} removed")
+        if parts:
+            change = "Since the previous release (a renamed species shows once as removed and once as added):\n\n" + "\n".join(parts)
+            short = "; ".join(bits).capitalize() + "."
+        else:
+            change = "No genera, species or subspecies were added or removed since the previous release."
+            short = "No names added or removed."
+    note = f"""---
+title: Lactobacillaceae release {iso}
+date: {iso}
+---
+
+{n_genera} genera and {n_names} species and subspecies are currently placed in the family _Lactobacillaceae_. {short}
+
+Genus list of {genus_asof}; species release of {species_asof} ({n_species} species, {n_sub} subspecies).
+
+{change}
+
+See the [overview](lactobacillaceae), the [genera](lactobacillaceae-genera) and the [species](lactobacillaceae-species).
+"""
+    path = os.path.join(CONTENT, f"lactobacillaceae-release-{iso}.md")
+    with open(path, "w", encoding="utf-8") as fh:
+        fh.write(note)
+    return path
 
 
 def main():
@@ -86,6 +142,13 @@ def main():
     for r in listed:
         species_ferm[r["fermentation"] if r["fermentation"] in ("Homo", "Hetero") else "Unassigned"] += 1
 
+    # ---- the release note (the feed item) ------------------------------------------------------------------------
+    genus_csvs = sorted(glob.glob(os.path.join(ASSETS, "genus_*.csv")))
+    prev = None
+    if len(genus_csvs) > 1 and len(snaps) > 1:
+        prev_species = {r["name"] for r in csv.DictReader(open(snaps[-2], encoding="utf-8-sig")) if r["kind"] in ("species", "subspecies")}
+        prev = ({r["name"] for r in genus_page.load(genus_csvs[-2])}, prev_species)
+
     # ---- the overview must say what the pages it points to say --------------------------------------------------
     assert hero_of(os.path.join(CONTENT, "lactobacillaceae-genera.md")) == n_genera, "the genera page and the overview disagree on the number of genera"
     assert hero_of(os.path.join(CONTENT, "lactobacillaceae-species.md")) == n_names, "the species page and the overview disagree on the number of names"
@@ -119,11 +182,14 @@ date: {iso}
 </div>
 </div>
 
-For detailed homofermentative and heterofermentative fermentation, check [Gänzle 2015](https://doi.org/10.1016/j.cofs.2015.03.001) and [Qiao & Gänzle 2026](https://doi.org/10.1016/j.fm.2025.104945). For detailed lifestyle updates, check [Duar et al. 2017](https://doi.org/10.1093/femsre/fux030), and [Michael Gänzle](https://scholar.google.com/citations?user=Zc29kvEAAAAJ&hl=en). To check how a former species name maps to its current one, use [LactoTax](https://www.lactobacillus.ualberta.ca/) and [Zheng et al. 2020](https://doi.org/10.1099/ijsem.0.004107).
+For detailed homofermentative and heterofermentative fermentation, check [Gänzle 2015](https://doi.org/10.1016/j.cofs.2015.03.001) and [Qiao & Gänzle 2026](https://doi.org/10.1016/j.fm.2025.104945). For detailed lifestyle updates, check [Duar et al. 2017](https://doi.org/10.1093/femsre/fux030), [Nanzhen Qiao](https://www.linkedin.com/in/nanzhen/) and [Michael Gänzle](https://scholar.google.com/citations?user=Zc29kvEAAAAJ&hl=en). To check how a former species name maps to its current one, use [LactoTax](https://www.lactobacillus.ualberta.ca/) and [Zheng et al. 2020](https://doi.org/10.1099/ijsem.0.004107).
 """
     with open(OUT, "w", encoding="utf-8") as fh:
         fh.write(md.rstrip("\n") + "\n")
+    note_path = write_release_note(iso, genus_asof, species_asof, n_genera, n_species, n_sub, {r["name"] for r in recs},
+                                   {r["name"] for r in listed}, prev)
     print(f"wrote {OUT}")
+    print(f"wrote {note_path}")
     print(f"  {n_genera} genera (CSV {gy}-{gm:02d}-{gd:02d}) and {n_names} species and subspecies (release {release})")
 
 

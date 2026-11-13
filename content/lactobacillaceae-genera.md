@@ -3,7 +3,7 @@ title: Lactobacillaceae genera
 date: 2026-11-09
 ---
 
-<nav class="lacto-tabs" aria-label="Lactobacillaceae pages"><a href="lactobacillaceae">Overview</a> <span aria-current="page">Genera</span> <a href="lactobacillaceae-species">Species</a></nav>
+<nav id="top" class="lacto-tabs" aria-label="Lactobacillaceae pages"><a href="lactobacillaceae">Overview</a> <span aria-current="page">Genera</span> <a href="lactobacillaceae-species">Species</a></nav>
 
 <p class="lacto-hero">38</p>
 <p class="lacto-hero-label">genera currently placed in <em>Lactobacillaceae</em> family, updated on November 9, 2026.</p>
@@ -46,3 +46,5 @@ Today's family is the union of two. _Lactobacillus_ (1901), _Pediococcus_ (1903)
 <a href="mailto:nanzhen.qiao@gmail.com"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /><rect x="2" y="4" width="20" height="16" rx="2" /></svg>nanzhen.qiao@gmail.com</a>.
 The tree itself is built with
 <a href="https://github.com/nanzhen102/core-genome-phylogeny">core-genome-phylogeny</a>.</p>
+
+[🐝](#top)

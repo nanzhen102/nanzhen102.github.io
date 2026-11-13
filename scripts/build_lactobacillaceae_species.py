@@ -38,6 +38,7 @@ spec.loader.exec_module(genus_page)
 esc, _authority = genus_page.esc, genus_page._authority
 
 LIFESTYLE_DOI = "10.1093/femsre/fux030"  # Duar et al. 2017, the lifestyle categories
+LINKEDIN = "https://www.linkedin.com/in/nanzhen/"  # Nanzhen Qiao
 GANZLE_SCHOLAR = "https://scholar.google.com/citations?user=Zc29kvEAAAAJ&hl=en"  # Michael Gänzle, University of Alberta
 NOT_ASSESSED = '<span class="lacto-na">not yet assessed</span>'
 GENOME_NOTE = {
@@ -172,7 +173,7 @@ def main():
     # not placed on the tree yet.
     def index_item(g):
         n = sum(1 for r in by_genus.get(g, []) if r["kind"] != "parent")
-        return f'<a href="#{genus_page._slug(g)}">{esc(g)}</a>&nbsp;({n})'
+        return f'<a href="#{genus_page._slug(g)}"><em>{esc(g)}</em></a>&nbsp;({n})'
 
     placed_genera = [g for g in order if genera[g]["y_order"]]
     unplaced_genera = [g for g in order if not genera[g]["y_order"]]
@@ -214,7 +215,7 @@ unlisted: true
 <p class="lacto-hero">{total}</p>
 <p class="lacto-hero-label">species and subspecies currently placed in <em>Lactobacillaceae</em> family ({n_species} species, {n_sub} subspecies), updated on {asof}.</p>
 
-For detailed lifestyle updates, check [Duar et al. 2017](https://doi.org/{LIFESTYLE_DOI}), and stay tuned to the most recent posts and publications of [Michael Gänzle]({GANZLE_SCHOLAR}).
+For detailed lifestyle updates, check [Duar et al. 2017](https://doi.org/{LIFESTYLE_DOI}), and stay tuned to the most recent posts and publications of [Nanzhen Qiao]({LINKEDIN}) and [Michael Gänzle]({GANZLE_SCHOLAR}).
 
 <p class="lacto-keyline"><span class="lacto-dot lacto-homo"></span>homofermentative <span class="lacto-dot lacto-hetero"></span>heterofermentative <span class="lacto-chip">new</span> not in the June 2025 list</p>
 
@@ -238,7 +239,7 @@ For detailed lifestyle updates, check [Duar et al. 2017](https://doi.org/{LIFEST
     assert len(headings) == len(set(headings)) == len(order), "genus headings are missing or repeated"
 
     with open(OUT, "w", encoding="utf-8") as fh:
-        fh.write(md.rstrip("\n") + "\n")  # one trailing newline, as Prettier writes it
+        fh.write(md.rstrip("\n") + "\n\n[🐝](#top)\n")  # back-to-top link, as on the home page
     print(f"wrote {OUT}")
     print(f"  {total} names ({n_species} species, {n_sub} subspecies) in {len(order)} genera, release {release}")
     print(f"  page text {len(md) // 1024} KB")

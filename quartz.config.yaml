@@ -116,6 +116,7 @@ plugins:
     options:
       enableSiteMap: true
       enableRSS: true
+      rssLimit: 20
   - source: "@quartz-community/favicon"
     enabled: true
   - source: "@quartz-community/og-image"
@@ -131,7 +132,7 @@ plugins:
     options:
       showFolderCount: false
   - source: "@quartz-community/tag-page"
-    enabled: true
+    enabled: false
   - source: "@quartz-community/explorer"
     enabled: false
     layout:
