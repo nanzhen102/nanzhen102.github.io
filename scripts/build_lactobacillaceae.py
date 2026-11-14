@@ -668,14 +668,7 @@ def _check(md, recs, ferm):
     assert f"## All {total} genera" in md, "section heading does not match the CSV"
     assert sum(ferm.values()) == total, "fermentation counts do not sum to the total"
 
-    # Every genus appears in exactly one segment of the split bar.
-    segments = re.findall(r'class="lacto-split-part [^"]*" style="flex: (\d+) ', md)
-    assert segments, "no split bar segments found"
-    assert sum(int(n) for n in segments) == total, (
-        "split bar segments do not sum to the total"
-    )
-
-    print(f"  checked: hero, both tables, heading and split bar all agree on {total}")
+    print(f"  checked: hero, both tables and heading all agree on {total}")
 
 
 def main():
@@ -806,8 +799,6 @@ date: {iso_date}
 For detailed homofermentative and heterofermentative fermentation, check
 [Gänzle 2015](https://doi.org/10.1016/j.cofs.2015.03.001) and
 [Qiao & Gänzle 2026](https://doi.org/10.1016/j.fm.2025.104945).
-
-{segmented_bar(ferm, total)}
 
 {history}
 

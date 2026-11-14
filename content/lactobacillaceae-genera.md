@@ -12,17 +12,6 @@ For detailed homofermentative and heterofermentative fermentation, check
 [Gänzle 2015](https://doi.org/10.1016/j.cofs.2015.03.001) and
 [Qiao & Gänzle 2026](https://doi.org/10.1016/j.fm.2025.104945).
 
-<div class="lacto-split" role="list" aria-label="Fermentation type across 38 genera: Homofermentative 18, Heterofermentative 18, Unassigned 2.">
-<div class="lacto-split-part lacto-homo" style="flex: 18 1 0" tabindex="0" role="listitem" aria-label="Homofermentative: 18 genera, 47 percent"><span class="lacto-split-value">18</span><span class="lacto-tip" aria-hidden="true"><strong>Homofermentative</strong><span>18 genera &middot; 47%</span></span></div>
-<div class="lacto-split-part lacto-hetero" style="flex: 18 1 0" tabindex="0" role="listitem" aria-label="Heterofermentative: 18 genera, 47 percent"><span class="lacto-split-value">18</span><span class="lacto-tip" aria-hidden="true"><strong>Heterofermentative</strong><span>18 genera &middot; 47%</span></span></div>
-<div class="lacto-split-part lacto-unassigned" style="flex: 2 1 0" tabindex="0" role="listitem" aria-label="Unassigned: 2 genera, 5 percent"><span class="lacto-split-value lacto-split-value--tight">2</span><span class="lacto-tip" aria-hidden="true"><strong>Unassigned</strong><span>2 genera &middot; 5%</span></span></div>
-</div>
-<div class="lacto-legend">
-<span class="lacto-key"><span class="lacto-dot lacto-homo"></span>Homofermentative</span>
-<span class="lacto-key"><span class="lacto-dot lacto-hetero"></span>Heterofermentative</span>
-<span class="lacto-key"><span class="lacto-dot lacto-unassigned"></span>Unassigned</span>
-</div>
-
 Today's family is the union of two. _Lactobacillus_ (1901), _Pediococcus_ (1903), and _Paralactobacillus_ (2000) made up _Lactobacillaceae_; _Leuconostoc_ (1878), _Weissella_ (1994), _Oenococcus_ (1995), _Fructobacillus_ (2008), and _Convivina_ (2015) sat in _Leuconostocaceae_. [Zheng et al. 2020](https://doi.org/10.1099/ijsem.0.004107) merged the two and split the old, sprawling _Lactobacillus_ into 22 genera on whole-genome evidence. To check how a former species name maps to its current one, use [lactotax](https://www.lactobacillus.ualberta.ca/).
 
 ## All 38 genera
