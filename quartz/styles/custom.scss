@@ -827,11 +827,16 @@ body[data-slug="lactobacillaceae-species"] {
     font-weight: 600;
   }
 
-  // The genus list, one paragraph per group: tight, so the three read as one list.
+  // The genus list: three bullets, one per group of genera, tight so they read as one list.
   .lacto-gindex {
-    margin: 0 0 0.35rem;
+    margin: 0 0 0.75rem;
+    padding-left: 1.2rem;
     font-size: 0.85rem;
     line-height: 1.9;
+
+    li {
+      margin: 0 0 0.35rem;
+    }
   }
 
   // Overview, Genera, Species: the row that ties the three pages together.

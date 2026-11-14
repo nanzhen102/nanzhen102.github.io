@@ -178,11 +178,11 @@ def main():
     placed_genera = [g for g in order if genera[g]["y_order"]]
     unplaced_genera = [g for g in order if not genera[g]["y_order"]]
     half = (len(placed_genera) + 1) // 2
-    index = "\n".join(
-        f'<p class="lacto-gindex">{"; ".join(index_item(g) for g in group)}</p>'
+    index = '<ul class="lacto-gindex">\n' + "\n".join(
+        f'<li>{"; ".join(index_item(g) for g in group)}</li>'
         for group in (placed_genera[:half], placed_genera[half:], unplaced_genera)
         if group
-    )
+    ) + "\n</ul>"
 
     sections = []
     for g in order:
@@ -219,7 +219,7 @@ For detailed lifestyle updates, check [Duar et al. 2017](https://doi.org/{LIFEST
 
 <p class="lacto-keyline"><span class="lacto-dot lacto-homo"></span>homofermentative <span class="lacto-dot lacto-hetero"></span>heterofermentative <span class="lacto-chip">new</span> not in the June 2025 list</p>
 
-<p class="lacto-gindex-label">Jump to a genus (number of species and subspecies):</p>
+<p class="lacto-gindex-label"><span aria-hidden="true">\U0001F447</span> Jump to a genus (number of species and subspecies):</p>
 {index}
 
 {chr(10).join(sections)}
