@@ -27,28 +27,15 @@ LAB = "/Users/nanzhen/Documents/1_phd_2020/5_doctoral_program/0.1_type_strain_tr
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(REPO, "assets", "lactobacillaceae", "species")
 
-# Two rows take their LPSN fields (record, status, authority, DOI) from the SUPERSEDED record of the old name, so
-# they read "synonym" and cite the reclassification paper. Their final names are right (confirmed 2026-11-12), and
-# these are the values on the CURRENT LPSN records, read from lpsn.dsmz.de on 2026-11-12. Remove an entry once the
-# release itself carries the current record: the guard below says so.
-OVERRIDES = {
-    "Leuconostoc gasicomitatum": dict(
-        lpsn_id="777545",  # was 791679, the synonym Leuconostoc gelidum subsp. gasicomitatum
-        authority="Björkroth et al. 2001",
-        publication_doi="10.1128/aem.66.9.3764-3772.2000",  # the effective publication (AEM 2000)
-    ),
-    "Lentilactobacillus rapi subsp. dabitei": dict(
-        lpsn_id="28390",  # was 41192, the synonym Lentilactobacillus dabitei
-        authority="Li et al. 2022",
-        publication_doi="10.1099/ijsem.0.005359",
-    ),
-}
+# Rows whose LPSN fields the release gets wrong can be corrected here with the verified current-record values; the
+# guards in main() stop the build once the release is fixed, so an entry never outlives its reason. None needed now:
+# the release rebuilt on 2026-11-14 carries the current record and the right rank for the two renamed rows
+# (Leuconostoc gasicomitatum 777545, Lentilactobacillus rapi subsp. dabitei 28390).
+OVERRIDES = {}
 
-# The same two renamed rows also keep the RANK of their old names: Leuconostoc gasicomitatum says "subspecies"
-# (its old name was a subspecies) and Lentilactobacillus rapi subsp. dabitei says "species". A name's rank is
-# in the name, so the rank here is read from the name; this guard stops the build if any other row disagrees
-# with its own name.
-RANK_DISAGREES = {"Leuconostoc gasicomitatum", "Lentilactobacillus rapi subsp. dabitei"}
+# Rows whose rank column disagrees with their own name (a name's rank is in the name). None now; the guard in main()
+# stops the build if any row disagrees.
+RANK_DISAGREES = set()
 
 # What the release's genome tiers mean, in one short public phrase each. The tier names are the release's own.
 GENOME_NOTE = {
@@ -64,7 +51,7 @@ GENOME_NOTE = {
 COLUMNS = [
     "kind", "name", "genus", "genus_y_order", "parent", "status", "status_text", "authority", "publication_doi",
     "lpsn_id", "lpsn_url", "ncbi_taxid", "ncbi_url", "type_strains", "genome_acc", "genome_url", "genome_strain",
-    "genome_size_bp", "genome_gc", "genome_level", "genome_note", "fermentation", "lifestyle", "change", "note",
+    "genome_size_bp", "genome_gc", "genome_level", "genome_note", "fermentation", "fermentation_from", "lifestyle", "change", "note",
 ]
 
 
@@ -131,9 +118,21 @@ def main():
         "Fix the release, or update RANK_DISAGREES after checking each one."
     )
 
+    # A species with no fermentation type of its own shows its genus's (Nanzhen's decision 2026-11-14). The page marks
+    # these, so "fermentation_from" says where the value comes from: the species or its genus.
+    genus_list = read(os.path.join(os.path.dirname(LAB), manifest["sources"]["genus_release"], "genus_list.csv"))
+    yo = {g["genus"].strip(): g["y_order"].strip() for g in genus_list}
+    genus_ferm = {g["genus"].strip(): g["fermentation_type"].strip() for g in genus_list}
+    clash = [(r["final_name"], ledger[r["final_name"]]["fermentation_type"], genus_ferm[r["genus"]]) for r in species
+             if ledger[r["final_name"]]["fermentation_type"] and genus_ferm.get(r["genus"])
+             and ledger[r["final_name"]]["fermentation_type"] != genus_ferm[r["genus"]]]
+    assert not clash, f"species whose own fermentation type differs from their genus's (decide before showing genus values): {clash[:5]}"
+
     rows = []
     for r in species:
         L = ledger[r["final_name"]]
+        own = L["fermentation_type"].strip()
+        ferm, ferm_from = (own, "species") if own else ((genus_ferm.get(r["genus"], ""), "genus") if genus_ferm.get(r["genus"]) else ("", ""))
         o = OVERRIDES.get(r["final_name"], {})
         lpsn_id = o.get("lpsn_id", r["lpsn_id"])
         status_text = "validly published under the ICNP; correct name" if o else r["lpsn_status_web"]
@@ -151,7 +150,7 @@ def main():
             "type_strains": r["type_strains_all"], "genome_acc": r["acc"], "genome_url": r["ncbi_genome_url"],
             "genome_strain": r["acc_strain"], "genome_size_bp": r["acc_size_bp"], "genome_gc": r["acc_gc"],
             "genome_level": r["acc_level"], "genome_note": GENOME_NOTE[r["acc_tier"] if r["acc"] else ""],
-            "fermentation": L["fermentation_type"], "lifestyle": L["lifestyle"],
+            "fermentation": ferm, "fermentation_from": ferm_from, "lifestyle": L["lifestyle"],
             "change": {"NEW": "new", "NOT_VALID_NEW": "new", "RENAMED": "renamed"}.get(cls, "carried"), "note": "",
         })
 
@@ -168,14 +167,12 @@ def main():
             "authority": L["lpsn_authority"], "publication_doi": L["lpsn_publication_doi"], "lpsn_id": L["lpsn_id"],
             "lpsn_url": f"https://doi.org/10.83108/rn.{L['lpsn_id']}", "ncbi_taxid": L["ncbi_taxid"],
             "ncbi_url": L["ncbi_taxonomy_url"], "type_strains": "", "genome_acc": "", "genome_url": "", "genome_strain": "",
-            "genome_size_bp": "", "genome_gc": "", "genome_level": "", "genome_note": "", "fermentation": "",
+            "genome_size_bp": "", "genome_gc": "", "genome_level": "", "genome_note": "", "fermentation": "", "fermentation_from": "",
             "lifestyle": "", "change": "carried", "note": "",
         })
 
     # A genus of the release with no listed name still gets a place on the page, with the reason. The reason is the
     # release's own rule text: the names it left out and why.
-    genus_list = read(os.path.join(os.path.dirname(LAB), manifest["sources"]["genus_release"], "genus_list.csv"))
-    yo = {g["genus"].strip(): g["y_order"].strip() for g in genus_list}
     for g in sorted(set(yo) - {r["genus"] for r in rows}):
         left = [x for x in ledger_all if x["genus"] == g and x["rank"] in ("species", "subspecies")]
         assert left, f"{g} has no listed name and nothing in the ledger says why: add the reason to the release"
@@ -190,7 +187,7 @@ def main():
                 "authority": L["lpsn_authority"], "publication_doi": L["lpsn_publication_doi"], "lpsn_id": L["lpsn_id"],
                 "lpsn_url": f"https://doi.org/10.83108/rn.{L['lpsn_id']}", "ncbi_taxid": L["ncbi_taxid"],
                 "ncbi_url": L["ncbi_taxonomy_url"], "type_strains": "", "genome_acc": "", "genome_url": "", "genome_strain": "",
-                "genome_size_bp": "", "genome_gc": "", "genome_level": "", "genome_note": "", "fermentation": "",
+                "genome_size_bp": "", "genome_gc": "", "genome_level": "", "genome_note": "", "fermentation": "", "fermentation_from": "",
                 "lifestyle": "", "change": "carried", "note": note,
             })
 

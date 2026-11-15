@@ -58,14 +58,13 @@ def main():
     rows = []
     for genus in sorted(release, key=lambda g: int(site[g]["Y_order"]) if site[g]["Y_order"].strip() else 10**6):
         r = release[genus]
-        authority = r["lpsn_authority"].strip()
+        authority = r["authority"].strip()
         pub, listed = r["lpsn_publication_doi"].strip(), r["lpsn_ijsem_list_doi"].strip()
         if pub:
             doi, kind = pub, "publication"
         elif "Approved Lists" in authority and listed:
             doi, kind = listed, "approved_lists"
         else:
-            authority = authority or site[genus]["Authority"].strip()
             dois = species_doi.get(genus, set())
             assert len(dois) == 1 and authority, (
                 f"{genus}: no publication DOI in the release and no single species paper to fall back on ({sorted(dois)}). "

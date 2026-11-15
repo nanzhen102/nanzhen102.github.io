@@ -9,8 +9,8 @@ the page generators read (Tax name, Authority, Fermentation_type, Type_species, 
 file name is the release date: it is the "updated on" date of the Overview and Genera pages and names the banner
 animation. Older genus_*.csv files are removed, because the generators read the newest one.
 
-Column mapping:   Taxid <- ncbi_taxid          Tax name <- genus             Authority <- lpsn_authority
-                  Fermentation_type <- fermentation_type                     Type_species <- lpsn_type_species
+Column mapping:   Taxid <- ncbi_taxid          Tax name <- genus             Authority <- authority
+                  Fermentation_type <- fermentation_type                     Type_species <- type_species
                   Y_order <- y_order           Source <- change              Note <- note
                   Rank is GENUS; "Scientific name is formal" is FALSE for a Candidatus name, TRUE otherwise.
 
@@ -26,16 +26,6 @@ import sys
 LAB = "/Users/nanzhen/Documents/1_phd_2020/5_doctoral_program/0.1_type_strain_tree/18_202611_automate/1_genus_species_acc_update/releases"
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ASSETS = os.path.join(REPO, "assets", "lactobacillaceae")
-
-# The release has no LPSN record for Candidatus Gallilactobacillus (NCBI only), so its authority and type species are
-# blank there. The website keeps the values it had: Gilroy et al. 2021 proposed the genus together with its only species.
-# The guard in main() stops the build once the release carries a value, so this entry never outlives its reason.
-OVERRIDES = {
-    "Candidatus Gallilactobacillus": dict(
-        authority="Gilroy et al. 2021",
-        type_species="Candidatus Gallilactobacillus intestinavium",
-    ),
-}
 
 COLUMNS = [
     "Taxid", "Tax name", "Authority", "Rank", "Scientific name is formal", "Fermentation_type", "Type_species",
@@ -65,20 +55,11 @@ def main():
     names = [r["genus"].strip() for r in release]
     assert len(set(names)) == len(names), "duplicate genera in genus_list.csv"
 
-    # An override is only for a value the release leaves blank.
-    for g, o in OVERRIDES.items():
-        r = next((x for x in release if x["genus"].strip() == g), None)
-        assert r is not None, f"{g} is not in the release: remove it from OVERRIDES in this script"
-        have = {"authority": r["lpsn_authority"].strip(), "type_species": r["lpsn_type_species"].strip()}
-        filled = sorted(k for k in o if have[k])
-        assert not filled, f"the release now has {filled} for {g}: remove them from OVERRIDES in this script"
-
     rows = []
     for r in release:
         g = r["genus"].strip()
-        o = OVERRIDES.get(g, {})
-        authority = o.get("authority", r["lpsn_authority"].strip())
-        type_species = o.get("type_species", r["lpsn_type_species"].strip())
+        authority = r["authority"].strip()
+        type_species = r["type_species"].strip()
         assert authority, f"{g} has no authority in the release"
         assert type_species, f"{g} has no type species in the release"
         rows.append({
@@ -100,7 +81,7 @@ def main():
     placed = sum(1 for r in rows if r["Y_order"])
     unset = sum(1 for r in rows if not r["Fermentation_type"])
     print(f"wrote {os.path.relpath(out, REPO)}: {len(rows)} genera, {placed} placed on the tree, "
-          f"{unset} without a fermentation type; overrides applied: {sorted(OVERRIDES)}")
+          f"{unset} without a fermentation type")
 
 
 if __name__ == "__main__":
