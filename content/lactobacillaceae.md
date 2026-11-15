@@ -3,15 +3,15 @@ title: Lactobacillaceae
 date: 2026-11-11
 ---
 
-<div class="lacto-tree"><picture><source media="(prefers-reduced-motion: reduce)" srcset="lactobacillaceae-banner-20261109.png"><img src="lactobacillaceae-banner-20261109.gif" width="960" height="440" alt="Animation: the 38 genera of Lactobacillaceae appear in the order they were described, each at its place on the family's phylogenetic tree. Beside it: Lactobacillaceae: type strains, fermentation type and lifestyle, updated by Nanzhen Qiao and Michael Gänzle." decoding="async"></picture></div>
+<div class="lacto-tree"><picture><source media="(prefers-reduced-motion: reduce)" srcset="lactobacillaceae-banner-20261110.png"><img src="lactobacillaceae-banner-20261110.gif" width="960" height="440" alt="Animation: the 38 genera of Lactobacillaceae appear in the order they were described, each at its place on the family's phylogenetic tree. Beside it: Lactobacillaceae: type strains, fermentation type and lifestyle, updated by Nanzhen Qiao and Michael Gänzle." decoding="async"></picture></div>
 
 <div class="lacto-card">
 <p class="lacto-hero">38</p>
-<p class="lacto-hero-label">genera currently placed in <em>Lactobacillaceae</em> family, updated on November 9, 2026.</p>
-<div class="lacto-split" role="list" aria-label="Fermentation type across 38 genera: Homofermentative 18, Heterofermentative 18, Unassigned 2.">
-<div class="lacto-split-part lacto-homo" style="flex: 18 1 0" tabindex="0" role="listitem" aria-label="Homofermentative: 18 genera, 47 percent"><span class="lacto-split-value">18</span><span class="lacto-tip" aria-hidden="true"><strong>Homofermentative</strong><span>18 genera &middot; 47%</span></span></div>
+<p class="lacto-hero-label">genera currently placed in <em>Lactobacillaceae</em> family, updated on November 10, 2026.</p>
+<div class="lacto-split" role="list" aria-label="Fermentation type across 38 genera: Homofermentative 19, Heterofermentative 18, Unassigned 1.">
+<div class="lacto-split-part lacto-homo" style="flex: 19 1 0" tabindex="0" role="listitem" aria-label="Homofermentative: 19 genera, 50 percent"><span class="lacto-split-value">19</span><span class="lacto-tip" aria-hidden="true"><strong>Homofermentative</strong><span>19 genera &middot; 50%</span></span></div>
 <div class="lacto-split-part lacto-hetero" style="flex: 18 1 0" tabindex="0" role="listitem" aria-label="Heterofermentative: 18 genera, 47 percent"><span class="lacto-split-value">18</span><span class="lacto-tip" aria-hidden="true"><strong>Heterofermentative</strong><span>18 genera &middot; 47%</span></span></div>
-<div class="lacto-split-part lacto-unassigned" style="flex: 2 1 0" tabindex="0" role="listitem" aria-label="Unassigned: 2 genera, 5 percent"><span class="lacto-split-value lacto-split-value--tight">2</span><span class="lacto-tip" aria-hidden="true"><strong>Unassigned</strong><span>2 genera &middot; 5%</span></span></div>
+<div class="lacto-split-part lacto-unassigned" style="flex: 1 1 0" tabindex="0" role="listitem" aria-label="Unassigned: 1 genera, 3 percent"><span class="lacto-split-value lacto-split-value--tight">1</span><span class="lacto-tip" aria-hidden="true"><strong>Unassigned</strong><span>1 genera &middot; 3%</span></span></div>
 </div>
 <div class="lacto-legend">
 <span class="lacto-key"><span class="lacto-dot lacto-homo"></span>Homofermentative</span>
@@ -25,12 +25,12 @@ date: 2026-11-11
 </div>
 
 <div class="lacto-card">
-<p class="lacto-hero">478</p>
-<p class="lacto-hero-label">species and subspecies currently placed in <em>Lactobacillaceae</em> family (443 species, 35 subspecies), updated on November 11, 2026.</p>
-<div class="lacto-split" role="list" aria-label="Fermentation type across 478 species and subspecies: Homofermentative 229, Heterofermentative 207, Not yet assessed 42.">
+<p class="lacto-hero">477</p>
+<p class="lacto-hero-label">species and subspecies currently placed in <em>Lactobacillaceae</em> family (442 species, 35 subspecies), updated on November 11, 2026.</p>
+<div class="lacto-split" role="list" aria-label="Fermentation type across 477 species and subspecies: Homofermentative 229, Heterofermentative 207, Not yet assessed 41.">
 <div class="lacto-split-part lacto-homo" style="flex: 229 1 0" tabindex="0" role="listitem" aria-label="Homofermentative: 229 species and subspecies, 48 percent"><span class="lacto-split-value">229</span><span class="lacto-tip" aria-hidden="true"><strong>Homofermentative</strong><span>229 species and subspecies &middot; 48%</span></span></div>
 <div class="lacto-split-part lacto-hetero" style="flex: 207 1 0" tabindex="0" role="listitem" aria-label="Heterofermentative: 207 species and subspecies, 43 percent"><span class="lacto-split-value">207</span><span class="lacto-tip" aria-hidden="true"><strong>Heterofermentative</strong><span>207 species and subspecies &middot; 43%</span></span></div>
-<div class="lacto-split-part lacto-unassigned" style="flex: 42 1 0" tabindex="0" role="listitem" aria-label="Not yet assessed: 42 species and subspecies, 9 percent"><span class="lacto-split-value">42</span><span class="lacto-tip" aria-hidden="true"><strong>Not yet assessed</strong><span>42 species and subspecies &middot; 9%</span></span></div>
+<div class="lacto-split-part lacto-unassigned" style="flex: 41 1 0" tabindex="0" role="listitem" aria-label="Not yet assessed: 41 species and subspecies, 9 percent"><span class="lacto-split-value">41</span><span class="lacto-tip" aria-hidden="true"><strong>Not yet assessed</strong><span>41 species and subspecies &middot; 9%</span></span></div>
 </div>
 <div class="lacto-legend">
 <span class="lacto-key"><span class="lacto-dot lacto-homo"></span>Homofermentative</span>
@@ -38,7 +38,7 @@ date: 2026-11-11
 <span class="lacto-key"><span class="lacto-dot lacto-unassigned"></span>Not yet assessed</span>
 </div>
 <div class="lacto-card-foot">
-<p class="lacto-more"><a href="lactobacillaceae-species">All 478 species and subspecies</a> with type strains, genomes, publication DOIs, fermentation type and lifestyle.</p>
+<p class="lacto-more"><a href="lactobacillaceae-species">All 477 species and subspecies</a> with type strains, genomes, publication DOIs, fermentation type and lifestyle.</p>
 <span class="lacto-card-go" aria-hidden="true">👉</span>
 </div>
 </div>

@@ -1,8 +1,8 @@
 {
  "release": "2026-11-11",
- "built": "2026-11-13T22:39:12",
- "audit": "audit of release 2026-11-11: 478 final rows, 61 decisions\nper-row checks failing: none\nrelease checks failing: none",
- "manifest_sha256_16": "e2617046f8f58a5c",
+ "built": "2026-11-14T22:02:37",
+ "audit": "audit of release 2026-11-11: 477 final rows, 61 decisions\nper-row checks failing: none\nrelease checks failing: none",
+ "manifest_sha256_16": "e39e4730de6c09aa",
  "sources": {
   "genus_release": "releases/2026-11-10",
   "lpsn_api": "lpsn/2026-11-11",
@@ -10,14 +10,14 @@
   "ncbi": "ncbi/2026-11-11"
  },
  "counts": {
-  "rows": 487,
-  "species": 443,
+  "rows": 486,
+  "species": 442,
   "subspecies": 35,
   "parent": 9,
   "genera": 38
  },
  "status": {
-  "valid": 476,
+  "valid": 475,
   "not_valid": 8,
   "illegitimate": 2,
   "subspecies_abandoned": 1
