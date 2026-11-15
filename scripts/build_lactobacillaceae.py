@@ -30,11 +30,15 @@ W = 672
 
 
 def tabs(current):
-    """The row that ties the three pages together: Overview, Genera, Species. The page you are on is not a link."""
+    """The row that ties the pages together: Overview, Genera, Species, Old → new names. The page you are on is not a link.
+
+    The names page is a full page load (data-router-ignore): its search box is a script that Quartz's in-site navigation
+    would not run."""
     pages = [("overview", "Overview", "lactobacillaceae"), ("genera", "Genera", "lactobacillaceae-genera"),
-             ("species", "Species", "lactobacillaceae-species")]
+             ("species", "Species", "lactobacillaceae-species"), ("names", "Old → new names", "lactobacillaceae-names")]
     items = [
-        f'<span aria-current="page">{label}</span>' if key == current else f'<a href="{href}">{label}</a>'
+        f'<span aria-current="page">{label}</span>' if key == current
+        else f'<a href="{href}"' + (" data-router-ignore" if key == "names" else "") + f">{label}</a>"
         for key, label, href in pages
     ]
     return '<nav id="top" class="lacto-tabs" aria-label="Lactobacillaceae pages">' + " ".join(items) + "</nav>"

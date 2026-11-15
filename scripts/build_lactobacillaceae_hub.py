@@ -38,6 +38,10 @@ genus_page = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(genus_page)
 esc, segmented_bar = genus_page.esc, genus_page.segmented_bar
 
+spec = importlib.util.spec_from_file_location("names_page", os.path.join(HERE, "build_lactobacillaceae_names.py"))
+names_page = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(names_page)
+
 MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
           "November", "December"]
 
@@ -154,6 +158,15 @@ def main():
     assert hero_of(os.path.join(CONTENT, "lactobacillaceae-species.md")) == n_names, "the species page and the overview disagree on the number of names"
     assert sum(species_ferm.values()) == n_names and sum(genus_ferm.values()) == n_genera, "a fermentation split does not add up"
 
+    # ---- the third box: old names and the names they have now (the numbers the names page itself shows) -----------
+    nm = names_page.summary()
+    def rename_row(kind, label):
+        old, new = nm["change_examples"][kind]
+        eg = names_page.name_html(old) + (f' <span class="lacto-rename-arrow" aria-hidden="true">→</span> {names_page.name_html(new)}' if new else "")
+        return (f'<div class="lacto-rename-row" role="row"><strong role="cell">{nm["counts"][kind]}</strong>'
+                f'<span role="cell">{label}</span><span class="lacto-rename-eg" role="cell">e.g. {eg}</span></div>')
+    rename_rows = "\n".join(rename_row(k, label) for k, label in names_page.CHANGE_LABEL)
+
     iso = max(f"{gy}-{gm:02d}-{gd:02d}", release)  # the page is as new as its newest part
     md = f"""---
 title: Lactobacillaceae
@@ -162,27 +175,35 @@ date: {iso}
 
 <div class="lacto-tree"><picture><source media="(prefers-reduced-motion: reduce)" srcset="{tree_name}.png"><img src="{tree_name}.gif" width="960" height="440" alt="{esc(tree_alt)}" decoding="async"></picture></div>
 
-<div class="lacto-card">
+<section class="lacto-sec">
 <p class="lacto-hero">{n_genera}</p>
 <p class="lacto-hero-label">genera currently placed in <em>Lactobacillaceae</em> family, updated on {genus_asof}.</p>
 {segmented_bar(genus_ferm, n_genera)}
-<div class="lacto-card-foot">
-<p class="lacto-more"><a href="lactobacillaceae-genera">All {n_genera} genera</a> with type species, fermentation type, the year each was proposed, and their order on the tree.</p>
-<span class="lacto-card-go" aria-hidden="true">👉</span>
-</div>
-</div>
+<a class="lacto-go" href="lactobacillaceae-genera">View all {n_genera} genera <span aria-hidden="true">👉</span></a>
+</section>
 
-<div class="lacto-card">
+<section class="lacto-sec">
 <p class="lacto-hero">{n_names}</p>
 <p class="lacto-hero-label">species and subspecies currently placed in <em>Lactobacillaceae</em> family ({n_species} species, {n_sub} subspecies), updated on {species_asof}.</p>
 {segmented_bar(species_ferm, n_names, noun="species and subspecies", unassigned="Not yet assessed")}
-<div class="lacto-card-foot">
-<p class="lacto-more"><a href="lactobacillaceae-species">All {n_names} species and subspecies</a> with type strains, genomes, publication DOIs, fermentation type and lifestyle.</p>
-<span class="lacto-card-go" aria-hidden="true">👉</span>
-</div>
-</div>
+<a class="lacto-go" href="lactobacillaceae-species">View all {n_names} species and subspecies <span aria-hidden="true">👉</span></a>
+</section>
 
-For detailed homofermentative and heterofermentative fermentation, check [Gänzle 2015](https://doi.org/10.1016/j.cofs.2015.03.001) and [Qiao & Gänzle 2026](https://doi.org/10.1016/j.fm.2025.104945). For detailed lifestyle updates, check [Duar et al. 2017](https://doi.org/10.1093/femsre/fux030), [Nanzhen Qiao](https://www.linkedin.com/in/nanzhen/) and [Michael Gänzle](https://scholar.google.com/citations?user=Zc29kvEAAAAJ&hl=en). To check how a former species name maps to its current one, use [LactoTax](https://www.lactobacillus.ualberta.ca/) and [Zheng et al. 2020](https://doi.org/10.1099/ijsem.0.004107).
+<section class="lacto-sec">
+<p class="lacto-hero">{nm['n_old']}</p>
+<p class="lacto-hero-label">old names of lactobacilli and the name each one has now ({nm['n_lactobacillus']} are old <em>Lactobacillus</em> names), updated on {nm['asof']}.</p>
+<div class="lacto-rename" role="table" aria-label="What happened to the old names">
+{rename_rows}
+</div>
+<p class="lacto-breakdown-note">{nm['n_stayed']} species and subspecies that were <em>Lactobacillus</em> before 2020 still are.</p>
+<form class="lacto-sec-find" action="lactobacillaceae-names" method="get" role="search">
+<input type="search" name="q" placeholder="Enter an old species name" aria-label="Old species name" autocomplete="off" autocapitalize="off" spellcheck="false" required />
+<button type="submit">Find the new name</button>
+</form>
+<a class="lacto-go" href="lactobacillaceae-names" data-router-ignore>View all {nm['n_old']} old names <span aria-hidden="true">👉</span></a>
+</section>
+
+For detailed homofermentative and heterofermentative fermentation, check [Gänzle 2015](https://doi.org/10.1016/j.cofs.2015.03.001) and [Qiao & Gänzle 2026](https://doi.org/10.1016/j.fm.2025.104945). For detailed lifestyle updates, check [Duar et al. 2017](https://doi.org/10.1093/femsre/fux030), [Nanzhen Qiao](https://www.linkedin.com/in/nanzhen/) and [Michael Gänzle](https://scholar.google.com/citations?user=Zc29kvEAAAAJ&hl=en).
 """
     with open(OUT, "w", encoding="utf-8") as fh:
         fh.write(md.rstrip("\n") + "\n")

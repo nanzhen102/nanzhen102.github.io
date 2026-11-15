@@ -81,6 +81,8 @@ def chips(r):
 def traits(r):
     f = r["fermentation"]
     ferm = (f'<span class="lacto-dot lacto-{f.lower()}"></span>{esc(f)}' if f in ("Homo", "Hetero") else NOT_ASSESSED)
+    if f in ("Homo", "Hetero") and r["fermentation_from"] == "genus":
+        ferm += ' <span class="lacto-src" title="The genus\'s fermentation type; this species has not been assessed yet">genus</span>'
     life = esc(r["lifestyle"]) if r["lifestyle"] else NOT_ASSESSED
     return f'<span class="lacto-ferm">{ferm}</span><span class="lacto-auth-note">{life}</span>'
 
@@ -108,6 +110,11 @@ def left_out_item(r):
     return f"{name_html(r['name'])} ({esc(r['authority'])}), {status} ({doi}&nbsp;·&nbsp;{link(r['lpsn_url'], 'LPSN')})"
 
 
+def anchor(name):
+    """The id of a name's row: lower case, letters and digits joined by hyphens (the Names page links to it)."""
+    return "sp-" + re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+
+
 def row(r):
     name_cell = f'<td class="lacto-name">{name_html(r["name"])} {chips(r)}<span class="lacto-auth-note">{_authority(r["authority"])}</span></td>'
     if r["kind"] == "parent":
@@ -117,7 +124,7 @@ def row(r):
         cls = "lacto-subrow" if r["kind"] == "subspecies" else "lacto-sp"
         middle = (f'<td class="lacto-traits">{traits(r)}</td><td class="lacto-ts">{esc(r["type_strains"])}</td>'
                   f'<td class="lacto-genome">{genome(r)}</td>')
-    return f'<tr class="{cls}">{name_cell}{middle}<td class="lacto-links">{links(r)}</td></tr>'
+    return f'<tr class="{cls}" id="{anchor(r["name"])}">{name_cell}{middle}<td class="lacto-links">{links(r)}</td></tr>'
 
 
 def main():
@@ -141,6 +148,8 @@ def main():
         want = str(genera[g]["y_order"] or "")
         assert yo == {want}, f"{g}: the genus page puts it at tree position {want!r}, the species release at {yo}"
     real = [r for r in rows if r["kind"] in ("species", "subspecies")]
+    assert all(r["fermentation_from"] in ("species", "genus", "") and bool(r["fermentation"]) == bool(r["fermentation_from"]) for r in rows), "fermentation and fermentation_from disagree"
+    assert all(r["fermentation"] == genera[r["genus"]]["ferm"] for r in real if r["fermentation_from"] == "genus"), "a genus-derived fermentation type is not its genus's"
     left_out = {}
     for r in rows:
         if r["kind"] == "left_out":
@@ -217,7 +226,7 @@ unlisted: true
 
 For detailed lifestyle updates, check [Duar et al. 2017](https://doi.org/{LIFESTYLE_DOI}), and stay tuned to the most recent posts and publications of [Nanzhen Qiao]({LINKEDIN}) and [Michael Gänzle]({GANZLE_SCHOLAR}).
 
-<p class="lacto-keyline"><span class="lacto-dot lacto-homo"></span>homofermentative <span class="lacto-dot lacto-hetero"></span>heterofermentative <span class="lacto-chip">new</span> not in the June 2025 list</p>
+<p class="lacto-keyline"><span class="lacto-dot lacto-homo"></span>homofermentative <span class="lacto-dot lacto-hetero"></span>heterofermentative <span class="lacto-chip">new</span> not in the June 2025 list <span class="lacto-src">genus</span> the genus's fermentation type, species not yet assessed</p>
 
 <p class="lacto-gindex-label"><span aria-hidden="true">\U0001F447</span> Jump to a genus (number of species and subspecies):</p>
 {index}
@@ -225,8 +234,10 @@ For detailed lifestyle updates, check [Duar et al. 2017](https://doi.org/{LIFEST
 {chr(10).join(sections)}
 """
     # ---- the page must say what the data says ---------------------------------------------------------------------
-    assert md.count('<tr class="lacto-sp">') + md.count('<tr class="lacto-subrow">') == total, "table rows and the headline count disagree"
-    assert md.count('<tr class="lacto-parent">') == sum(1 for r in rows if r["kind"] == "parent")
+    assert len(re.findall(r'<tr class="lacto-(?:sp|subrow)" id=', md)) == total, "table rows and the headline count disagree"
+    assert md.count('<tr class="lacto-parent" id=') == sum(1 for r in rows if r["kind"] == "parent")
+    ids = re.findall(r'<tr class="lacto-[a-z]+" id="([^"]+)"', md)
+    assert len(ids) == len(set(ids)), "two rows have the same anchor"
     for status, text in (("not_valid", "not validly published"), ("illegitimate", "illegitimate name"), ("subspecies_abandoned", "subspecies division abandoned")):
         want = sum(1 for r in rows if r["status"] == status and r["kind"] != "left_out")
         assert md.count(f">{text}") == want, f"{want} rows are {text}, but the page labels {md.count('>' + text)}"

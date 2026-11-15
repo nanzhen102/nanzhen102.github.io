@@ -3,7 +3,7 @@ title: Lactobacillaceae genera
 date: 2026-11-10
 ---
 
-<nav id="top" class="lacto-tabs" aria-label="Lactobacillaceae pages"><a href="lactobacillaceae">Overview</a> <span aria-current="page">Genera</span> <a href="lactobacillaceae-species">Species</a></nav>
+<nav id="top" class="lacto-tabs" aria-label="Lactobacillaceae pages"><a href="lactobacillaceae">Overview</a> <span aria-current="page">Genera</span> <a href="lactobacillaceae-species">Species</a> <a href="lactobacillaceae-names" data-router-ignore>Old → new names</a></nav>
 
 <p class="lacto-hero">38</p>
 <p class="lacto-hero-label">genera currently placed in <em>Lactobacillaceae</em> family, updated on November 10, 2026.</p>
