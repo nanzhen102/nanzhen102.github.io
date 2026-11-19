@@ -90,7 +90,7 @@ def rounded_top_rect(x, y, w, h, r):
 # Genus abbreviations. Twelve of the 38 genera begin with "L", so a single
 # initial is ambiguous. These are read from Fig. 1 of Qiao et al. 2022,
 # "After the storm - Perspectives on the taxonomy of Lactobacillaceae",
-# JDS Communications 3(5), doi:10.3168/jdsc.2021-0183.
+# JDS Communications 3(3):222-227, doi:10.3168/jdsc.2021-0183.
 #
 # Marked "inferred": the figure shows the genus but only its type species, so
 # no abbreviated form appears in it. Marked "proposed": the genus was

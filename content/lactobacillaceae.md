@@ -56,3 +56,7 @@ date: 2026-11-11
 </section>
 
 For detailed homofermentative and heterofermentative fermentation, check [Gänzle 2015](https://doi.org/10.1016/j.cofs.2015.03.001) and [Qiao & Gänzle 2026](https://doi.org/10.1016/j.fm.2025.104945). For detailed lifestyle updates, check [Duar et al. 2017](https://doi.org/10.1093/femsre/fux030), [Nanzhen Qiao](https://www.linkedin.com/in/nanzhen/) and [Michael Gänzle](https://scholar.google.com/citations?user=Zc29kvEAAAAJ&hl=en).
+
+We would appreciate your support by citing our work.
+
+[🐝](#top)
