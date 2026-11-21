@@ -60,7 +60,7 @@ unlisted: true
     }).join("");
   }
   function welcome() {
-    return '<div class="lr-msg lr-bot"><p><strong>🐾 I am LactoRador, your <em>Lactobacillaceae</em> retriever here!</strong></p><p>Ask me about ' +
+    return '<div class="lr-msg lr-bot"><p><strong>I am LactoRador, your <em>Lactobacillaceae</em> retriever here!</strong></p><p>Ask me about ' +
       "<em>Lactobacillaceae</em> names, genera, type strains and genomes. Try:</p><p class=\"lr-examples\">" +
       EXAMPLES.map(function (q) { return '<button type="button" data-lr-q="' + esc(q) + '">' + esc(q) + "</button>"; }).join(" ") +
       "</p></div>";
@@ -101,6 +101,9 @@ unlisted: true
       .then(function (r) {
         if (r.ok) return r.json();
         var e = new Error(r.status === 429 ? "Too many questions in the last hour; please try again later."
+          // 422: the server's input check (question 2-500 characters; a lone emoji counts as 1)
+          : r.status === 422 ? "Woof? Please ask a question in words (up to 500 characters), " +
+            "e.g. “What is Lactobacillus casei called now?”"
           : "The assistant returned an error (" + r.status + ").");
         e.shown = true;
         throw e;
