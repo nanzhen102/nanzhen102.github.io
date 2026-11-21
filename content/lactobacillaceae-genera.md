@@ -20,7 +20,6 @@ date: 2026-11-10
   var KEY = "lactorador-panel";
   var SIZE_KEY = "lactorador-size";
   var EXAMPLES = [
-    "What is Lactobacillus plantarum called now?",
     "What is the type species of Lacticaseibacillus?",
     "Is Lactobacillus reuteri homo- or heterofermentative?",
     "List the genera in phylogenetic order.",
@@ -47,7 +46,13 @@ date: 2026-11-10
   function md(text) {
     var h = esc(text);
     h = h.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-    h = h.replace(/(^|[\s(])(https?:\/\/[^\s<)]+)/g, '$1<a href="$2" target="_blank" rel="noopener">$2</a>');
+    // A bare link: punctuation right after it (". , ; : ! ?" or a closing quote) ends the sentence, not the link.
+    h = h.replace(/(^|[\s(])(https?:\/\/[^\s<)]+)/g, function (m, pre, url) {
+      var tail = url.match(/[.,;:!?'"]+$/);
+      tail = tail ? tail[0] : "";
+      url = url.slice(0, url.length - tail.length);
+      return pre + '<a href="' + url + '" target="_blank" rel="noopener">' + url + "</a>" + tail;
+    });
     h = h.replace(/\*\*((?:[^*]|\*[^*\n]+\*)+?)\*\*/g, "<strong>$1</strong>"); // bold may hold *italics*
     h = h.replace(/\*([^*\n]+)\*/g, "<em>$1</em>");
     h = h.replace(/(^|\n)_\(([^)]*)\)_/g, '$1<span class="lr-small">($2)</span>');
