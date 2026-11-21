@@ -173,6 +173,8 @@ title: Lactobacillaceae
 date: {iso}
 ---
 
+{genus_page.ask_button()}
+
 <div class="lacto-tree"><picture><source media="(prefers-reduced-motion: reduce)" srcset="{tree_name}.png"><img src="{tree_name}.gif" width="960" height="440" alt="{esc(tree_alt)}" decoding="async"></picture></div>
 
 <section class="lacto-sec">

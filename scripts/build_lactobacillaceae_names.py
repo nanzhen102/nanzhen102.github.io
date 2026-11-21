@@ -204,6 +204,7 @@ unlisted: true
 <input id="name-search" class="lacto-find-input" type="search" placeholder="e.g. Lactobacillus casei" autocomplete="off" autocapitalize="off" spellcheck="false" />
 <div id="name-results" class="lacto-find-results" aria-live="polite"><p class="lacto-find-hint">Try {tries}</p></div>
 </div>
+<p class="lacto-find-hint">Want the paper, the type-strain genome or why a name was excluded? <a href="lactobacillaceae#ask" data-router-ignore data-lr-open>Ask LactoRador</a></p>
 <script type="application/json" id="name-data">{blob}</script>
 <script>{script}</script>
 

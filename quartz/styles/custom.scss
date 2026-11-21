@@ -271,6 +271,10 @@ body[data-slug="posts/index"] .content-meta {
   --lacto-hetero: #205ea6; // Flexoki blue-600
   --lacto-unassigned: #878580; // Flexoki base-500, mode-invariant
   --lacto-muted: #878580;
+  --lr-bubble: #eeeef3; // the visitor's question bubble in the chat box
+  --lr-fab: #244057; // the "Ask LactoRador" button: the banner's right-most blue, white text
+  --lr-send: #e4e4f7; // the send button: pale lavender, next to the #eeeef3 bubbles
+  --lr-send-ink: #254159; // its arrow, and the typing box's border while typing
 }
 
 :root[saved-theme="dark"] {
@@ -278,6 +282,10 @@ body[data-slug="posts/index"] .content-meta {
   // enough protanopia separation from the blue on the dark surface.
   --lacto-homo: #d55181;
   --lacto-hetero: #4385be; // Flexoki blue-400
+  --lr-bubble: #2c2c35;
+  --lr-fab: #2f5677; // a step lighter, so the button still stands out on the dark page
+  --lr-send: #e4e4f7;
+  --lr-send-ink: #254159;
 }
 
 // The species tables are wider than the text column: let them use more of the
@@ -1099,6 +1107,35 @@ body[data-slug="lactobacillaceae-names"] {
     }
   }
 
+  // "Ask LactoRador": fixed at the bottom right of every Lactobacillaceae page.
+  .lacto-ask-fab {
+    position: fixed;
+    right: 1.2rem;
+    bottom: 1.2rem;
+    z-index: 50;
+    padding: 0.55rem 1rem;
+    border-radius: 999px;
+    background: var(--lr-fab);
+    color: #fff !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+
+    span {
+      margin-right: 0.35em;
+      filter: brightness(0) invert(1); // the 🐾 emoji drawn white
+    }
+
+    &:hover {
+      opacity: 0.9;
+    }
+
+    @media print {
+      display: none;
+    }
+  }
+
   // The overview's three sections: genera, species, old and new names. Flat, with a thin rule between them, and one
   // button at the foot of each that opens its page.
   .lacto-sec {
@@ -1205,5 +1242,264 @@ body[data-slug="lactobacillaceae-names"] {
     .lacto-narrow .lacto-tick-x {
       text-anchor: middle;
     }
+  }
+}
+
+// LactoRador chat (scripts/lactorador_chat.js): the box (.lr-panel, [data-lr-box]) that the "🐾 Ask LactoRador"
+// button opens at the bottom right of every Lactobacillaceae page.
+[data-lr-box] {
+  .lr-log {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    overflow-y: auto;
+  }
+  .lr-msg {
+    padding: 0.5rem 0.75rem;
+    border-radius: 10px;
+    line-height: 1.5;
+    font-size: 0.92rem;
+    overflow-wrap: anywhere;
+
+    p {
+      margin: 0.3rem 0;
+    }
+    ul {
+      margin: 0.3rem 0;
+      padding-left: 1.2rem;
+    }
+  }
+  .lr-user {
+    align-self: flex-end;
+    max-width: 85%;
+    background: var(--lr-bubble);
+    border-radius: 14px;
+  }
+  .lr-bot {
+    align-self: stretch;
+  }
+  .lr-wait {
+    color: var(--gray);
+    font-style: italic;
+  }
+  .lr-error {
+    border: 1px solid var(--secondary);
+  }
+  .lr-meta,
+  .lr-small {
+    font-size: 0.78rem;
+    color: var(--gray);
+  }
+  .lr-caution {
+    font-style: italic;
+  }
+  // Copy, thumbs up, thumbs down: small grey line icons under each answer.
+  .lr-rate {
+    display: flex;
+    align-items: center;
+    gap: 0.15rem;
+    margin-top: 0.3rem;
+    font-size: 0.78rem;
+    color: var(--gray);
+
+    button {
+      display: inline-flex;
+      padding: 0.3rem;
+      border: 0;
+      border-radius: 6px;
+      background: none;
+      color: var(--gray);
+      cursor: pointer;
+
+      &:hover:not(:disabled) {
+        background: var(--lightgray);
+        color: var(--dark);
+      }
+      &:disabled {
+        cursor: default;
+      }
+      &.lr-chosen {
+        color: var(--secondary);
+      }
+    }
+    .lr-thanks {
+      margin-left: 0.4rem;
+    }
+  }
+  .lr-examples button {
+    margin: 0.2rem 0.3rem 0.2rem 0;
+    padding: 0.15rem 0.6rem;
+    border: 1px solid var(--lightgray);
+    border-radius: 14px;
+    background: none;
+    color: var(--dark);
+    font: inherit;
+    font-size: 0.85rem;
+    text-align: left;
+    cursor: pointer;
+  }
+  form {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+  .lr-input {
+    flex: 1;
+    min-width: 0;
+    padding: 0.55rem 0.75rem;
+    border: 1px solid var(--lightgray);
+    border-radius: 10px;
+    background: var(--light);
+    color: var(--dark);
+    font: inherit;
+
+    &:focus {
+      outline: none;
+      border-color: var(--lr-send-ink);
+    }
+  }
+  .lr-send {
+    padding: 0.5rem 0.9rem;
+    border: 0;
+    border-radius: 10px;
+    background: var(--lr-send);
+    color: var(--lr-send-ink);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .lr-send:disabled,
+  .lr-input:disabled {
+    opacity: 0.6;
+  }
+  .lacto-sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}
+
+// The chat panel: a small box at the bottom right, where the button sits. Hidden until opened.
+.lr-panel {
+  position: fixed;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: min(380px, calc(100vw - 1.5rem));
+  height: min(75vh, 680px);
+  min-height: 300px;
+  max-width: calc(100vw - 1.5rem);
+  max-height: calc(100vh - 1.5rem);
+  padding: 0 0.9rem 0.6rem;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 14px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+  transform: translateY(12px);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    transform 0.18s ease,
+    opacity 0.18s ease,
+    visibility 0.18s;
+
+  @media (max-width: 600px) {
+    right: 0.75rem;
+    bottom: 0.75rem;
+    height: 75vh;
+  }
+
+  // Drag handle at the top-left corner: drag to make the box wider or taller (the bottom-right corner stays put).
+  .lr-grip {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 12px;
+    height: 12px;
+    cursor: nwse-resize;
+    touch-action: none;
+    background: linear-gradient(
+      135deg,
+      var(--lacto-muted) 0 12%,
+      transparent 12% 38%,
+      var(--lacto-muted) 38% 50%,
+      transparent 50%
+    );
+    opacity: 0.7;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &.lr-open {
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+  }
+  .lr-head {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.8rem 0 0.6rem;
+    border-bottom: 1px solid var(--lightgray);
+
+    strong {
+      flex: 1;
+      padding-left: 0.6rem;
+    }
+  }
+  .lr-icon {
+    width: 2rem;
+    height: 2rem;
+    border: 0;
+    border-radius: 6px;
+    background: none;
+    color: var(--gray);
+    font-size: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      background: var(--lightgray);
+      color: var(--dark);
+    }
+  }
+  .lr-log {
+    flex: 1;
+    padding: 0.75rem 0;
+  }
+  form {
+    margin-top: 0.25rem;
+  }
+  .lr-send {
+    padding: 0.5rem 0.8rem;
+  }
+  .lr-foot {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--gray);
+  }
+  @media print {
+    display: none;
+  }
+}
+
+// While the panel is open, its button is not needed.
+html.lr-panel-open .lacto-ask-fab {
+  display: none;
+}
+
+// While the chat box is being resized: no text selection, and no slide animation lag.
+html.lr-resizing {
+  user-select: none;
+
+  .lr-panel {
+    transition: none;
   }
 }

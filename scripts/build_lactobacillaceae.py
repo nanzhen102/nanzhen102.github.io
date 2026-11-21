@@ -41,7 +41,22 @@ def tabs(current):
         else f'<a href="{href}"' + (" data-router-ignore" if key == "names" else "") + f">{label}</a>"
         for key, label, href in pages
     ]
-    return '<nav id="top" class="lacto-tabs" aria-label="Lactobacillaceae pages">' + " ".join(items) + "</nav>"
+    return '<nav id="top" class="lacto-tabs" aria-label="Lactobacillaceae pages">' + " ".join(items) + "</nav>" + ask_button()
+
+
+LACTORADOR_ENDPOINT = "https://lactorador-api.onrender.com/api/ask"
+
+
+def ask_button():
+    """The "🐾 Ask LactoRador" button fixed at the bottom right of every Lactobacillaceae page, and the chat script
+    (scripts/lactorador_chat.js, copied from the LactoRador repo) that opens a chat box there, on the same page. Without the
+    script (e.g. reached by in-site navigation before any Lactobacillaceae page loaded it), the button reloads the overview
+    with #ask, which opens the box."""
+    js = os.path.join(os.path.dirname(os.path.abspath(__file__)), "lactorador_chat.js")
+    with open(js, encoding="utf-8") as f:
+        script = "\n".join(l for l in f.read().splitlines() if l.strip())
+    return (f'\n<a class="lacto-ask-fab" href="lactobacillaceae#ask" data-router-ignore data-endpoint="{LACTORADOR_ENDPOINT}" '
+            f'aria-expanded="false"><span aria-hidden="true">🐾</span> Ask LactoRador</a>\n<script>{script}</script>')
 
 
 def esc(s):
