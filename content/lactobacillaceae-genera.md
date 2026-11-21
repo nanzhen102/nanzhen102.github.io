@@ -12,7 +12,7 @@ For detailed homofermentative and heterofermentative fermentation, check
 [Gänzle 2015](https://doi.org/10.1016/j.cofs.2015.03.001) and
 [Qiao & Gänzle 2026](https://doi.org/10.1016/j.fm.2025.104945).
 
-Today's family is the union of two. _Lactobacillus_ (1901), _Pediococcus_ (1903), and _Paralactobacillus_ (2000) made up _Lactobacillaceae_; _Leuconostoc_ (1878), _Weissella_ (1994), _Oenococcus_ (1995), _Fructobacillus_ (2008), and _Convivina_ (2015) sat in _Leuconostocaceae_. [Zheng et al. 2020](https://doi.org/10.1099/ijsem.0.004107) merged the two and split the old, sprawling _Lactobacillus_ into 22 genera on whole-genome evidence. To check how a former species name maps to its current one, use [lactotax](https://www.lactobacillus.ualberta.ca/).
+Today's family is the union of two. _Lactobacillus_ (1901), _Pediococcus_ (1903), and _Paralactobacillus_ (2000) made up _Lactobacillaceae_; _Leuconostoc_ (1878), _Weissella_ (1994), _Oenococcus_ (1995), _Fructobacillus_ (2008), and _Convivina_ (2015) sat in _Leuconostocaceae_. [Zheng et al. 2020](https://doi.org/10.1099/ijsem.0.004107) merged the two and split the old, sprawling _Lactobacillus_ into 22 genera on whole-genome evidence.
 
 ## All 38 genera
 
