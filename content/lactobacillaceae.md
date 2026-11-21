@@ -59,8 +59,8 @@ date: 2026-11-11
     }).join("");
   }
   function welcome() {
-    return '<div class="lr-msg lr-bot"><p>Woof woof, I am LactoRador, your personal assistant here! Ask me about ' +
-      "<em>Lactobacillaceae</em> names, genera, type strains and genomes.</p><p>Try:</p><p class=\"lr-examples\">" +
+    return '<div class="lr-msg lr-bot"><p>Woof woof, I am LactoRador, your <em>Lactobacillaceae</em> retriever here!</p><p>Ask me about ' +
+      "<em>Lactobacillaceae</em> names, genera, type strains and genomes. Try:</p><p class=\"lr-examples\">" +
       EXAMPLES.map(function (q) { return '<button type="button" data-lr-q="' + esc(q) + '">' + esc(q) + "</button>"; }).join(" ") +
       "</p></div>";
   }
