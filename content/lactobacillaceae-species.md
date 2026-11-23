@@ -5,7 +5,7 @@ unlisted: true
 ---
 
 <nav id="top" class="lacto-tabs" aria-label="Lactobacillaceae pages"><a href="lactobacillaceae">Overview</a> <a href="lactobacillaceae-genera">Genera</a> <span aria-current="page">Species</span> <a href="lactobacillaceae-names" data-router-ignore>Old → new names</a></nav>
-<a class="lacto-ask-fab" href="lactobacillaceae#ask" data-router-ignore data-endpoint="https://lactorador-api.onrender.com/api/ask" aria-expanded="false">Ask <em>Lactobacillaceae</em>AI</a>
+<a class="lacto-ask-fab" href="lactobacillaceae#ask" data-router-ignore data-endpoint="https://lactorador-api.onrender.com/api/ask" aria-expanded="false"><svg class="lacto-ask-icon" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><rect x="0.5" y="9" width="11" height="6" rx="3" fill="currentColor"/><rect x="12.5" y="9" width="11" height="6" rx="3" fill="currentColor" opacity="0.7"/></svg><span>Ask <em>Lactobacillaceae</em>AI</span></a>
 <script>// Copied from 11_agent/lactorador/web/lactorador_chat.js by copy_to_site.py; edit it there.
 /* LactobacillaceaeAI chat for the Lactobacillaceae pages (Quartz site). No libraries.
    The "Ask LactobacillaceaeAI" button (a.lacto-ask-fab[data-endpoint]) on every Lactobacillaceae page
@@ -202,7 +202,7 @@ unlisted: true
     p.setAttribute("aria-label", "Ask LactobacillaceaeAI");
     p.innerHTML =
       '<div class="lr-grip" title="Drag to resize; double-click to reset" aria-hidden="true"></div>' +
-      '<div class="lr-head"><strong><em>Lactobacillaceae</em>AI</strong>' +
+      '<div class="lr-head"><strong><svg class="lr-logo" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><rect x="0.5" y="9" width="11" height="6" rx="3" fill="currentColor"/><rect x="12.5" y="9" width="11" height="6" rx="3" fill="currentColor" opacity="0.7"/></svg><em>Lactobacillaceae</em>AI</strong>' +
       '<button type="button" class="lr-icon" data-lr-clear title="New chat" aria-label="New chat">↺</button>' +
       '<button type="button" class="lr-icon" data-lr-close title="Close" aria-label="Close">✕</button></div>' +
       '<div class="lr-log" aria-live="polite">' + welcome() + "</div>" +
@@ -324,7 +324,7 @@ unlisted: true
 <p class="lacto-hero">477</p>
 <p class="lacto-hero-label">species and subspecies currently placed in <em>Lactobacillaceae</em> family (442 species, 35 subspecies), updated on November 11, 2026.</p>
 
-For detailed lifestyle updates, check [Duar et al. 2017](https://doi.org/10.1093/femsre/fux030), and stay tuned to the most recent posts and publications of [Nanzhen Qiao](https://www.linkedin.com/in/nanzhen/) and [Michael Gänzle](https://scholar.google.com/citations?user=Zc29kvEAAAAJ&hl=en).
+For detailed lifestyle updates, check [Qiao 2025](https://doi.org/10.7939/83003) (PhD thesis, Ch. 6; reviewed with Michael Gänzle in June 2025), with [Duar et al. 2017](https://doi.org/10.1093/femsre/fux030) for the original categories, and stay tuned to the most recent posts and publications of [Nanzhen Qiao](https://www.linkedin.com/in/nanzhen/) and [Michael Gänzle](https://scholar.google.com/citations?user=Zc29kvEAAAAJ&hl=en).
 
 <p class="lacto-keyline"><span class="lacto-dot lacto-homo"></span>homofermentative <span class="lacto-dot lacto-hetero"></span>heterofermentative <span class="lacto-chip">new</span> not in the June 2025 list <span class="lacto-src">genus</span> the genus's fermentation type, species not yet assessed</p>
 

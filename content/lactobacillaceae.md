@@ -4,7 +4,7 @@ date: 2026-11-11
 ---
 
 
-<a class="lacto-ask-fab" href="lactobacillaceae#ask" data-router-ignore data-endpoint="https://lactorador-api.onrender.com/api/ask" aria-expanded="false">Ask <em>Lactobacillaceae</em>AI</a>
+<a class="lacto-ask-fab" href="lactobacillaceae#ask" data-router-ignore data-endpoint="https://lactorador-api.onrender.com/api/ask" aria-expanded="false"><svg class="lacto-ask-icon" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><rect x="0.5" y="9" width="11" height="6" rx="3" fill="currentColor"/><rect x="12.5" y="9" width="11" height="6" rx="3" fill="currentColor" opacity="0.7"/></svg><span>Ask <em>Lactobacillaceae</em>AI</span></a>
 <script>// Copied from 11_agent/lactorador/web/lactorador_chat.js by copy_to_site.py; edit it there.
 /* LactobacillaceaeAI chat for the Lactobacillaceae pages (Quartz site). No libraries.
    The "Ask LactobacillaceaeAI" button (a.lacto-ask-fab[data-endpoint]) on every Lactobacillaceae page
@@ -201,7 +201,7 @@ date: 2026-11-11
     p.setAttribute("aria-label", "Ask LactobacillaceaeAI");
     p.innerHTML =
       '<div class="lr-grip" title="Drag to resize; double-click to reset" aria-hidden="true"></div>' +
-      '<div class="lr-head"><strong><em>Lactobacillaceae</em>AI</strong>' +
+      '<div class="lr-head"><strong><svg class="lr-logo" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><rect x="0.5" y="9" width="11" height="6" rx="3" fill="currentColor"/><rect x="12.5" y="9" width="11" height="6" rx="3" fill="currentColor" opacity="0.7"/></svg><em>Lactobacillaceae</em>AI</strong>' +
       '<button type="button" class="lr-icon" data-lr-clear title="New chat" aria-label="New chat">↺</button>' +
       '<button type="button" class="lr-icon" data-lr-close title="Close" aria-label="Close">✕</button></div>' +
       '<div class="lr-log" aria-live="polite">' + welcome() + "</div>" +
@@ -355,12 +355,12 @@ date: 2026-11-11
 </section>
 
 <section class="lacto-sec">
-<p class="lacto-hero">302</p>
-<p class="lacto-hero-label">old names of lactobacilli and the name each one has now (292 are old <em>Lactobacillus</em> names), updated on November 14, 2026.</p>
+<p class="lacto-hero">289</p>
+<p class="lacto-hero-label">old names of lactobacilli and the name each one has now (281 are old <em>Lactobacillus</em> names), updated on November 23, 2026.</p>
 <div class="lacto-rename" role="table" aria-label="What happened to the old names">
-<div class="lacto-rename-row" role="row"><strong role="cell">248</strong><span role="cell">got a new genus name; the species name stayed</span><span class="lacto-rename-eg" role="cell">e.g. <em>Lactobacillus casei</em> <span class="lacto-rename-arrow" aria-hidden="true">→</span> <em>Lacticaseibacillus casei</em></span></div>
-<div class="lacto-rename-row" role="row"><strong role="cell">33</strong><span role="cell">got a new genus name and a different species or subspecies name</span><span class="lacto-rename-eg" role="cell">e.g. <em>Lactobacillus cellobiosus</em> <span class="lacto-rename-arrow" aria-hidden="true">→</span> <em>Limosilactobacillus fermentum</em></span></div>
-<div class="lacto-rename-row" role="row"><strong role="cell">13</strong><span role="cell">stayed in the same genus under another name</span><span class="lacto-rename-eg" role="cell">e.g. <em>Lactobacillus bulgaricus</em> <span class="lacto-rename-arrow" aria-hidden="true">→</span> <em>Lactobacillus delbrueckii</em> subsp. <em>bulgaricus</em></span></div>
+<div class="lacto-rename-row" role="row"><strong role="cell">241</strong><span role="cell">got a new genus name; the species name stayed</span><span class="lacto-rename-eg" role="cell">e.g. <em>Lactobacillus casei</em> <span class="lacto-rename-arrow" aria-hidden="true">→</span> <em>Lacticaseibacillus casei</em></span></div>
+<div class="lacto-rename-row" role="row"><strong role="cell">28</strong><span role="cell">got a new genus name and a different species or subspecies name</span><span class="lacto-rename-eg" role="cell">e.g. <em>Lactobacillus cellobiosus</em> <span class="lacto-rename-arrow" aria-hidden="true">→</span> <em>Limosilactobacillus fermentum</em></span></div>
+<div class="lacto-rename-row" role="row"><strong role="cell">12</strong><span role="cell">stayed in the same genus under another name</span><span class="lacto-rename-eg" role="cell">e.g. <em>Lactobacillus bulgaricus</em> <span class="lacto-rename-arrow" aria-hidden="true">→</span> <em>Lactobacillus delbrueckii</em> subsp. <em>bulgaricus</em></span></div>
 <div class="lacto-rename-row" role="row"><strong role="cell">6</strong><span role="cell">are no longer in <em>Lactobacillaceae</em></span><span class="lacto-rename-eg" role="cell">e.g. <em>Lactobacillus xylosus</em> <span class="lacto-rename-arrow" aria-hidden="true">→</span> <em>Lactococcus lactis</em></span></div>
 <div class="lacto-rename-row" role="row"><strong role="cell">2</strong><span role="cell">have no valid name today</span><span class="lacto-rename-eg" role="cell">e.g. <em>Lactobacillus rogosae</em></span></div>
 </div>
@@ -369,10 +369,10 @@ date: 2026-11-11
 <input type="search" name="q" placeholder="Enter an old species name" aria-label="Old species name" autocomplete="off" autocapitalize="off" spellcheck="false" required />
 <button type="submit">Find the new name</button>
 </form>
-<a class="lacto-go" href="lactobacillaceae-names" data-router-ignore>View all 302 old names <span aria-hidden="true">👉</span></a>
+<a class="lacto-go" href="lactobacillaceae-names" data-router-ignore>View all 289 old names <span aria-hidden="true">👉</span></a>
 </section>
 
-For detailed homofermentative and heterofermentative fermentation, check [Gänzle 2015](https://doi.org/10.1016/j.cofs.2015.03.001) and [Qiao & Gänzle 2026](https://doi.org/10.1016/j.fm.2025.104945). For detailed lifestyle updates, check [Duar et al. 2017](https://doi.org/10.1093/femsre/fux030), [Nanzhen Qiao](https://www.linkedin.com/in/nanzhen/) and [Michael Gänzle](https://scholar.google.com/citations?user=Zc29kvEAAAAJ&hl=en).
+For detailed homofermentative and heterofermentative fermentation, check [Gänzle 2015](https://doi.org/10.1016/j.cofs.2015.03.001) and [Qiao & Gänzle 2026](https://doi.org/10.1016/j.fm.2025.104945). For detailed lifestyle updates, check [Qiao 2025](https://doi.org/10.7939/83003) (PhD thesis, Ch. 6), with [Duar et al. 2017](https://doi.org/10.1093/femsre/fux030) for the original categories, [Nanzhen Qiao](https://www.linkedin.com/in/nanzhen/) and [Michael Gänzle](https://scholar.google.com/citations?user=Zc29kvEAAAAJ&hl=en).
 
 If these lists help your work, please cite our work. For questions or corrections, connect with [Nanzhen Qiao on LinkedIn](https://www.linkedin.com/in/nanzhen/).
 

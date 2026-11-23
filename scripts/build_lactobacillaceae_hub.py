@@ -205,7 +205,7 @@ date: {iso}
 <a class="lacto-go" href="lactobacillaceae-names" data-router-ignore>View all {nm['n_old']} old names <span aria-hidden="true">👉</span></a>
 </section>
 
-For detailed homofermentative and heterofermentative fermentation, check [Gänzle 2015](https://doi.org/10.1016/j.cofs.2015.03.001) and [Qiao & Gänzle 2026](https://doi.org/10.1016/j.fm.2025.104945). For detailed lifestyle updates, check [Duar et al. 2017](https://doi.org/10.1093/femsre/fux030), [Nanzhen Qiao](https://www.linkedin.com/in/nanzhen/) and [Michael Gänzle](https://scholar.google.com/citations?user=Zc29kvEAAAAJ&hl=en).
+For detailed homofermentative and heterofermentative fermentation, check [Gänzle 2015](https://doi.org/10.1016/j.cofs.2015.03.001) and [Qiao & Gänzle 2026](https://doi.org/10.1016/j.fm.2025.104945). For detailed lifestyle updates, check [Qiao 2025](https://doi.org/10.7939/83003) (PhD thesis, Ch. 6), with [Duar et al. 2017](https://doi.org/10.1093/femsre/fux030) for the original categories, [Nanzhen Qiao](https://www.linkedin.com/in/nanzhen/) and [Michael Gänzle](https://scholar.google.com/citations?user=Zc29kvEAAAAJ&hl=en).
 
 If these lists help your work, please cite our work. For questions or corrections, connect with [Nanzhen Qiao on LinkedIn](https://www.linkedin.com/in/nanzhen/).
 

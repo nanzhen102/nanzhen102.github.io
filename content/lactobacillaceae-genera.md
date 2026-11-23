@@ -4,7 +4,7 @@ date: 2026-11-10
 ---
 
 <nav id="top" class="lacto-tabs" aria-label="Lactobacillaceae pages"><a href="lactobacillaceae">Overview</a> <span aria-current="page">Genera</span> <a href="lactobacillaceae-species">Species</a> <a href="lactobacillaceae-names" data-router-ignore>Old → new names</a></nav>
-<a class="lacto-ask-fab" href="lactobacillaceae#ask" data-router-ignore data-endpoint="https://lactorador-api.onrender.com/api/ask" aria-expanded="false">Ask <em>Lactobacillaceae</em>AI</a>
+<a class="lacto-ask-fab" href="lactobacillaceae#ask" data-router-ignore data-endpoint="https://lactorador-api.onrender.com/api/ask" aria-expanded="false"><svg class="lacto-ask-icon" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><rect x="0.5" y="9" width="11" height="6" rx="3" fill="currentColor"/><rect x="12.5" y="9" width="11" height="6" rx="3" fill="currentColor" opacity="0.7"/></svg><span>Ask <em>Lactobacillaceae</em>AI</span></a>
 <script>// Copied from 11_agent/lactorador/web/lactorador_chat.js by copy_to_site.py; edit it there.
 /* LactobacillaceaeAI chat for the Lactobacillaceae pages (Quartz site). No libraries.
    The "Ask LactobacillaceaeAI" button (a.lacto-ask-fab[data-endpoint]) on every Lactobacillaceae page
@@ -201,7 +201,7 @@ date: 2026-11-10
     p.setAttribute("aria-label", "Ask LactobacillaceaeAI");
     p.innerHTML =
       '<div class="lr-grip" title="Drag to resize; double-click to reset" aria-hidden="true"></div>' +
-      '<div class="lr-head"><strong><em>Lactobacillaceae</em>AI</strong>' +
+      '<div class="lr-head"><strong><svg class="lr-logo" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><rect x="0.5" y="9" width="11" height="6" rx="3" fill="currentColor"/><rect x="12.5" y="9" width="11" height="6" rx="3" fill="currentColor" opacity="0.7"/></svg><em>Lactobacillaceae</em>AI</strong>' +
       '<button type="button" class="lr-icon" data-lr-clear title="New chat" aria-label="New chat">↺</button>' +
       '<button type="button" class="lr-icon" data-lr-close title="Close" aria-label="Close">✕</button></div>' +
       '<div class="lr-log" aria-live="polite">' + welcome() + "</div>" +

@@ -200,7 +200,7 @@
     p.setAttribute("aria-label", "Ask LactobacillaceaeAI");
     p.innerHTML =
       '<div class="lr-grip" title="Drag to resize; double-click to reset" aria-hidden="true"></div>' +
-      '<div class="lr-head"><strong><em>Lactobacillaceae</em>AI</strong>' +
+      '<div class="lr-head"><strong><svg class="lr-logo" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><rect x="0.5" y="9" width="11" height="6" rx="3" fill="currentColor"/><rect x="12.5" y="9" width="11" height="6" rx="3" fill="currentColor" opacity="0.7"/></svg><em>Lactobacillaceae</em>AI</strong>' +
       '<button type="button" class="lr-icon" data-lr-clear title="New chat" aria-label="New chat">↺</button>' +
       '<button type="button" class="lr-icon" data-lr-close title="Close" aria-label="Close">✕</button></div>' +
       '<div class="lr-log" aria-live="polite">' + welcome() + "</div>" +

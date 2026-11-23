@@ -56,7 +56,7 @@ def ask_button():
     with open(js, encoding="utf-8") as f:
         script = "\n".join(l for l in f.read().splitlines() if l.strip())
     return (f'\n<a class="lacto-ask-fab" href="lactobacillaceae#ask" data-router-ignore data-endpoint="{LACTORADOR_ENDPOINT}" '
-            f'aria-expanded="false">Ask <em>Lactobacillaceae</em>AI</a>\n<script>{script}</script>')
+            f'aria-expanded="false"><svg class="lacto-ask-icon" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><rect x="0.5" y="9" width="11" height="6" rx="3" fill="currentColor"/><rect x="12.5" y="9" width="11" height="6" rx="3" fill="currentColor" opacity="0.7"/></svg><span>Ask <em>Lactobacillaceae</em>AI</span></a>\n<script>{script}</script>')
 
 
 def esc(s):

@@ -275,6 +275,7 @@ body[data-slug="posts/index"] .content-meta {
   --lr-fab: #244057; // the "Ask LactobacillaceaeAI" button: the banner's right-most blue, white text
   --lr-send: #e4e4f7; // the send button: pale lavender, next to the #eeeef3 bubbles
   --lr-send-ink: #254159; // its arrow, and the typing box's border while typing
+  --lr-logo: #244057; // the two-rod icon in the chat box's header: the button's blue
 }
 
 :root[saved-theme="dark"] {
@@ -286,6 +287,7 @@ body[data-slug="posts/index"] .content-meta {
   --lr-fab: #2f5677; // a step lighter, so the button still stands out on the dark page
   --lr-send: #e4e4f7;
   --lr-send-ink: #254159;
+  --lr-logo: #4385be; // Flexoki blue-400: the button's blue is too dark to see on the dark panel
 }
 
 // The species tables are wider than the text column: let them use more of the
@@ -1121,9 +1123,26 @@ body[data-slug="lactobacillaceae-names"] {
     font-weight: 600;
     text-decoration: none !important;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+
+    // Two rod-shaped cells in a chain (flat SVG, currentColor): the family's own shape, not a generic AI sparkle.
+    .lacto-ask-icon {
+      flex: none;
+      transform: rotate(-30deg);
+    }
 
     &:hover {
       opacity: 0.9;
+    }
+
+    // Phones: a little smaller and tighter to the corner, so it covers less of the page.
+    @media (max-width: 600px) {
+      right: 0.75rem;
+      bottom: 0.75rem;
+      padding: 0.45rem 0.8rem;
+      font-size: 0.82rem;
     }
 
     @media print {
@@ -1448,6 +1467,14 @@ body[data-slug="lactobacillaceae-names"] {
     strong {
       flex: 1;
       padding-left: 0.6rem;
+    }
+
+    // The same two-rod icon as the Ask button, in the button's blue.
+    .lr-logo {
+      vertical-align: -4px;
+      margin-right: 0.4rem;
+      transform: rotate(-30deg);
+      color: var(--lr-logo);
     }
   }
   .lr-icon {

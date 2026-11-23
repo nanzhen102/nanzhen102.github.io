@@ -224,7 +224,7 @@ unlisted: true
 <p class="lacto-hero">{total}</p>
 <p class="lacto-hero-label">species and subspecies currently placed in <em>Lactobacillaceae</em> family ({n_species} species, {n_sub} subspecies), updated on {asof}.</p>
 
-For detailed lifestyle updates, check [Duar et al. 2017](https://doi.org/{LIFESTYLE_DOI}), and stay tuned to the most recent posts and publications of [Nanzhen Qiao]({LINKEDIN}) and [Michael Gänzle]({GANZLE_SCHOLAR}).
+For detailed lifestyle updates, check [Qiao 2025](https://doi.org/10.7939/83003) (PhD thesis, Ch. 6; reviewed with Michael Gänzle in June 2025), with [Duar et al. 2017](https://doi.org/{LIFESTYLE_DOI}) for the original categories, and stay tuned to the most recent posts and publications of [Nanzhen Qiao]({LINKEDIN}) and [Michael Gänzle]({GANZLE_SCHOLAR}).
 
 <p class="lacto-keyline"><span class="lacto-dot lacto-homo"></span>homofermentative <span class="lacto-dot lacto-hetero"></span>heterofermentative <span class="lacto-chip">new</span> not in the June 2025 list <span class="lacto-src">genus</span> the genus's fermentation type, species not yet assessed</p>
 
