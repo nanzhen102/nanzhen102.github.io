@@ -272,7 +272,7 @@ body[data-slug="posts/index"] .content-meta {
   --lacto-unassigned: #878580; // Flexoki base-500, mode-invariant
   --lacto-muted: #878580;
   --lr-bubble: #eeeef3; // the visitor's question bubble in the chat box
-  --lr-fab: #244057; // the "Ask LactoRador" button: the banner's right-most blue, white text
+  --lr-fab: #244057; // the "Ask LactobacillaceaeAI" button: the banner's right-most blue, white text
   --lr-send: #e4e4f7; // the send button: pale lavender, next to the #eeeef3 bubbles
   --lr-send-ink: #254159; // its arrow, and the typing box's border while typing
 }
@@ -1107,7 +1107,7 @@ body[data-slug="lactobacillaceae-names"] {
     }
   }
 
-  // "Ask LactoRador": fixed at the bottom right of every Lactobacillaceae page.
+  // "Ask LactobacillaceaeAI": fixed at the bottom right of every Lactobacillaceae page.
   .lacto-ask-fab {
     position: fixed;
     right: 1.2rem;
@@ -1121,11 +1121,6 @@ body[data-slug="lactobacillaceae-names"] {
     font-weight: 600;
     text-decoration: none !important;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
-
-    span {
-      margin-right: 0.35em;
-      filter: brightness(0) invert(1); // the 🐾 emoji drawn white
-    }
 
     &:hover {
       opacity: 0.9;
@@ -1245,7 +1240,7 @@ body[data-slug="lactobacillaceae-names"] {
   }
 }
 
-// LactoRador chat (scripts/lactorador_chat.js): the box (.lr-panel, [data-lr-box]) that the "🐾 Ask LactoRador"
+// LactobacillaceaeAI chat (scripts/lactorador_chat.js): the box (.lr-panel, [data-lr-box]) that the "Ask LactobacillaceaeAI"
 // button opens at the bottom right of every Lactobacillaceae page.
 [data-lr-box] {
   .lr-log {

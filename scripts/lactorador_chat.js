@@ -1,6 +1,6 @@
 // Copied from 11_agent/lactorador/web/lactorador_chat.js by copy_to_site.py; edit it there.
-/* LactoRador chat for the Lactobacillaceae pages (Quartz site). No libraries.
-   The "🐾 Ask LactoRador" button (a.lacto-ask-fab[data-endpoint]) on every Lactobacillaceae page
+/* LactobacillaceaeAI chat for the Lactobacillaceae pages (Quartz site). No libraries.
+   The "Ask LactobacillaceaeAI" button (a.lacto-ask-fab[data-endpoint]) on every Lactobacillaceae page
    opens a chat box at the bottom right of the same page; any link with data-lr-open does too.
    Without this script, the button links to the overview with #ask, which opens the box there.
    Listeners sit on the document, so they keep working after Quartz's in-site navigation replaces
@@ -12,11 +12,20 @@
   window.__lactorador = true;
   var KEY = "lactorador-panel";
   var SIZE_KEY = "lactorador-size";
+  // One question per kind of thing the database answers, each checked to answer well (2026-11-23):
+  // names, original description, metabolism (gene data + the paper), lifestyle, taxonomic history.
+  // Example buttons show taxon names in italics ("Lactobacillus casei"); the question sent stays plain text.
+  function italicNames(h) {
+    return h.replace(/\b([A-Z][a-z]*(?:bacillus|coccus|ella|nostoc))( (?!called|first|used|proposed)[a-z]{3,})?\b/g,
+      function (m) { return "<em>" + m + "</em>"; });
+  }
+
   var EXAMPLES = [
-    "What is the type species of Lacticaseibacillus?",
-    "Is Lactobacillus reuteri homo- or heterofermentative?",
-    "List the genera in phylogenetic order.",
-    "Why is Lactobacillus rogosae not in the list?",
+    "What is Lactobacillus casei called now?",
+    "In which paper was Lactobacillus agrestimuris first described?",
+    "Is the Embden–Meyerhof pathway used by homo- or heterofermentative lactobacilli?",
+    "Which species are domesticated, and why?",
+    "How many genera have been proposed since 2020?",
   ];
   var panel = null; // the slide-in panel element, kept across in-site navigation
   // Simple line icons (Lucide shapes, ISC licence), drawn in the text colour.
@@ -49,6 +58,9 @@
     });
     h = h.replace(/\*\*((?:[^*]|\*[^*\n]+\*)+?)\*\*/g, "<strong>$1</strong>"); // bold may hold *italics*
     h = h.replace(/\*([^*\n]+)\*/g, "<em>$1</em>");
+    // _underscore_ italics too: the model sometimes writes species names this way, and they showed as
+    // literal underscores (2026-11-22). Only between non-word characters, so snake_case is untouched.
+    h = h.replace(/(^|[\s(>])_([^_\n]+?)_(?=[\s.,;:!?)<]|$)/g, "$1<em>$2</em>");
     h = h.replace(/(^|\n)_\(([^)]*)\)_/g, '$1<span class="lr-small">($2)</span>');
     return h.split(/\n{2,}/).map(function (p) {
       if (/^\s*[-•] /.test(p)) {
@@ -58,9 +70,9 @@
     }).join("");
   }
   function welcome() {
-    return '<div class="lr-msg lr-bot"><p><strong>I am LactoRador, your <em>Lactobacillaceae</em> retriever here!</strong></p><p>Ask me about ' +
-      "<em>Lactobacillaceae</em> names, genera, type strains and genomes. Try:</p><p class=\"lr-examples\">" +
-      EXAMPLES.map(function (q) { return '<button type="button" data-lr-q="' + esc(q) + '">' + esc(q) + "</button>"; }).join(" ") +
+    return '<div class="lr-msg lr-bot"><p><strong>I am <em>Lactobacillaceae</em>AI.</strong> I answer from a curated, expert-checked <em>Lactobacillaceae</em> database, with a source for every claim.</p><p>Ask me about ' +
+      "<em>Lactobacillaceae</em> names, type strains and genomes, metabolism, lifestyles and where species were isolated. Try:</p><p class=\"lr-examples\">" +
+      EXAMPLES.map(function (q) { return '<button type="button" data-lr-q="' + esc(q) + '">' + italicNames(esc(q)) + "</button>"; }).join(" ") +
       "</p></div>";
   }
 
@@ -102,7 +114,7 @@
         if (r.ok) return r.json();
         var e = new Error(r.status === 429 ? "Too many questions in the last hour; please try again later."
           // 422: the server's input check (question 2-500 characters; a lone emoji counts as 1)
-          : r.status === 422 ? "Woof? Please ask a question in words (up to 500 characters), " +
+          : r.status === 422 ? "Please ask a question in words (up to 500 characters), " +
             "e.g. “What is Lactobacillus casei called now?”"
           : "The assistant returned an error (" + r.status + ").");
         e.shown = true;
@@ -115,6 +127,7 @@
         wait.className = "lr-msg lr-bot";
         wait.setAttribute("data-lr-i", String(h.length - 1)); // the answer's place in the history, for the thumbs
         wait.setAttribute("data-lr-mode", r.mode || "");
+        wait.setAttribute("data-lr-id", r.id || ""); // the answer's id, sent back with a rating so the two join
         wait.innerHTML = md(r.answer) +
           '<div class="lr-meta">' + (r.mode === "offline" ? "offline mode · " : "") +
           (tools.length ? "looked up: " + esc(tools.join(", ")) : "no lookup") +
@@ -148,7 +161,8 @@
     fetch(b.getAttribute("data-endpoint").replace(/\/api\/ask$/, "/api/feedback"), {
       method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ rating: btn.getAttribute("data-lr-rate"), question: h[i - 1].content,
-        answer: h[i].content, mode: msg.getAttribute("data-lr-mode") || "" }),
+        answer: h[i].content, mode: msg.getAttribute("data-lr-mode") || "",
+        id: msg.getAttribute("data-lr-id") || "" }),
     }).catch(function () {});
     row.querySelectorAll("[data-lr-rate]").forEach(function (x) { x.disabled = true; });
     row.insertAdjacentHTML("beforeend", '<span class="lr-thanks">Thanks for the feedback.</span>');
@@ -183,10 +197,10 @@
     p.className = "lr-panel";
     p.setAttribute("data-lr-box", "");
     p.setAttribute("data-endpoint", endpoint);
-    p.setAttribute("aria-label", "Ask LactoRador");
+    p.setAttribute("aria-label", "Ask LactobacillaceaeAI");
     p.innerHTML =
       '<div class="lr-grip" title="Drag to resize; double-click to reset" aria-hidden="true"></div>' +
-      '<div class="lr-head"><strong>🐾&nbsp;&nbsp;LactoRador</strong>' +
+      '<div class="lr-head"><strong><em>Lactobacillaceae</em>AI</strong>' +
       '<button type="button" class="lr-icon" data-lr-clear title="New chat" aria-label="New chat">↺</button>' +
       '<button type="button" class="lr-icon" data-lr-close title="Close" aria-label="Close">✕</button></div>' +
       '<div class="lr-log" aria-live="polite">' + welcome() + "</div>" +
@@ -194,8 +208,8 @@
       '<input id="lr-panel-q" class="lr-input" type="text" maxlength="500" placeholder="Ask a question…" autocomplete="off" />' +
       '<button class="lr-send" type="submit" aria-label="Send">↑</button></form>' +
       // Update the month when a new release of the lists goes on the site.
-      '<div class="lr-foot">Answers come only from this site\'s lists (updated November 2026) and the papers ' +
-      'they cite. Lifestyle and ecology: coming soon.</div>';
+      '<div class="lr-foot">Answers come from this site\'s curated lists (updated November 2026) and the papers ' +
+      'they cite. Lifestyle is assigned per species (Qiao 2025), with Duar et al. 2017 alongside.</div>';
     try { // the size the visitor last dragged it to, if any
       var z = JSON.parse(localStorage.getItem(SIZE_KEY) || "null");
       if (z && z.w && z.h) { p.style.width = z.w + "px"; p.style.height = z.h + "px"; }
